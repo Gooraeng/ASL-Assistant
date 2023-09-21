@@ -9,9 +9,8 @@ class link(commands.Cog):
         
     @app_commands.command(name="link",description="봇 서버 링크를 알 수 있습니다!")
     async def link(self, interaction : discord.Interaction):
-        embed = discord.Embed(title="연락처",colour=0xffffff)
-        embed.add_field(name="이메일", value="birdyoon1998@gmail.com")
-        await interaction.response.send_message("https://discord.gg/bREZvQqFTT",ephemeral=False)
+        await interaction.response.send_message("아직 입장할 수 없습니다. 이 메세지는 5초 뒤에 지워집니다.", ephemeral=True,delete_after=5)
+        # await interaction.response.send_message("https://discord.gg/8dpAFYXk8s", ephemeral=False)
         
 async def setup(app):
     await app.add_cog(link(app))

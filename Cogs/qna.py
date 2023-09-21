@@ -11,7 +11,7 @@ class qna(commands.Cog):
     def __init__(self,app):
         self.app = app
         
-    @app_commands.command(name="qna",description="봇 제작자의 연락처를 알려줍니다!")
+    @app_commands.command(name="qna",description="봇 제작자에게 직접 문의하실 수 있습니다!")
     async def qna(self, interaction : discord.Interaction):
         embed = discord.Embed(title="연락처",colour=0xffffff)
         embed.add_field(name="1. 이메일", value="birdyoon1998@gmail.com")
