@@ -11,8 +11,6 @@ import car_list
 
 intents = discord.Intents.default()
 app = commands.Bot(command_prefix="/",intents=intents)
-server1 = 1151082666670706758
-server2 = 1036311658886353006
 
 # 확장 기능(명령어) 로드
 async def load_extensions():
@@ -30,11 +28,6 @@ async def load_extensions():
 # 봇 이벤트
 @app.event
 async def on_ready():   
-    for guild in app.guilds:
-        if guild.id !=server1 and guild.id != server2:
-            await print('leaving guild', guild.name)
-            await guild.leave()
-            
     print(f"{app.user.name} 준비 중")
     try:
         synced = await app.tree.sync()
