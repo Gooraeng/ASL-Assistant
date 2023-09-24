@@ -1,3 +1,6 @@
+# 디코 세팅
+# 민감한 파일
+
 import os
 from dotenv import load_dotenv
 

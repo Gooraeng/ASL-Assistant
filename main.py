@@ -1,4 +1,5 @@
-# 메인 관련 메소드 임포트
+# 메인 코드 모음
+
 import asyncio
 import discord
 import os
@@ -35,19 +36,25 @@ async def on_ready():
         current_status = discord.Game(name='A9차량 정보제공')
         await app.change_presence(status=discord.Status.online,activity=current_status)
         print(f"{app.user.name}이(가) 준비되었습니다!")
+
+    # 매일 한 번 씩 차량 리스트 업데이트 실행
         while True:           
             await asyncio.sleep(86400)
             print('---------------------------------------')
-            await car_list.Managing.make_a9_car_list()
-            await car_list.Managing.check_uptate()
+            await car_list.make_new_car_list()
+            await car_list.check_update()
             print('갱신 완료')
             
     except Exception as e:
         print(e)
+# 에러 관리
 async def on_command_error(ctx, interaction : discord.Interaction, error):
+    # 존재하지 않는 명령어 에러처리
     if isinstance(error, commands.CommandNotFound):
         embed = discord.Embed(title="오류",description="존재하지 않는 명령어입니다.",colour=0xFF0000)
         await interaction.response.send_message("",embed=embed,ephemeral=True) 
+    
+    # 명령어 오류 처리
     else:
         embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
         embed.add_field(name="상세", value=f"```{error}```")
@@ -58,9 +65,9 @@ async def on_command_error(ctx, interaction : discord.Interaction, error):
 async def main():
     async with app:
         await load_extensions()
-        await car_list.Managing.make_a9_car_list()
+        await car_list.make_new_car_list()
         print('---------------------------------------')
-        await car_list.Managing.check_uptate()
+        await car_list.check_update()
         print('---------------------------------------')
         await app.start(settings.token)
         

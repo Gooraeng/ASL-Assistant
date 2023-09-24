@@ -1,3 +1,5 @@
+#  봇 제작자의 연락처 / 유튜브 채널을 알려줌
+
 import discord
 from discord.ext import commands
 from discord import app_commands
