@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 import typing
-import manage_list
+
 import numpy
 import csv
 
@@ -17,9 +17,9 @@ class clash(commands.Cog):
     async def clash(self, interaction: discord.Interaction, area : str, car_name : str):
         # 맵과 차량이 다같이 대응되는 유튜브 링크 제공.
         # 필요한 것 맵 리스트, 차량 리스트, 차량 리스트 안에 링크 append
-        map_data = await ClubClash_Database_area()
-        car_data = await ClubClash_Database_CarName()
-        link_data = await ClubClash_Database_Link()
+        map_data = await database.ClubClash_Database_area()
+        car_data = await database.ClubClash_Database_CarName()
+        link_data = await database.ClubClash_Database_Link()
         database1 = numpy.array(map_data)
         database2 = numpy.array(car_data)
         a = numpy.where(database1 == area)
@@ -37,7 +37,7 @@ class clash(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 맵 리스트..
-        a = await ClubClash_Database_area()
+        a = await database.ClubClash_Database_area()
         map_list = list(set(a))
         result1 = [
             app_commands.Choice(name=choice, value=choice)
@@ -53,7 +53,7 @@ class clash(commands.Cog):
         interaction : discord.Interaction,
         current : str, 
     ) -> typing.List[app_commands.Choice[str]]:
-        a = await ClubClash_Database_CarName()
+        a = await database.ClubClash_Database_CarName()
         new_list = list(set(a))
         result2 = [
             app_commands.Choice(name=choice,value=choice)
@@ -67,43 +67,45 @@ class clash(commands.Cog):
 async def setup(app):
     await app.add_cog(clash(app))
 
-  
-async def ClubClash_Database():
-    data = list()
-    f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
-    reader = csv.reader(f)
-    for row in reader:
-        data.append(row)
-    data.pop(0)
-    f.close()
-    return data
 
-async def ClubClash_Database_area():
-    data = list()
-    f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
-    reader = csv.reader(f)
-    for row in reader:
-        data.append(row[0])
-    data.pop(0)
-    f.close()
-    return data
 
-async def ClubClash_Database_CarName():
-    data = list()
-    f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
-    reader = csv.reader(f)
-    for row in reader:
-        data.append(row[1])
-    data.pop(0)
-    f.close()
-    return data
+class database(): 
+    async def ClubClash_Database():
+        data = list()
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row)
+        data.pop(0)
+        f.close()
+        return data
 
-async def ClubClash_Database_Link():
-    data = list()
-    f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
-    reader = csv.reader(f)
-    for row in reader:
-        data.append(row[2])
-    data.pop(0)
-    f.close()
-    return data
+    async def ClubClash_Database_area():
+        data = list()
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[0])
+        data.pop(0)
+        f.close()
+        return data
+
+    async def ClubClash_Database_CarName():
+        data = list()
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[1])
+        data.pop(0)
+        f.close()
+        return data
+
+    async def ClubClash_Database_Link():
+        data = list()
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[2])
+        data.pop(0)
+        f.close()
+        return data
