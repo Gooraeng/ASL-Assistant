@@ -180,3 +180,6 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 .vscode/launch.json
+Procfile
+runtime.txt
+requirement.txt
