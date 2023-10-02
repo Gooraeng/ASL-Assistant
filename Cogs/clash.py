@@ -24,7 +24,6 @@ class clash(commands.Cog):
         database2 = numpy.array(car_data)
         a = numpy.where(database1 == area)
         b = numpy.where(database2 == car_name)
-        print(a, b)
         same=int(numpy.intersect1d(a,b))
         await interaction.response.send_message(f"{link_data[same]}",ephemeral=True)
         
