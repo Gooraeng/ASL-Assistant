@@ -130,7 +130,7 @@ class manage():
 
 # 차량 사진 리스트 추출 및 csv 파일 간 대조
     async def check_update():  
-        data = await utilize_list()  
+        data = await manage.utilize_list()  
         car_img_list = list()
         for filename in os.listdir("Car_spec_img"):
             if filename.endswith(".png") or filename.endswith(".jpg"):
