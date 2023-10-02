@@ -30,7 +30,12 @@ async def load_extensions():
 
 # 봇 이벤트
 @app.event
-async def on_ready():   
+async def on_ready():
+    await load_extensions()
+    await manage.make_new_car_list()
+    print('---------------------------------------')
+    await manage.check_update()
+    print('---------------------------------------')   
     print(f"{app.user.name} 준비 중")
     try:
         synced = await app.tree.sync()
@@ -65,7 +70,7 @@ async def on_command_error(ctx, interaction : discord.Interaction, error):
 # 사이트로부터 리스트 정보 받아오기
 class manage():
     async def make_new_car_list():
-        url = settings.list_url
+        url = 'https://www.mei-a9.info/cars'
     
         response = req.get(url).text.encode('utf-8')
         response = beau(response, 'lxml')
@@ -142,13 +147,4 @@ class manage():
                 print('차량 업데이트 발견: '+ str(check_new))
                 
 # 메인
-async def main():
-    async with app:
-        await load_extensions()
-        await manage.make_new_car_list()
-        print('---------------------------------------')
-        await manage.check_update()
-        print('---------------------------------------')
-        await app.start(settings.token)
-
-asyncio.run(main())      
+app.run(settings.token)
