@@ -1,4 +1,4 @@
-# A9-spectation-bot
+# ASL-bot
 
 ## 🚩 소개
 - Asphalt 9을 즐기는 유저들이 자신이 찾고자 하는 차량의 정보를 디테일하게 제공하는 Discord Bot입니다.
