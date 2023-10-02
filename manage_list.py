@@ -1,7 +1,7 @@
 # 차량 리스트 만들기 위한 함수 모음
 
-import requests
-from bs4 import BeautifulSoup
+import requests as req
+from bs4 import BeautifulSoup as beau
 import pandas as pd
 import lxml
 import csv
@@ -12,8 +12,8 @@ import os
 async def make_new_car_list():
     url = settings.list_url
     
-    response = requests.get(url).text.encode('utf-8')
-    response = BeautifulSoup(response, 'lxml')
+    response = req.get(url).text.encode('utf-8')
+    response = beau(response, 'lxml')
     
     target = response.find('table',{'id':'list', 'class':'table'})
     thead = target.find_all('th')
