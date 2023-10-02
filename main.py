@@ -72,4 +72,4 @@ async def main():
         await app.start(settings.token)
         
 # 메인 실행
-asyncio.run(main())
+app.run(main())
