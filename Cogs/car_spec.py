@@ -7,7 +7,7 @@ import csv
 import typing
 
 # A9 차량 리스트 관련 파일 임포트
-import car_list
+import manage_list
 
 class spec(commands.Cog):
     def __init__(self, app):
@@ -34,7 +34,7 @@ class spec(commands.Cog):
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
                 
             
-    # 리스트 자동 완성  
+    # 리스트 자동 완성 
     @car.autocomplete("car_name")
     async def car_autocompletion(self,
         interaction : discord.Interaction,
@@ -42,7 +42,7 @@ class spec(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
     
         # Choice 리스트 제작을 위한 함수 실행
-        new_data = await car_list.utilize_list()
+        new_data = await manage_list.utilize_list()
         
         # Choice 갯수가 10개 초과 시 최대로 보여주는 Choice 수를 10개 까지로 제한
         result = [

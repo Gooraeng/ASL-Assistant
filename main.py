@@ -7,7 +7,7 @@ from discord.ext import commands
 from discord import app_commands
 from dotenv import load_dotenv
 import settings
-import car_list
+import manage_list
 
 
 intents = discord.Intents.default()
@@ -41,8 +41,8 @@ async def on_ready():
         while True:           
             await asyncio.sleep(86400)
             print('---------------------------------------')
-            await car_list.make_new_car_list()
-            await car_list.check_update()
+            await manage_list.make_new_car_list()
+            await manage_list.check_update()
             print('갱신 완료')
             
     except Exception as e:
@@ -65,9 +65,9 @@ async def on_command_error(ctx, interaction : discord.Interaction, error):
 async def main():
     async with app:
         await load_extensions()
-        await car_list.make_new_car_list()
+        await manage_list.make_new_car_list()
         print('---------------------------------------')
-        await car_list.check_update()
+        await manage_list.check_update()
         print('---------------------------------------')
         await app.start(settings.token)
         

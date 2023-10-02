@@ -38,24 +38,25 @@ async def make_new_car_list():
         if i % 2 ==1:
             rowList.append(columnList)
             columnList=[]
-    result = pd.DataFrame(rowList,columns=theadList)
-    
+    result = pd.DataFrame(rowList, columns=theadList)
     # 태그 제거 결과 확인
     print(result)
     
     # csv 파일로 우선 저장 [차량, 클래스] 꼴로 저장됨
-    f = open(settings.the_csv,'w',encoding='utf-8',newline='')
+    f = open('data/A9 Car List.csv','w',encoding='utf-8',newline='')
     writer = csv.writer(f)
+    writer.writerow(theadList)
     writer.writerows(rowList)
     f.close()
         
 # make_new_car_list에서 나온 [차량, 클래스 중] [차량]만 활용할 수 있게 csv 파일 편집 
 async def utilize_list():
     data = list()
-    f = open(settings.the_csv, "r",encoding='utf-8')
+    f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
     reader = csv.reader(f)
     for row in reader:
         data.append(row[0])
+    data.pop(0)
     f.close()
     return data
 
@@ -83,4 +84,44 @@ async def check_update():
     else:
         if 'KTM  X-BOW GTX' in data:
             check_new.remove('KTM  X-BOW GTX')
-            print('차량 업데이트 발견: '+ str(check_new))                  
+            print('차량 업데이트 발견: '+ str(check_new))
+
+async def ClubClash_Database():
+    data = list()
+    f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+    reader = csv.reader(f)
+    for row in reader:
+        data.append(row)
+    data.pop(0)
+    f.close()
+    return data
+
+async def ClubClash_Database_area():
+    data = list()
+    f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+    reader = csv.reader(f)
+    for row in reader:
+        data.append(row[0])
+    data.pop(0)
+    f.close()
+    return data
+
+async def ClubClash_Database_CarName():
+    data = list()
+    f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+    reader = csv.reader(f)
+    for row in reader:
+        data.append(row[1])
+    data.pop(0)
+    f.close()
+    return data
+
+async def ClubClash_Database_Link():
+    data = list()
+    f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+    reader = csv.reader(f)
+    for row in reader:
+        data.append(row[2])
+    data.pop(0)
+    f.close()
+    return data
