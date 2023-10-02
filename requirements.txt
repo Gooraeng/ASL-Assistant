@@ -4,8 +4,6 @@ asyncio
 typing
 numpy
 python-dotenv
-virtualenv
-csv
 beautifulsoup4
 pandas
 lxml
