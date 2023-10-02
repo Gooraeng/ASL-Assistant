@@ -6,8 +6,4 @@ python-dotenv
 beautifulsoup4
 pandas
 lxml
-<<<<<<< HEAD
 requests
-=======
-requests
->>>>>>> 98e067aa2427c8e8475d4c11b822529bf603d305
