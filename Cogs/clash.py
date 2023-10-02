@@ -22,10 +22,15 @@ class clash(commands.Cog):
         link_data = await database.ClubClash_Database_Link()
         database1 = numpy.array(map_data)
         database2 = numpy.array(car_data)
+        
         a = numpy.where(database1 == area)
         b = numpy.where(database2 == car_name)
-        same=int(numpy.intersect1d(a,b))
-        await interaction.response.send_message(f"{link_data[same]}",ephemeral=True)
+        
+        same = int(numpy.intersect1d(a, b))
+        
+        embed = discord.Embed(title="경고", description='찾으시는 데이터가 현행 클럽 클래시 라인업 상 불일치하거나 데이터가 없어 검색이 불가할 수 있습니다.')
+        await interaction.response.send_message(f"{link_data[same]}",embed=embed,ephemeral=True)
+        
         
     
     @clash.autocomplete('area')
