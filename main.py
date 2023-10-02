@@ -62,19 +62,6 @@ async def on_command_error(ctx, interaction : discord.Interaction, error):
         embed.add_field(name="상세", value=f"```{error}```")
         await interaction.response.send_message("",embed=embed,ephemeral=True)
     
-
-# 메인
-async def main():
-    async with app:
-        await load_extensions()
-        await manage.make_new_car_list()
-        print('---------------------------------------')
-        await manage.check_update()
-        print('---------------------------------------')
-        await app.start(settings.token)
-
-asyncio.run(main())      
-
 # 사이트로부터 리스트 정보 받아오기
 class manage():
     async def make_new_car_list():
@@ -153,3 +140,15 @@ class manage():
             if 'KTM  X-BOW GTX' in data:
                 check_new.remove('KTM  X-BOW GTX')
                 print('차량 업데이트 발견: '+ str(check_new))
+                
+# 메인
+async def main():
+    async with app:
+        await load_extensions()
+        await manage.make_new_car_list()
+        print('---------------------------------------')
+        await manage.check_update()
+        print('---------------------------------------')
+        await app.start(settings.token)
+
+asyncio.run(main())      
