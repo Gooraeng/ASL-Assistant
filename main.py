@@ -63,7 +63,7 @@ class manage():
 # make_new_car_list에서 나온 [차량, 클래스 중] [차량]만 활용할 수 있게 csv 파일 편집 
     async def utilize_list():
         data = list()
-        f = open(settings.car_list, "r",encoding='utf-8',newline='')
+        f = open(car_list, "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
