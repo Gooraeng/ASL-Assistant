@@ -77,7 +77,7 @@ async def setup(app):
 class database(): 
     async def ClubClash_Database():
         data = list()
-        f = open(settings.club_clash_database, "r",encoding='utf-8',newline='')
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row)
@@ -87,7 +87,7 @@ class database():
 
     async def ClubClash_Database_area():
         data = list()
-        f = open(settings.club_clash_database, "r",encoding='utf-8',newline='')
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
@@ -97,7 +97,7 @@ class database():
 
     async def ClubClash_Database_CarName():
         data = list()
-        f = open(settings.club_clash_database, "r",encoding='utf-8',newline='')
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[1])
@@ -107,7 +107,7 @@ class database():
 
     async def ClubClash_Database_Link():
         data = list()
-        f = open(settings.club_clash_database, "r",encoding='utf-8',newline='')
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[2])

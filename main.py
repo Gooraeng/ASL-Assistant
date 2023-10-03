@@ -63,7 +63,7 @@ class manage():
 # make_new_car_list에서 나온 [차량, 클래스 중] [차량]만 활용할 수 있게 csv 파일 편집 
     async def utilize_list():
         data = list()
-        f = open(car_list, "r",encoding='utf-8',newline='')
+        f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
@@ -75,7 +75,7 @@ class manage():
     async def check_update():  
         data = await manage.utilize_list()  
         car_img_list = list()
-        for filename in os.listdir(car_img):
+        for filename in os.listdir('Car_spec_img'):
             if filename.endswith(".png") or filename.endswith(".jpg"):
                 car_img_list.append(filename[:-4])
             elif filename.endswith(".jpeg"):
