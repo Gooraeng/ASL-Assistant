@@ -4,7 +4,6 @@ import asyncio
 import discord
 import os
 from discord.ext import commands
-from discord import app_commands
 from dotenv import load_dotenv
 import settings
 import requests as req
@@ -16,6 +15,7 @@ import csv
 intents = discord.Intents.default()
 app = commands.Bot(command_prefix="/",intents=intents)
 discord_api_token = settings.discord_api_token
+
 # 확장 기능(명령어) 로드
 async def load_extensions():
     for filename in os.listdir("Cogs"):
