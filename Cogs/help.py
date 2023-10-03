@@ -18,6 +18,7 @@ class help(commands.Cog):
         embed.add_field(name="3. Ref", value="봇 제작에 있어 참고/활용된 자료의 출처를 알려줍니다!", inline=False)
         embed.add_field(name="4. Link", value="봇 서버 링크를 알 수 있습니다!", inline=False)
         embed.add_field(name="5. Ver", value="현재 봇의 마지막 업데이트 날짜를 알려줍니다!", inline=False)
+        embed.add_field(name="6. Selju", value="별다른 설명이 필요없습니다. 바로 시도해보세요!", inline=False)        
         
         await interaction.response.send_message("",embed=embed, ephemeral=True)
         

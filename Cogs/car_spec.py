@@ -30,10 +30,10 @@ class spec(commands.Cog):
         
         # car_list.py 76째 줄 참고
         if car_name == 'KTM  X-BOW GTX':
-            await interaction.response.send_message('', embed=embed, file=discord.File('./Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)
+            await interaction.response.send_message('', embed=embed, file=discord.File(f'{settings.car_img}/KTM X-BOW GTX.png'),ephemeral=True)
         else:
             try:
-                await interaction.response.send_message('', embed=embed, file=discord.File(f'./Car_spec_img/{car_name}.png'),ephemeral=True)
+                await interaction.response.send_message('', embed=embed, file=discord.File(f'{settings.car_img}/{car_name}.png'),ephemeral=True)
             # 파일이 존재하지 않음
             except FileNotFoundError:
                 embed1 = discord.Embed(title='오류', description='찾고자 하는 차량의 정보가 없습니다. 나중에 다시 시도해주세요!')
@@ -100,7 +100,7 @@ class manage():
         print(result)
     
     # csv 파일로 우선 저장 [차량, 클래스] 꼴로 저장됨
-        f = open('data/A9 Car List.csv','w',encoding='utf-8',newline='')
+        f = open(settings.car_list,'w',encoding='utf-8',newline='')
         writer = csv.writer(f)
         writer.writerow(theadList)
         writer.writerows(rowList)
@@ -109,7 +109,7 @@ class manage():
 # make_new_car_list에서 나온 [차량, 클래스 중] [차량]만 활용할 수 있게 csv 파일 편집 
     async def utilize_list():
         data = list()
-        f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
+        f = open(settings.car_list, "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
@@ -121,7 +121,7 @@ class manage():
     async def check_update():  
         data = await manage.utilize_list()  
         car_img_list = list()
-        for filename in os.listdir("Car_spec_img"):
+        for filename in os.listdir(settings.car_img):
             if filename.endswith(".png") or filename.endswith(".jpg"):
                 car_img_list.append(filename[:-4])
             elif filename.endswith(".jpeg"):

@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup as beau
 import pandas as pd
 import csv
 
+
 intents = discord.Intents.default()
 app = commands.Bot(command_prefix="/",intents=intents)
 
@@ -70,7 +71,7 @@ async def on_command_error(ctx, interaction : discord.Interaction, error):
 # 사이트로부터 리스트 정보 받아오기
 class manage():
     async def make_new_car_list():
-        url = 'https://www.mei-a9.info/cars'
+        url = settings.list_url
     
         response = req.get(url).text.encode('utf-8')
         response = beau(response, 'lxml')
@@ -103,7 +104,7 @@ class manage():
         print(result)
     
     # csv 파일로 우선 저장 [차량, 클래스] 꼴로 저장됨
-        f = open('data/A9 Car List.csv','w',encoding='utf-8',newline='')
+        f = open(settings.car_list,'w',encoding='utf-8',newline='')
         writer = csv.writer(f)
         writer.writerow(theadList)
         writer.writerows(rowList)
@@ -112,7 +113,7 @@ class manage():
 # make_new_car_list에서 나온 [차량, 클래스 중] [차량]만 활용할 수 있게 csv 파일 편집 
     async def utilize_list():
         data = list()
-        f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
+        f = open(settings.car_list, "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
@@ -124,7 +125,7 @@ class manage():
     async def check_update():  
         data = await manage.utilize_list()  
         car_img_list = list()
-        for filename in os.listdir("Car_spec_img"):
+        for filename in os.listdir(settings.car_img):
             if filename.endswith(".png") or filename.endswith(".jpg"):
                 car_img_list.append(filename[:-4])
             elif filename.endswith(".jpeg"):
@@ -147,4 +148,4 @@ class manage():
                 print('차량 업데이트 발견: '+ str(check_new))
                 
 # 메인
-app.run(settings.token)
+app.run(str(settings.token))

@@ -5,6 +5,7 @@ import typing
 
 import numpy
 import csv
+import settings
 
 class clash(commands.Cog):
     def __init__(self, app):
@@ -29,7 +30,7 @@ class clash(commands.Cog):
         same = int(numpy.intersect1d(a, b))
         
         embed = discord.Embed(title="경고", description='찾으시는 데이터가 현행 클럽 클래시 라인업 상 불일치하거나 데이터가 없어 검색이 불가할 수 있습니다.')
-        await interaction.response.send_message(f"{link_data[same]}",embed=embed,ephemeral=True)
+        await interaction.response.send_message(f"{link_data[same]}",embeds=[embed],ephemeral=True)
         
         
     
@@ -76,7 +77,7 @@ async def setup(app):
 class database(): 
     async def ClubClash_Database():
         data = list()
-        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+        f = open(settings.club_clash_database, "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row)
@@ -86,7 +87,7 @@ class database():
 
     async def ClubClash_Database_area():
         data = list()
-        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+        f = open(settings.club_clash_database, "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
@@ -96,7 +97,7 @@ class database():
 
     async def ClubClash_Database_CarName():
         data = list()
-        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+        f = open(settings.club_clash_database, "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[1])
@@ -106,7 +107,7 @@ class database():
 
     async def ClubClash_Database_Link():
         data = list()
-        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+        f = open(settings.club_clash_database, "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[2])
