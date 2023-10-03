@@ -16,57 +16,7 @@ intents = discord.Intents.default()
 app = commands.Bot(command_prefix="/",intents=intents)
 discord_api_token = settings.discord_api_token
 
-# 확장 기능(명령어) 로드
-async def load_extensions():
-    for filename in os.listdir("Cogs"):
-        if filename.endswith(".py"):
-            try:
-                await app.load_extension(f"Cogs.{filename[:-3]}")            
-# 오류 처리
-            except (commands.NoEntryPointError, commands.ExtensionFailed):
-                print(f"파일 오류 발생 : {filename}")
-            except commands.ExtensionNotFound:
-                print(f"{filename[:-3]} 파일이 존재하지 않습니다.")
-       
 
-# 봇 이벤트
-@app.event
-async def on_ready():
-    await load_extensions()
-    await manage.make_new_car_list()
-    print('---------------------------------------')
-    await manage.check_update()
-    print('---------------------------------------')   
-    print(f"{app.user.name} 준비 중")
-    try:
-        synced = await app.tree.sync()
-        print(f"명령어 {len(synced)}개 사용 가능")
-        current_status = discord.Game(name='A9차량 정보제공')
-        await app.change_presence(status=discord.Status.online,activity=current_status)
-        print(f"{app.user.name}이(가) 준비되었습니다!")
-
-    # 매일 한 번 씩 차량 리스트 업데이트 실행
-        while True:           
-            await asyncio.sleep(86400)
-            print('---------------------------------------')
-            await manage.make_new_car_list()
-            await manage.check_update()
-            print('갱신 완료')
-            
-    except Exception as e:
-        print(e)
-# 에러 관리
-async def on_command_error(ctx, interaction : discord.Interaction, error):
-    # 존재하지 않는 명령어 에러처리
-    if isinstance(error, commands.CommandNotFound):
-        embed = discord.Embed(title="오류",description="존재하지 않는 명령어입니다.",colour=0xFF0000)
-        await interaction.response.send_message("",embed=embed,ephemeral=True) 
-    
-    # 명령어 오류 처리
-    else:
-        embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
-        embed.add_field(name="상세", value=f"```{error}```")
-        await interaction.response.send_message("",embed=embed,ephemeral=True)
     
 # 사이트로부터 리스트 정보 받아오기
 class manage():
@@ -146,6 +96,59 @@ class manage():
             if 'KTM  X-BOW GTX' in data:
                 check_new.remove('KTM  X-BOW GTX')
                 print('차량 업데이트 발견: '+ str(check_new))
-                
+
+
+# 확장 기능(명령어) 로드
+async def load_extensions():
+    for filename in os.listdir("Cogs"):
+        if filename.endswith(".py"):
+            try:
+                await app.load_extension(f"Cogs.{filename[:-3]}")            
+# 오류 처리
+            except (commands.NoEntryPointError, commands.ExtensionFailed):
+                print(f"파일 오류 발생 : {filename}")
+            except commands.ExtensionNotFound:
+                print(f"{filename[:-3]} 파일이 존재하지 않습니다.")
+       
+
+# 봇 이벤트
+@app.event
+async def on_ready():
+    await load_extensions()
+    await manage.make_new_car_list()
+    print('---------------------------------------')
+    await manage.check_update()
+    print('---------------------------------------')   
+    print(f"{app.user.name} 준비 중")
+    try:
+        synced = await app.tree.sync()
+        print(f"명령어 {len(synced)}개 사용 가능")
+        current_status = discord.Game(name='A9차량 정보제공')
+        await app.change_presence(status=discord.Status.online,activity=current_status)
+        print(f"{app.user.name}이(가) 준비되었습니다!")
+
+    # 매일 한 번 씩 차량 리스트 업데이트 실행
+        while True:           
+            await asyncio.sleep(86400)
+            print('---------------------------------------')
+            await manage.make_new_car_list()
+            await manage.check_update()
+            print('갱신 완료')
+            
+    except Exception as e:
+        print(e)
+# 에러 관리
+async def on_command_error(ctx, interaction : discord.Interaction, error):
+    # 존재하지 않는 명령어 에러처리
+    if isinstance(error, commands.CommandNotFound):
+        embed = discord.Embed(title="오류",description="존재하지 않는 명령어입니다.",colour=0xFF0000)
+        await interaction.response.send_message("",embed=embed,ephemeral=True) 
+    
+    # 명령어 오류 처리
+    else:
+        embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
+        embed.add_field(name="상세", value=f"```{error}```")
+        await interaction.response.send_message("",embed=embed,ephemeral=True)  
+                      
 # 메인
 app.run(discord_api_token)
