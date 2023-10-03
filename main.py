@@ -16,7 +16,7 @@ intents = discord.Intents.default()
 app = commands.Bot(command_prefix="/",intents=intents)
 discord_api_token = str(settings.discord_api_token)
 car_img = settings.car_img
-car_list = settings.car_list
+car_list = str(settings.car_list)
     
 # 사이트로부터 리스트 정보 받아오기
 class manage():
