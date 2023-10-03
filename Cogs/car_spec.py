@@ -121,7 +121,7 @@ class manage():
     async def check_update():  
         data = await manage.utilize_list()  
         car_img_list = list()
-        for filename in os.listdir(settings.car_img):
+        for filename in os.listdir():
             if filename.endswith(".png") or filename.endswith(".jpg"):
                 car_img_list.append(filename[:-4])
             elif filename.endswith(".jpeg"):
