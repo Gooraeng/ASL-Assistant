@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-token = os.getenv('discord_api_token')
+discord_api_token = os.getenv('discord_api_token')
 list_url = os.getenv('list_url')
 car_list = os.getenv('car_list')
 club_clash_database = os.getenv('club_clash_database')
