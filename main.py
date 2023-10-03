@@ -15,7 +15,7 @@ import csv
 
 intents = discord.Intents.default()
 app = commands.Bot(command_prefix="/",intents=intents)
-
+discord_api_token = settings.discord_api_token
 # 확장 기능(명령어) 로드
 async def load_extensions():
     for filename in os.listdir("Cogs"):
@@ -148,4 +148,4 @@ class manage():
                 print('차량 업데이트 발견: '+ str(check_new))
                 
 # 메인
-app.run(settings.discord_api_token)
+app.run(discord_api_token)
