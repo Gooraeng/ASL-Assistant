@@ -15,7 +15,7 @@ import csv
 intents = discord.Intents.default()
 app = commands.Bot(command_prefix="/",intents=intents)
 discord_api_token = str(settings.discord_api_token)
-car_img = str(settings.car_img)
+car_img = settings.car_img
 car_list = str(settings.car_list)
     
 # 사이트로부터 리스트 정보 받아오기
