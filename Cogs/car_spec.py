@@ -14,8 +14,7 @@ import settings
 
 
 # A9 차량 리스트 관련 파일 임포트
-car_list = settings.car_list
-car_img = settings.car_img
+
 
 # 사이트로부터 리스트 정보 받아오기
 class manage():
@@ -53,7 +52,7 @@ class manage():
         print(result)
     
     # csv 파일로 우선 저장 [차량, 클래스] 꼴로 저장됨
-        f = open(car_list,'w',encoding='utf-8',newline='')
+        f = open('data/A9 Car List.csv','w',encoding='utf-8',newline='')
         writer = csv.writer(f)
         writer.writerow(theadList)
         writer.writerows(rowList)
@@ -74,7 +73,7 @@ class manage():
     async def check_update():  
         data = await manage.utilize_list()  
         car_img_list = list()
-        for filename in os.listdir(car_img):
+        for filename in os.listdir('Car_spec_img'):
             if filename.endswith(".png") or filename.endswith(".jpg"):
                 car_img_list.append(filename[:-4])
             elif filename.endswith(".jpeg"):
