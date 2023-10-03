@@ -14,14 +14,14 @@ import csv
 
 intents = discord.Intents.default()
 app = commands.Bot(command_prefix="/",intents=intents)
-discord_api_token = settings.discord_api_token
-
-
+discord_api_token = str(settings.discord_api_token)
+car_img = str(settings.car_img)
+car_list = str(settings.car_list)
     
 # 사이트로부터 리스트 정보 받아오기
 class manage():
     async def make_new_car_list():
-        url = settings.list_url
+        url = str(settings.list_url)
     
         response = req.get(url).text.encode('utf-8')
         response = beau(response, 'lxml')
@@ -54,7 +54,7 @@ class manage():
         print(result)
     
     # csv 파일로 우선 저장 [차량, 클래스] 꼴로 저장됨
-        f = open(settings.car_list,'w',encoding='utf-8',newline='')
+        f = open(car_list,'w',encoding='utf-8',newline='')
         writer = csv.writer(f)
         writer.writerow(theadList)
         writer.writerows(rowList)
@@ -75,7 +75,7 @@ class manage():
     async def check_update():  
         data = await manage.utilize_list()  
         car_img_list = list()
-        for filename in os.listdir(settings.car_img):
+        for filename in os.listdir(car_img):
             if filename.endswith(".png") or filename.endswith(".jpg"):
                 car_img_list.append(filename[:-4])
             elif filename.endswith(".jpeg"):
