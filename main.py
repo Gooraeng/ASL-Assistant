@@ -147,4 +147,4 @@ class manage():
                 print('차량 업데이트 발견: '+ str(check_new))
                 
 # 메인
-app.run(str(settings.token))
+app.run(settings.token)
