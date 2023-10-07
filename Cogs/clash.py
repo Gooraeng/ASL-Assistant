@@ -17,22 +17,22 @@ class clash(commands.Cog):
     async def clashes(self, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
         # 맵과 차량이 다같이 대응되는 유튜브 링크 제공.
         # 필요한 것 맵 리스트, 차량 리스트, 차량 리스트 안에 링크 append
-        try:
-            map_data = await database.ClubClash_Database_area()
-            car_data = await database.ClubClash_Database_CarName()
-            link_data = await database.ClubClash_Database_Link()
+        map_data = await database.ClubClash_Database_area()
+        car_data = await database.ClubClash_Database_CarName()
+        link_data = await database.ClubClash_Database_Link()
         
-            database1 = numpy.array(map_data)
-            database3 = numpy.array(car_data)
+        database1 = numpy.array(map_data)
+        database2 = numpy.array(car_data)
             
-            a = numpy.where(database1 == area)
-            b = numpy.where(database3 == car_name)
+        a = numpy.where(database1 == area)
+        b = numpy.where(database2 == car_name)
         
-            same = int(numpy.intersect1d(a, b))
+        same = int(numpy.intersect1d(a, b))
         
-            embed1 = discord.Embed(title="경고", description='찾으시는 데이터가 현행 클럽 클래시 라인업 상 불일치하거나 데이터가 없어 검색이 불가할 수 있습니다.')
-            await interaction.response.send_message(f"{link_data[same]}",embed=embed1,ephemeral=True)
-        except Exception:
+        embed1 = discord.Embed(title="경고", description='찾으시는 데이터가 현행 클럽 클래시 라인업 상 불일치하거나 데이터가 없어 검색이 불가할 수 있습니다.')
+        await interaction.response.send_message(f"{link_data[same]}",embed=embed1,ephemeral=True)
+        
+        if link_data[same] == '':
             embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
             await interaction.response.send_message(f"{link_data[same]}",embed=embed2,ephemeral=True)
     
