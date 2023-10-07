@@ -142,5 +142,3 @@ class spec(commands.Cog):
 
 async def setup(app):
     await app.add_cog(spec(app))
-    
-
