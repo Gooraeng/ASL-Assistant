@@ -13,6 +13,7 @@ import csv
 
 
 intents = discord.Intents.default()
+intents.message_content = True
 app = commands.Bot(command_prefix="/",intents=intents)
 discord_api_token = str(settings.discord_api_token)
 car_img = settings.car_img
