@@ -31,7 +31,7 @@ class clash(commands.Cog):
         
         embed1 = discord.Embed(title="경고", description='찾으시는 데이터가 현행 클럽 클래시 라인업 상 불일치하거나 데이터가 없어 검색이 불가할 수 있습니다.')
         await interaction.response.send_message('',embed=embed1)
-        await interaction.response.send_message(f"{link_data[same]}")
+        await interaction.message(f'{link_data[same]}')
         
         if link_data[same] == False:
             embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
