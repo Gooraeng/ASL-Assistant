@@ -1,4 +1,6 @@
 # 차량의 디테일한 성능을 알려주는 명령어
+# Last update : 231007
+
 
 import discord
 from discord.ext import commands

@@ -32,9 +32,9 @@ class clash(commands.Cog):
         embed1 = discord.Embed(title="경고", description='찾으시는 데이터가 현행 클럽 클래시 라인업 상 불일치하거나 데이터가 없어 검색이 불가할 수 있습니다.')
         await interaction.response.send_message(f"{link_data[same]}",embed=embed1,ephemeral=True)
         
-        if link_data[same] == '':
+        if link_data[same] == False:
             embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
-            await interaction.response.send_message(f"{link_data[same]}",embed=embed2,ephemeral=True)
+            await interaction.response.send_message('',embed=embed2,ephemeral=True)
     
     @clashes.autocomplete('area')
     async def area_autocompletion(
@@ -49,6 +49,7 @@ class clash(commands.Cog):
             app_commands.Choice(name=choice, value=choice)
             for choice in map_list if current.lower() in choice.lower()
         ]
+    
         if len(result1) > 10:
             result1 = result1[:10]
         
