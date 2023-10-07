@@ -14,7 +14,7 @@ class clash(commands.Cog):
     @app_commands.command(name='clash', description='클럽 클래시 지역의 맵의 레퍼런스를 확인할 수 있습니다!')
     @app_commands.describe(area = '찾고자 하는 맵을 찾아보세요!', car_class = '클래스를 선택하세요', car_name ='어떤 차량을 찾아보시겠어요?')
     @app_commands.rename(area = '맵', car_class = '클래스', car_name = '차량')
-    async def clashes(self, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
+    async def clashes(self, ctx,interaction: discord.Interaction, area : str, car_class : str, car_name : str):
         # 맵과 차량이 다같이 대응되는 유튜브 링크 제공.
         # 필요한 것 맵 리스트, 차량 리스트, 차량 리스트 안에 링크 append
         map_data = await database.ClubClash_Database_area()
@@ -29,9 +29,8 @@ class clash(commands.Cog):
         
         same = int(numpy.intersect1d(a, b))
         
-        embed1 = discord.Embed(title="경고", description='찾으시는 데이터가 현행 클럽 클래시 라인업 상 불일치하거나 데이터가 없어 검색이 불가할 수 있습니다.')
-        await interaction.response.send_message('',embed=embed1)
-        await interaction.message(f'{link_data[same]}')
+        
+        await interaction.response.send_message(f'{link_data[same]}')
         
         if link_data[same] == False:
             embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
