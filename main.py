@@ -72,7 +72,7 @@ class manage():
         return data
 
 # 차량 사진 리스트 추출 및 csv 파일 간 대조
-    async def check_update(ctx):  
+    async def check_update():  
         data = await manage.utilize_list()  
         car_img_list = list()
         for filename in os.listdir('Car_spec_img'):
