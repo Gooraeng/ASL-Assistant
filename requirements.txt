@@ -10,7 +10,6 @@ requests
 aiohttp
 aiosignal
 async-timeout
-attrs
 discord-py-slash-command
 distlib
 et-xmlfile
@@ -19,7 +18,4 @@ frozenlist
 multidict
 openpyxl
 pip
-platformdirs
-PyNaCl
-setuptools
 yarl
