@@ -89,7 +89,6 @@ class manage():
         if len(list(data))-len(list(car_img_list))==0:
             if 'KTM  X-BOW GTX' in data:
                 print('추가된 차량이 없습니다!')
-                await ctx.send('모든 차량의 데이터를 보실 수 있습니다.')
 
     # 리스트 대조 후 불일치 시
     # 76번 줄과 같은 사유
@@ -97,7 +96,6 @@ class manage():
             if 'KTM  X-BOW GTX' in data:
                 check_new.remove('KTM  X-BOW GTX')
                 print('차량 업데이트 발견: '+ str(check_new))
-                await ctx.send(f'{(", ").join(str(check_new).split())} 차량에 대한 정보가 없습니다!')
 
 
 # 확장 기능(명령어) 로드
