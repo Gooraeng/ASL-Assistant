@@ -72,7 +72,7 @@ class manage():
         return data
 
 # 차량 사진 리스트 추출 및 csv 파일 간 대조
-    async def check_update(ctx : discord.Message):  
+    async def check_update(ctx):  
         data = await manage.utilize_list()  
         car_img_list = list()
         for filename in os.listdir('Car_spec_img'):
@@ -89,7 +89,6 @@ class manage():
         if len(list(data))-len(list(car_img_list))==0:
             if 'KTM  X-BOW GTX' in data:
                 print('추가된 차량이 없습니다!')
-                embed = discord.Embed(title= '')
                 await ctx.send('모든 차량의 데이터를 보실 수 있습니다.')
 
     # 리스트 대조 후 불일치 시
