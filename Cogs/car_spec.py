@@ -110,7 +110,7 @@ class spec(commands.Cog):
     async def car(self, interaction : discord.Interaction, car_name : str):
         get_check_list = await manage.check_update()
         
-        check_new = (', ').join(s for s in get_check_list)
+        check_new = (' / ').join(s for s in get_check_list)
         
         embed = discord.Embed(title='주의', description='정보가 누락되거나 정확하지 않을 수 있습니다. 문제 발견 시 ASL Bot 디스코드 서버를 통해 신고해주십시오! (/link 입력)')
         embed.add_field(name='**<경고>**',value='All list From "MEI Car list", All images from "A9-Database". Type "Ref" For details. ', inline=False)
