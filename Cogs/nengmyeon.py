@@ -8,7 +8,7 @@ class nengmyeon(commands.Cog):
     
     @app_commands.command(name='selju', description='ㅋㅋ')    
     async def show_nengmyeon_bab(self, interaction : discord.Interaction):
-        embed = discord.Embed(title='ㅋㅋ', description='',colour=0xff0000)
+        embed = discord.Embed(title='ㅋㅋ', description='', colour=0xff0000)
         await interaction.response.send_message('',embed=embed,ephemeral=True,delete_after=5,file=discord.File('./images/nengmyeon.jpg'))        
 
 async def setup(app):

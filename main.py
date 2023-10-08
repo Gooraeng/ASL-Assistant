@@ -4,7 +4,6 @@ import asyncio
 import discord
 import os
 from discord.ext import commands
-from dotenv import load_dotenv
 import settings
 import requests as req
 from bs4 import BeautifulSoup as beau
@@ -14,7 +13,7 @@ import csv
 
 intents = discord.Intents.default()
 intents.message_content = True
-app = commands.Bot(command_prefix="/",intents=intents)
+app = commands.Bot(command_prefix="?",intents=intents)
 discord_api_token = str(settings.discord_api_token)
 car_img = settings.car_img
 car_list = str(settings.car_list)
@@ -73,7 +72,7 @@ class manage():
         return data
 
 # 차량 사진 리스트 추출 및 csv 파일 간 대조
-    async def check_update():  
+    async def check_update(ctx : discord.Message):  
         data = await manage.utilize_list()  
         car_img_list = list()
         for filename in os.listdir('Car_spec_img'):
@@ -90,6 +89,8 @@ class manage():
         if len(list(data))-len(list(car_img_list))==0:
             if 'KTM  X-BOW GTX' in data:
                 print('추가된 차량이 없습니다!')
+                embed = discord.Embed(title= '')
+                await ctx.send('모든 차량의 데이터를 보실 수 있습니다.')
 
     # 리스트 대조 후 불일치 시
     # 76번 줄과 같은 사유
@@ -97,6 +98,7 @@ class manage():
             if 'KTM  X-BOW GTX' in data:
                 check_new.remove('KTM  X-BOW GTX')
                 print('차량 업데이트 발견: '+ str(check_new))
+                await ctx.send(f'{(", ").join(str(check_new).split())} 차량에 대한 정보가 없습니다!')
 
 
 # 확장 기능(명령어) 로드
@@ -137,7 +139,7 @@ async def on_ready():
             print('갱신 완료')
             
     except Exception as e:
-        print(e)
+        print(e)        
 # 에러 관리
 async def on_command_error(ctx, interaction : discord.Interaction, error):
     # 존재하지 않는 명령어 에러처리
@@ -150,6 +152,7 @@ async def on_command_error(ctx, interaction : discord.Interaction, error):
         embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
         embed.add_field(name="상세", value=f"```{error}```")
         await interaction.response.send_message("",embed=embed,ephemeral=True)  
-                      
-# 메인
-app.run(discord_api_token)
+        
+# 메인 실행
+if __name__ == '__main__':
+    app.run(discord_api_token)
