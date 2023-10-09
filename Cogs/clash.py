@@ -52,8 +52,11 @@ class clash(commands.Cog):
     
         if len(result1) > 10:
             result1 = result1[:10]
+            return result1
+        elif current.lower() == '':
+            result1 == None
+            return result1 
         
-        return result1
     
     @clashes.autocomplete('car_class')
     async def class_autocompletion(
