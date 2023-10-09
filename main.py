@@ -3,7 +3,7 @@
 import asyncio
 import discord
 import os
-from discord.ext import commands
+from discord.ext import commands, tasks
 import settings
 import requests as req
 from bs4 import BeautifulSoup as beau
@@ -127,15 +127,7 @@ async def on_ready():
         current_status = discord.Game(name='A9차량 정보제공')
         await app.change_presence(status=discord.Status.online,activity=current_status)
         print(f"{app.user.name}이(가) 준비되었습니다!")
-
-    # 매일 한 번 씩 차량 리스트 업데이트 실행
-        while True:           
-            await asyncio.sleep(86400)
-            print('---------------------------------------')
-            await manage.make_new_car_list()
-            await manage.check_update()
-            print('갱신 완료')
-            
+                    
     except Exception as e:
         print(e)        
 # 에러 관리
@@ -150,7 +142,13 @@ async def on_command_error(ctx, interaction : discord.Interaction, error):
         embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
         embed.add_field(name="상세", value=f"```{error}```")
         await interaction.response.send_message("",embed=embed,ephemeral=True)  
-        
+
+@tasks.loop(hours=24)
+async def update():
+    print('---------------------------------------')
+    await manage.check_update()
+    print('업데이트 완료')   
+       
 # 메인 실행
 if __name__ == '__main__':
     app.run(discord_api_token)
