@@ -91,9 +91,10 @@ class clash(commands.Cog):
         # club clash database row 1
         car_data = await database.ClubClash_Database_CarName()
         
-        # club clash database row 0
+        # club clash database row 2
         class_data = await database.ClubClash_Database_Class()
         
+        # club clash database 0
         map_data = await database.ClubClash_Database_area()
         
         aa = list(interaction.namespace.__dict__.values())
