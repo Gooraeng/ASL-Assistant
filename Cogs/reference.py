@@ -18,6 +18,7 @@ class ref(commands.Cog):
         
         embed3=discord.Embed(title="레퍼런스 3 - A9 Club Clash Database", description='Created by Sharp', color=0x7fe6e4)
         embed3.add_field(name="- 사용목적", value="아스팔트 9 클럽 클래시 데이터 베이스 활용")
+        embed3.add_field(name="- 원본", value="Sharp")
         await interaction.response.send_message('',embeds=[embed1,embed2,embed3],ephemeral=True)
 
 async def setup(app):
