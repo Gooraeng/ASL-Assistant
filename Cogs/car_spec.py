@@ -88,7 +88,7 @@ class manage():
     # KTM X-BOW GTX는 이미 존재하는 차량인데 data 리스트에서는 띄어쓰기가 두 번 적용된 것이 확인되어 억지로 맞게 만듬
         if len(list(data))-len(list(car_img_list))==0:
             if 'KTM  X-BOW GTX' in data:
-                return None
+                return ''
 
     # 리스트 대조 후 불일치 시
     # 76번 줄과 같은 사유
@@ -109,7 +109,7 @@ class spec(commands.Cog):
     async def car(self, interaction : discord.Interaction, car_name : str):
         get_check_list = await manage.check_update()
         
-        if check_new == None:
+        if check_new == '':
             check_new = '없음'
         else:
             check_new = (' / ').join(s for s in get_check_list)
