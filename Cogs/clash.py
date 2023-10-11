@@ -20,6 +20,7 @@ class clash(commands.Cog):
         map_data = await database.ClubClash_Database_area()
         car_data = await database.ClubClash_Database_CarName()
         link_data = await database.ClubClash_Database_Link()
+        LT_data = await database.ClubClash_Database_LapTime()
         
         database1 = numpy.array(map_data)
         database2 = numpy.array(car_data)
@@ -167,12 +168,22 @@ class database():
         f.close()
         return data
     
-    async def ClubClash_Database_Link():
+    async def ClubClash_Database_LapTime():
         data = list()
         f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[3])
+        data.pop(0)
+        f.close()
+        return data
+    
+    async def ClubClash_Database_Link():
+        data = list()
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[4])
         data.pop(0)
         f.close()
         return data
