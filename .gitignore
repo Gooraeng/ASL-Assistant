@@ -184,6 +184,7 @@ pyrightconfig.json
 .runtime.txt
 .requirement.txt
 
+car_list_renew.py
 
 
 # End of https://www.toptal.com/developers/gitignore/api/python
