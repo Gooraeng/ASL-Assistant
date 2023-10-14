@@ -54,7 +54,7 @@ class clash(commands.Cog):
         if len(result1) > 10:
             result1 = result1[:10]
             return result1
-        elif current.lower() == '':
+        elif current.lower() is None:
             result1 == None
             return result1 
         
