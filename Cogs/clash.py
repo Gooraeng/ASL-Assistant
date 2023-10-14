@@ -51,12 +51,12 @@ class clash(commands.Cog):
             for choice in map_list if current.lower() in choice.lower()
         ]
     
-        if len(result1) > 10:
-            result1 = result1[:10]
-            return result1
-        elif current.lower() is None:
+        if current.lower() is None:
             result1 == None
-            return result1 
+        else:
+            if len(result1) > 10:
+                result1 = result1[:10]
+        return result1 
         
     
     @clashes.autocomplete('car_class')
