@@ -174,9 +174,9 @@ poetry.toml
 pyrightconfig.json
 
 .Cogs/
-.Car_spec_img/
-.data/
-.images/
+Car_spec_img/
+data/
+images/
 
 
 .vscode/
@@ -185,6 +185,6 @@ pyrightconfig.json
 .requirement.txt
 
 car_list_renew.py
-
+config.py
 
 # End of https://www.toptal.com/developers/gitignore/api/python
