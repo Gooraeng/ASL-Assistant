@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import app_commands
 import typing
 import numpy
-from config import database
+from Config.manage_data import database
 
 
 class clash(commands.Cog):

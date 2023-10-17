@@ -4,8 +4,8 @@ import discord
 import os
 from discord.ext import commands
 
-import settings
-import config
+from Config import settings
+from Config import manage_data
 
 
 intents = discord.Intents.default()
@@ -35,7 +35,7 @@ async def on_ready():
     try:
         await load_extensions()
         print('---------------------------------------')
-        await config.check_update()
+        await manage_data.check_update()
         print('---------------------------------------')  
         
         synced = await app.tree.sync()
