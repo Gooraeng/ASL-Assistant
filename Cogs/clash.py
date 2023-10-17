@@ -54,7 +54,7 @@ class database():
     
     async def ClubClash_Database_Link():
         data = list()
-        f = open(f'{cc_db}', "r",encoding='utf-8',newline='')
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[4])
