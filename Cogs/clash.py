@@ -6,9 +6,72 @@ from discord.ext import commands
 from discord import app_commands
 import typing
 import numpy
-from manage_data import database
+import csv
+import settings
 
+cc_db = str(settings.cc_db)
 
+class database(): 
+    async def ClubClash_Database():
+        data = list()
+        f = open(cc_db, "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row)
+        data.pop(0)
+        f.close()
+        return data
+
+    async def ClubClash_Database_area():
+        data = list()
+        f = open(cc_db, "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[0])
+        data.pop(0)
+        f.close()
+        return data
+
+    async def ClubClash_Database_CarName():
+        data = list()
+        f = open(cc_db, "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[1])
+        data.pop(0)
+        f.close()
+        return data
+
+    async def ClubClash_Database_Class():
+        data = list()
+        f = open(cc_db, "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[2])
+        data.pop(0)
+        f.close()
+        return data
+    
+    async def ClubClash_Database_LapTime():
+        data = list()
+        f = open(cc_db, "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[3])
+        data.pop(0)
+        f.close()
+        return data
+    
+    async def ClubClash_Database_Link():
+        data = list()
+        f = open(cc_db, "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[4])
+        data.pop(0)
+        f.close()
+        return data
+    
 class clash(commands.Cog):
     def __init__(self, app):
         self.app = app
