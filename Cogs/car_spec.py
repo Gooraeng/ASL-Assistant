@@ -76,11 +76,11 @@ class manage():
         check_new = list(set(data_csv)- set(data_img))
         if len(list(data_csv))-len(list(data_img))==0:
             if 'KTM  X-BOW GTX' in data_csv:
-                return None
+                pass
             else:
                 if 'KTM  X-BOW GTX' in data_csv:
                     check_new.remove('KTM  X-BOW GTX')
-                    return check_new
+            return check_new
     
     async def print_CP():
 
