@@ -68,7 +68,6 @@ class manage():
 
     # 차량 사진 리스트 추출 및 csv 파일 간 대조
     async def check_update():
-        await manage.make_new_car_list()
         data_csv = await manage.utilize_list() 
         data_img = await manage.make_car_img_list()
         
@@ -76,11 +75,12 @@ class manage():
         check_new = list(set(data_csv)- set(data_img))
         if len(list(data_csv))-len(list(data_img))==0:
             if 'KTM  X-BOW GTX' in data_csv:
-                pass
+                check_new == None
+                return check_new
             else:
                 if 'KTM  X-BOW GTX' in data_csv:
                     check_new.remove('KTM  X-BOW GTX')
-            return check_new
+                    return check_new
     
     async def print_CP():
 
