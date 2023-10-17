@@ -71,6 +71,7 @@ class manage():
 
     # 차량 사진 리스트 추출 및 csv 파일 간 대조
     async def check_update():
+        await manage.make_new_car_list()
         data_csv = await manage.utilize_list() 
         data_img = await manage.make_car_img_list()
         
@@ -85,7 +86,7 @@ class manage():
                     return check_new
     
     async def print_CP():
-
+        await manage.make_new_car_list()
         data_csv = await manage.utilize_list() 
         data_img = await manage.make_car_img_list()
     
