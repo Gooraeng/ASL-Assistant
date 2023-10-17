@@ -7,7 +7,6 @@ from discord import app_commands
 import typing
 import numpy
 import csv
-import settings
 
 
 class database(): 
