@@ -9,13 +9,12 @@ import numpy
 import csv
 import settings
 
-cc_db = str(settings.cc_db)
 
 class database(): 
     
     async def ClubClash_Database_area():
         data = list()
-        f = open(f'{cc_db}', "r",encoding='utf-8',newline='')
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
@@ -25,7 +24,7 @@ class database():
 
     async def ClubClash_Database_CarName():
         data = list()
-        f = open(f'{cc_db}', "r",encoding='utf-8',newline='')
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[1])
@@ -35,7 +34,7 @@ class database():
 
     async def ClubClash_Database_Class():
         data = list()
-        f = open(f'{cc_db}', "r",encoding='utf-8',newline='')
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[2])
@@ -45,7 +44,7 @@ class database():
     
     async def ClubClash_Database_LapTime():
         data = list()
-        f = open(f'{cc_db}', "r",encoding='utf-8',newline='')
+        f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[3])
