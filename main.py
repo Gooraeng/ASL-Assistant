@@ -4,8 +4,7 @@ import discord
 import os
 from discord.ext import commands
 
-from Config import settings
-from Config import manage_data
+from Configure import settings, manage_data
 
 
 intents = discord.Intents.default()
@@ -26,7 +25,7 @@ async def load_extensions():
             except commands.ExtensionNotFound:
                 print(f"{filename[:-3]} 파일이 존재하지 않습니다.")
             except commands.ExtensionAlreadyLoaded:
-                print(f"{filename[:-3]} 이 이미 로드되었습니다.")
+                print(f"{filename[:-3]} 이(가) 이미 로드되었습니다.")
        
 # 봇 이벤트
 @app.event
@@ -35,7 +34,7 @@ async def on_ready():
     try:
         await load_extensions()
         print('---------------------------------------')
-        await manage_data.check_update()
+        await manage_data.print_CP()
         print('---------------------------------------')  
         
         synced = await app.tree.sync()

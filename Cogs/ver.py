@@ -1,4 +1,5 @@
-# 현재 봇의 날짜 버전을 알려주는 명령어
+# 현재 봇의 마지막 업데이트 버전을 알려주는 명령어
+# Last update : 231017
 
 import discord
 from discord.ext import commands

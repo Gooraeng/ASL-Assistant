@@ -1,101 +1,12 @@
 # 차량의 디테일한 성능을 알려주는 명령어
-# Last update : 231007
-
+# Last update : 231017
 
 import discord
 from discord.ext import commands
 from discord import app_commands
-import csv
 import typing
-import os
 
-import requests as req
-from bs4 import BeautifulSoup as beau
-import pandas as pd
-import settings
-
-
-# A9 차량 리스트 관련 파일 임포트
-
-
-# 사이트로부터 리스트 정보 받아오기
-class manage():
-    async def make_new_car_list():
-        url = str(settings.list_url)
-    
-        response = req.get(url).text.encode('utf-8')
-        response = beau(response, 'lxml')
-    
-        target = response.find('table',{'id':'list', 'class':'table'})
-        thead = target.find_all('th')
-    
-        theadList = []
-
-    # 사이트 내 th, td 태그 제거 
-        theadLen = len(thead)
-        for i in range(0, theadLen):
-            thead = target.find_all('th')[i].text
-            theadList.append(thead)
-
-        tdTags = target.find_all('td')
-
-        rowList=[]
-        columnList = []
-
-        tdTagsLen = len(tdTags)
-        for i in range(0, tdTagsLen):
-            element = tdTags[i].text
-            columnList.append(element)
-            if i % 2 ==1:
-                rowList.append(columnList)
-                columnList=[]
-        result = pd.DataFrame(rowList, columns=theadList)
-    # 태그 제거 결과 확인
-        print(result)
-    
-    # csv 파일로 우선 저장 [차량, 클래스] 꼴로 저장됨
-        f = open('data/A9 Car List.csv','w',encoding='utf-8',newline='')
-        writer = csv.writer(f)
-        writer.writerow(theadList)
-        writer.writerows(rowList)
-        f.close()
-        
-# make_new_car_list에서 나온 [차량, 클래스 중] [차량]만 활용할 수 있게 csv 파일 편집 
-    async def utilize_list():
-        data = list()
-        f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
-        reader = csv.reader(f)
-        for row in reader:
-            data.append(row[0])
-        data.pop(0)
-        f.close()
-        return data
-
-# 차량 사진 리스트 추출 및 csv 파일 간 대조
-    async def check_update():  
-        data = await manage.utilize_list()  
-        car_img_list = list()
-        for filename in os.listdir('Car_spec_img'):
-            if filename.endswith(".png") or filename.endswith(".jpg"):
-                car_img_list.append(filename[:-4])
-            elif filename.endswith(".jpeg"):
-                car_img_list.append(filename[:-5])
-    
-    # 업데이트 된 차량(들)의 리스트 선언 
-        check_new = list(set(data)- set(car_img_list))
-
-    # 리스트 대조 후 일치 시
-    # KTM X-BOW GTX는 이미 존재하는 차량인데 data 리스트에서는 띄어쓰기가 두 번 적용된 것이 확인되어 억지로 맞게 만듬
-        if len(list(data))-len(list(car_img_list))==0:
-            if 'KTM  X-BOW GTX' in data:
-                return None
-
-    # 리스트 대조 후 불일치 시
-    # 76번 줄과 같은 사유
-        else:
-            if 'KTM  X-BOW GTX' in data:
-                check_new.remove('KTM  X-BOW GTX')
-                return check_new
+from Configure import manage_data
 
 
 class spec(commands.Cog):
@@ -107,7 +18,7 @@ class spec(commands.Cog):
     @app_commands.describe(car_name='차량 성능 확인')
     @app_commands.rename(car_name='car')
     async def car(self, interaction : discord.Interaction, car_name : str):
-        get_check_list = await manage.check_update()
+        get_check_list = await manage_data.check_update()
         
         if get_check_list == None:
             get_check_list = '없음'
@@ -118,7 +29,8 @@ class spec(commands.Cog):
         embed.add_field(name='**<경고>**',value='All list From "MEI Car list", All images from "A9-Database". Type "Ref" For details. ', inline=False)
         embed.add_field(name='',value='')
         embed.add_field(name='조회 불가능 차량', value= get_check_list, inline= False)
-        # car_list.py 76째 줄 참고
+        
+        # Configure/manage_data.py 84 ~ 94번째 줄 참고
         if car_name == 'KTM  X-BOW GTX':
             await interaction.response.send_message('', embed=embed, file=discord.File(f'Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)
         else:
@@ -139,7 +51,7 @@ class spec(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
     
         # Choice 리스트 제작을 위한 함수 실행
-        new_data = await manage.utilize_list()
+        new_data = await manage_data.utilize_list()
         
         # Choice 갯수가 10개 초과 시 최대로 보여주는 Choice 수를 10개 까지로 제한
         result = [

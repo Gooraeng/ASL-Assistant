@@ -1,5 +1,5 @@
 # 봇 서버 링크 안내 명령어
-
+# Last update : 231017
 import discord
 from discord.ext import commands
 from discord import app_commands

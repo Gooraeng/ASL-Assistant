@@ -1,4 +1,5 @@
 # 사용 가능한 명령어들의 설명을 알려줌
+# Last update : 231017
 
 import discord
 from discord.ext import commands

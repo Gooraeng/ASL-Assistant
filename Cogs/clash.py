@@ -1,9 +1,12 @@
+# 클럽 클래시 관련 함수
+# Last update : 231017
+
 import discord
 from discord.ext import commands
 from discord import app_commands
 import typing
 import numpy
-from Config.manage_data import database
+from Configure.manage_data import database
 
 
 class clash(commands.Cog):

@@ -1,4 +1,5 @@
-# car_spec.py 내 spec 명령어를 필요하는데 있어 레퍼런스가 된 자료들의 링크를 알려줌
+# car_spec.py의 레퍼런스가 된 자료들의 정보를 알려줌
+# Last update : 231017
 
 import discord
 from discord.ext import commands

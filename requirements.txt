@@ -7,15 +7,9 @@ beautifulsoup4
 pandas
 lxml
 requests
-aiohttp
-aiosignal
 async-timeout
 discord-py-slash-command
-distlib
-et-xmlfile
-filelock
-frozenlist
-multidict
 openpyxl
 pip
 yarl
+Configure
