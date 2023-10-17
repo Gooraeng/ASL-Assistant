@@ -12,16 +12,7 @@ import settings
 cc_db = str(settings.cc_db)
 
 class database(): 
-    async def ClubClash_Database():
-        data = list()
-        f = open(f'{cc_db}', "r",encoding='utf-8',newline='')
-        reader = csv.reader(f)
-        for row in reader:
-            data.append(row)
-        data.pop(0)
-        f.close()
-        return data
-
+    
     async def ClubClash_Database_area():
         data = list()
         f = open(f'{cc_db}', "r",encoding='utf-8',newline='')
