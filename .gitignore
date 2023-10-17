@@ -22,9 +22,8 @@ images/
 .requirement.txt
 
 car_list_renew.py
-Config/
-settings.py
-manage_data.py
+
+
 
 
 
