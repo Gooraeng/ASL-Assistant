@@ -6,7 +6,7 @@ from discord.ext import commands
 from discord import app_commands
 import typing
 
-from Configure import manage_data
+import manage_data
 
 
 class spec(commands.Cog):

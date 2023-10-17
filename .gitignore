@@ -23,6 +23,9 @@ images/
 
 car_list_renew.py
 Config/
+settings.py
+manage_data.py
+
 
 
 # End of https://www.toptal.com/developers/gitignore/api/python

@@ -4,7 +4,7 @@ import discord
 import os
 from discord.ext import commands
 
-from Configure import settings, manage_data
+import settings, manage_data
 
 
 intents = discord.Intents.default()
@@ -48,12 +48,7 @@ async def on_ready():
         
 async def on_message(self, message : discord.Message) -> None:
     if message.author.bot:
-        return
-
-async def on_guild_join(self, guild : discord.Guild) -> None:
-    if guild.id in self.blacklist:
-        await guild.leave()
-    
+        return    
 
             
 # 에러 관리

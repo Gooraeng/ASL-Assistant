@@ -1,1 +1,0 @@
-from Configure import manage_data, settings
