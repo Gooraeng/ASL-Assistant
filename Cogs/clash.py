@@ -83,12 +83,14 @@ class clash(commands.Cog):
         
         same = int(numpy.intersect1d(a, b))
         
+        try:
+            await interaction.response.send_message(f'{link_data[same]}')
         
-        await interaction.response.send_message(f'{link_data[same]}')
-        
-        if link_data[same] == False:
-            embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
-            await interaction.response.send_message('',embed=embed2, ephemeral=True, delete_after=7)
+            if link_data[same] == False:
+                embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
+                await interaction.response.send_message('',embed=embed2, ephemeral=True, delete_after=7)
+        except Exception:
+            pass
     
     @clashes.autocomplete('area')
     async def area_autocompletion(
