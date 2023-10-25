@@ -6,6 +6,7 @@ from discord.ext import commands
 from discord import app_commands
 import typing
 from .utils import manage_tool
+from .utils.manage_tool import AboutCar as AC
 
 
 class spec(commands.Cog):
@@ -51,7 +52,7 @@ class spec(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
     
         # Choice 리스트 제작을 위한 함수 실행
-        new_data = await manage_tool.utilize_list()
+        new_data = await AC.utilize_list()
         
         # Choice 갯수가 10개 초과 시 최대로 보여주는 Choice 수를 10개 까지로 제한
         result = [

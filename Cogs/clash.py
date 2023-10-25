@@ -7,7 +7,7 @@ from discord import app_commands
 import typing
 import numpy
 
-from .utils import manage_tool
+from .utils.manage_tool import AboutCar as AC
 
 
 
@@ -21,9 +21,9 @@ class clash(commands.Cog):
     async def clashes(self, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
 
         # 맵과 차량이 다같이 대응되는 유튜브 링크 제공.
-        map_data = await manage_tool.ClubClash_Database_area()
-        car_data = await manage_tool.ClubClash_Database_CarName()
-        link_data = await manage_tool.ClubClash_Database_Link()
+        map_data = await AC.ClubClash_Database_area()
+        car_data = await AC.ClubClash_Database_CarName()
+        link_data = await AC.ClubClash_Database_Link()
         
         database1 = numpy.array(map_data)
         database2 = numpy.array(car_data)
@@ -48,7 +48,7 @@ class clash(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 차량 리스트 선언
-        map_data = await manage_tool.ClubClash_Database_area()
+        map_data = await AC.ClubClash_Database_area()
         
         # cc_db 내 겹치는 차량 리스트가 존재하고, 리스트 검색 시 이를 허용하지 않게 하기 위한
         # set을 이용하여 겹치는 차량이 없는 새 리스트 선언
@@ -72,8 +72,8 @@ class clash(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 리스트 선언
-        map_data = await manage_tool.ClubClash_Database_area()
-        class_data = await manage_tool.ClubClash_Database_Class()
+        map_data = await AC.ClubClash_Database_area()
+        class_data = await AC.ClubClash_Database_Class()
         
         # area_autocompletion을 통해 찾으려는 맵과 관련된 요소를 불러옴.
         # 여기선 딕셔너리를 이용하여 불러옴 >> dict_values(['Sacred Heart', ''])
@@ -109,9 +109,9 @@ class clash(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 리스트 선언
-        map_data = await manage_tool.ClubClash_Database_area()
-        car_data = await manage_tool.ClubClash_Database_CarName()
-        class_data = await manage_tool.ClubClash_Database_Class()
+        map_data = await AC.ClubClash_Database_area()
+        car_data = await AC.ClubClash_Database_CarName()
+        class_data = await AC.ClubClash_Database_Class()
         
         # class_autocompletion의 결과와 연동이 어려워 같은 방법 반복
         aa = list(interaction.namespace.__dict__.values())
