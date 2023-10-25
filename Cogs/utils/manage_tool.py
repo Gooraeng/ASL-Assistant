@@ -133,10 +133,11 @@ async def check_update():
     check_new = list(set(data_csv)- set(data_img))
     if len(list(data_csv))-len(list(data_img))==0:
         if 'KTM  X-BOW GTX' in data_csv:
-            check_new == None
+            return check_new == None
     else:
         if 'KTM  X-BOW GTX' in data_csv:
             check_new.remove('KTM  X-BOW GTX')
+            return check_new
             
 async def print_CP():
 
