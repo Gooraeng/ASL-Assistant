@@ -37,14 +37,15 @@ class spec(commands.Cog):
             try:
                 await interaction.response.send_message('', embed=embed, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
             # 파일이 존재하지 않음
-            except FileNotFoundError:
-                embed1 = discord.Embed(title='오류', description='찾고자 하는 차량의 정보가 없습니다. 나중에 다시 시도해주세요!')
-                embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤 지워집니다!', inline=False)
-                await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-            except (app_commands.errors.CommandInvokeError, discord.errors.NotFound):
-                await interaction.response.defer(ephemeral= True)
-                await asyncio.sleep(4)
-                await interaction.followup.send('', embed= embed, file= discord.File(f'Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)
+            except Exception:
+                if FileNotFoundError:
+                    embed1 = discord.Embed(title='오류', description='찾고자 하는 차량의 정보가 없습니다. 나중에 다시 시도해주세요!')
+                    embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤 지워집니다!', inline=False)
+                    await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
+                else:
+                    await interaction.response.defer(ephemeral= True)
+                    await asyncio.sleep(4)
+                    await interaction.followup.send('', embed= embed, file= discord.File(f'Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)
             
     # 리스트 자동 완성 
     @car.autocomplete("car_name")
