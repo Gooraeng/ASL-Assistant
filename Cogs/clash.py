@@ -45,7 +45,7 @@ class clash(commands.Cog):
             except Exception:
                 await interaction.response.defer(ephemeral= True)
                 await asyncio.sleep(4)
-                if link_data[same] == False:
+                if link_data[same] is None:
                     embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
                     await interaction.followup.send('',embed=embed2, ephemeral=True, delete_after=7)
                 else:
