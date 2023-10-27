@@ -25,6 +25,7 @@ class clash(commands.Cog):
         map_data = await AC.ClubClash_Database_area()
         car_data = await AC.ClubClash_Database_CarName()
         link_data = await AC.ClubClash_Database_Link()
+        lap_time_data = await AC.ClubClash_Database_LapTime()
         
         database1 = numpy.array(map_data)
         database2 = numpy.array(car_data)
@@ -34,15 +35,15 @@ class clash(commands.Cog):
         
         same = int(numpy.intersect1d(a, b))
         
-        embed1 = discord.Embed(title='',description=f'기록 : {link_data[same]}',colour=0xff0000)
+        embed1 = discord.Embed(title='',description=f'기록 : {lap_time_data[same]}',colour=0xff0000)
         embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
         
         
         try:
             await interaction.response.send_message(f'{link_data[same]}')
-            await interaction.followup.send('',embed= embed1)
     
-        except Exception:
+        except Exception as e:
+            print(e)
             await interaction.response.defer(ephemeral= True)
             await asyncio.sleep(4)
             
@@ -50,7 +51,6 @@ class clash(commands.Cog):
                 await interaction.followup.send('',embed=embed2, ephemeral=True, delete_after=7)
             else:
                 await interaction.followup.send(f'{link_data[same]}')
-                await interaction.followup.send('',embed= embed1)
 
     @clashes.autocomplete('area')
     async def area_autocompletion(
