@@ -19,7 +19,7 @@ class clash(commands.Cog):
     @app_commands.command(name='clash', description='클럽 클래시 지역의 맵의 레퍼런스를 확인할 수 있습니다!')
     @app_commands.describe(area = '찾고자 하는 맵을 찾아보세요!', car_class = '클래스를 선택하세요', car_name ='어떤 차량을 찾아보시겠어요?')
     @app_commands.rename(area = '맵', car_class = '클래스', car_name = '차량')
-    async def clashes(self, ctx: commands.Context, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
+    async def clashes(self, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
 
         # 맵과 차량이 다같이 대응되는 유튜브 링크 제공.
         map_data = await AC.ClubClash_Database_area()
@@ -50,9 +50,7 @@ class clash(commands.Cog):
                     await interaction.followup.send('',embed=embed2, ephemeral=True, delete_after=7)
                 else:
                     await interaction.followup.send(f'{link_data[same]}')
-                
-            
-    
+
     @clashes.autocomplete('area')
     async def area_autocompletion(
         self,
