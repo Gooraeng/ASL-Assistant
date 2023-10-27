@@ -25,15 +25,18 @@ class clash(commands.Cog):
         map_data = await AC.ClubClash_Database_area()
         car_data = await AC.ClubClash_Database_CarName()
         link_data = await AC.ClubClash_Database_Link()
+        class_data = await AC.ClubClash_Database_Class()
         lap_time_data = await AC.ClubClash_Database_LapTime()
         
         database1 = numpy.array(map_data)
-        database2 = numpy.array(car_data)
+        database2 = numpy.array(class_data)
+        database3 = numpy.array(car_data)
             
         a = numpy.where(database1 == area)
-        b = numpy.where(database2 == car_name)
+        b = numpy.where(database2 == car_class)
+        c = numpy.where(database3 == car_name)
         
-        same = int(numpy.intersect1d(a, b))
+        same = int(numpy.intersect1d(a, b, c))
         
         embed1 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다', colour= 0xff0000)
         embed1.add_field(name='',value='이 메세지는 곧 삭제됩니다')
