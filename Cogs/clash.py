@@ -38,7 +38,7 @@ class clash(commands.Cog):
         
         same = int(numpy.intersect1d(a, b, c))
         
-        embed1 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다', colour= 0xff0000)
+        embed1 = discord.Embed(title="경고", description='데이터를 찾을 수 없거나 검색 오류입니다.', colour= 0xff0000)
         embed1.add_field(name='',value='이 메세지는 곧 삭제됩니다')
         
         
@@ -50,7 +50,7 @@ class clash(commands.Cog):
             await interaction.response.defer(ephemeral= True)
             await asyncio.sleep(4)
             
-            if link_data[same] is None:
+            if len(link_data[same]) == 0:
                 await interaction.followup.send('',embed=embed1, ephemeral=True, delete_after=7)
             else:
                 await interaction.followup.send(f'{link_data[same]}')
