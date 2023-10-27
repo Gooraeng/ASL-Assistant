@@ -35,8 +35,8 @@ class clash(commands.Cog):
         
         same = int(numpy.intersect1d(a, b))
         
-        embed1 = discord.Embed(title='',description=f'기록 : {lap_time_data[same]}',colour=0xff0000)
-        embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
+        embed1 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다', colour= 0xff0000)
+        embed1.add_field(name='',value='이 메세지는 곧 삭제됩니다')
         
         
         try:
@@ -48,7 +48,7 @@ class clash(commands.Cog):
             await asyncio.sleep(4)
             
             if link_data[same] is None:
-                await interaction.followup.send('',embed=embed2, ephemeral=True, delete_after=7)
+                await interaction.followup.send('',embed=embed1, ephemeral=True, delete_after=7)
             else:
                 await interaction.followup.send(f'{link_data[same]}')
 
