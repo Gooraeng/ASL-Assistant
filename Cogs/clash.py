@@ -2,11 +2,12 @@
 # Last update : 231026
 
 import discord
-from discord.ext import commands
-from discord import app_commands
 import typing
 import numpy
+import asyncio
 
+from discord.ext import commands
+from discord import app_commands
 from .utils.manage_tool import AboutCar as AC
 
 
@@ -18,7 +19,7 @@ class clash(commands.Cog):
     @app_commands.command(name='clash', description='클럽 클래시 지역의 맵의 레퍼런스를 확인할 수 있습니다!')
     @app_commands.describe(area = '찾고자 하는 맵을 찾아보세요!', car_class = '클래스를 선택하세요', car_name ='어떤 차량을 찾아보시겠어요?')
     @app_commands.rename(area = '맵', car_class = '클래스', car_name = '차량')
-    async def clashes(self, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
+    async def clashes(self, ctx: commands.Context, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
 
         # 맵과 차량이 다같이 대응되는 유튜브 링크 제공.
         map_data = await AC.ClubClash_Database_area()
@@ -33,11 +34,22 @@ class clash(commands.Cog):
         
         same = int(numpy.intersect1d(a, b))
         
-        await interaction.response.send_message(f'{link_data[same]}')
+        try:
+            if link_data[same] == False:
+                embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
+                await interaction.response.send_message('',embed=embed2, ephemeral=True, delete_after=7)
+            else:
+                await interaction.response.send_message(f'{link_data[same]}')
         
-        if link_data[same] == False:
-            embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
-            await interaction.response.send_message('',embed=embed2, ephemeral=True, delete_after=7)
+        except Exception:
+            await interaction.response.defer()
+            await asyncio.sleep(4)
+            if link_data[same] == False:
+                embed2 = discord.Embed(title="경고", description='데이터를 찾을 수 없습니다')
+                await interaction.followup.send('',embed=embed2, ephemeral=True, delete_after=7)
+            else:
+                await interaction.followup.send(f'{link_data[same]}')
+            
             
     
     @clashes.autocomplete('area')
@@ -61,6 +73,7 @@ class clash(commands.Cog):
     
         if len(result1) > 10:
             result1 = result1[:10]
+            
         return result1 
         
     
@@ -79,14 +92,12 @@ class clash(commands.Cog):
         # 여기선 딕셔너리를 이용하여 불러옴 >> dict_values(['Sacred Heart', ''])
         # 리스트로 변환
         aa = list(interaction.namespace.__dict__.values())
-
         
         # 검색된 맵의 행들을 인덱스로 가지는 리스트를 선언함
         # 이 때, map_data와 aa의 value가 일치하도록 필터링 (aa[0])
         rest_list = list(filter(lambda x: map_data[x] == str(aa[0]), range(len(map_data))))
         
-        
-        
+          
         emp_list = list()
         for i in range(len(rest_list)):
             emp_list.append(class_data[rest_list[i]])

@@ -1,4 +1,4 @@
-import settings
+import Cogs.utils.settings as settings
 from bs4 import BeautifulSoup as beau
 import requests as req
 import csv

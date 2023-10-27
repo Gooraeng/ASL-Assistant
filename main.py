@@ -4,13 +4,14 @@
 import discord
 import os
 from discord.ext import commands
-import settings
+import Cogs.utils.settings as settings
 
 from Cogs.utils import manage_tool as mt
 
 intents = discord.Intents.default()
 intents.message_content = True
-app = commands.Bot(command_prefix="?",intents=intents,)
+app = commands.Bot(command_prefix="?",intents=intents, )
+
 discord_api_token = str(settings.discord_api_token)
 
 car_img = settings.car_img
@@ -50,13 +51,10 @@ async def on_ready():
     except Exception as e:
         print(e)
 
-    
-        
-async def on_message(self, message : discord.Message) -> None:
-    if message.author.bot:
+async def on_message(ctx : discord.Message) -> None:
+    if ctx.author.bot or not app.is_ready():
         return
-
-            
+           
 # 에러 관리
 async def on_command_error(ctx, interaction : discord.Interaction, error):
     # 존재하지 않는 명령어 에러처리
@@ -69,7 +67,6 @@ async def on_command_error(ctx, interaction : discord.Interaction, error):
         embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
         embed.add_field(name="상세", value=f"```{error}```")
         await interaction.response.send_message("",embed=embed,ephemeral=True)  
-
 
 def main():
     app.run(discord_api_token)
