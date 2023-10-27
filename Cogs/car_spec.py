@@ -46,7 +46,7 @@ class spec(commands.Cog):
                     await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
                 else:
                     await interaction.response.defer(ephemeral= True)
-                    await asyncio.sleep(4)
+                    await asyncio.sleep(5)
                     await interaction.followup.send('', embed= embed, file= discord.File(f'Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)
             
     # 리스트 자동 완성 
