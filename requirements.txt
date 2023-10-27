@@ -7,8 +7,6 @@ beautifulsoup4
 pandas
 lxml
 requests
-async-timeout
 discord-py-slash-command
-openpyxl
 pip
 yarl
