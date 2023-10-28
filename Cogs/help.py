@@ -11,6 +11,7 @@ class help(commands.Cog):
         self.app = app
         
     @app_commands.command(name="help",description="사용할 수 있는 명령어를 정리했습니다!")
+    @app_commands.guild_only()
     async def qna(self, interaction : discord.Interaction):
         embed=discord.Embed(title="Help", description="사용할 수 있는 명령어를 정리했습니다!", color=0x7fe6e4)
         embed.add_field(name="---------------", value="", inline=True)

@@ -10,6 +10,7 @@ class link(commands.Cog):
         self.app = app
         
     @app_commands.command(name="link",description="봇 서버 링크를 알 수 있습니다!")
+    @app_commands.guild_only()
     async def link(self, interaction : discord.Interaction):
         await interaction.response.send_message("https://discord.gg/8dpAFYXk8s", ephemeral=False)     
         

@@ -9,7 +9,8 @@ class date(commands.Cog):
     def __init__(self, app):
         self.app = app
     
-    @app_commands.command(name='date', description='향후 일정을 확인하실 수 있습니다!')    
+    @app_commands.command(name='date', description='향후 일정을 확인하실 수 있습니다!')
+    @app_commands.guild_only()
     async def show_nengmyeon_bab(self, interaction : discord.Interaction):
         embed = discord.Embed(title='**<주의>**', description='* 일정이 정확하지 않을 수 있으니, 그저 참고만 해주세요!',colour=0xff0000)
         embed.add_field(name= '', value='')

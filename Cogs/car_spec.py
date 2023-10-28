@@ -18,6 +18,7 @@ class spec(commands.Cog):
     @app_commands.command(name='spec', description='차량의 성능을 확인합니다! 이 기능은 외부 데이터에 의해 작동되므로 언제든지 비활성화 될 수 있습니다.')
     @app_commands.describe(car_name='차량 성능 확인')
     @app_commands.rename(car_name='car')
+    @app_commands.guild_only()
     async def car(self, interaction : discord.Interaction, car_name : str):
         get_check_list = await manage_tool.check_update()
         
@@ -44,7 +45,7 @@ class spec(commands.Cog):
         
         # 파일이 존재하지 않음
         except Exception:
-            print('---------------------------------------') 
+            print('---------------------------------------')
             if FileNotFoundError:
                 if car_name in get_check_list:
                     embed2 = discord.Embed(title='❗오류', description=f'< {car_name} >의 정보가 현재 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!', colour= 0xff0000)
