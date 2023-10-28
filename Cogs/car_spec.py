@@ -33,7 +33,7 @@ class spec(commands.Cog):
         embed1.add_field(name='',value='')
         embed1.add_field(name='- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
         
-        print('---------------------------------------') 
+        
         try:
             if car_name == 'KTM  X-BOW GTX':
                 await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)
@@ -44,6 +44,7 @@ class spec(commands.Cog):
         
         # 파일이 존재하지 않음
         except Exception:
+            print('---------------------------------------') 
             if FileNotFoundError:
                 if car_name in get_check_list:
                     embed2 = discord.Embed(title='❗오류', description=f'< {car_name} >의 정보가 현재 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!', colour= 0xff0000)
@@ -68,6 +69,7 @@ class spec(commands.Cog):
                 await interaction.response.send_message('', embed= embed4, ephemeral= True, delete_after=10)
                 
                 print(f"오류 > spec > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 정보 조회 실패")
+            print('---------------------------------------') 
                 
     # 리스트 자동 완성 
     @car.autocomplete("car_name")

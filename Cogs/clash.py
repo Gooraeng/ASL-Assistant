@@ -39,7 +39,7 @@ class clash(commands.Cog):
         embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
         embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
         
-        print('---------------------------------------')    
+           
         try:
             same2 = int(numpy.intersect1d(a, c))
             if same2 and (car_class in set(class_data)):
@@ -49,14 +49,15 @@ class clash(commands.Cog):
                 
             else:
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-                
+                print('---------------------------------------') 
                 print(f"오류 > clash > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
-                
+                print('---------------------------------------') 
         except Exception:
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-            
+            print('---------------------------------------') 
             print(f"오류 > clash > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
-        
+            print('---------------------------------------') 
+            
     @clashes.autocomplete('area')
     async def area_autocompletion(
         self,
