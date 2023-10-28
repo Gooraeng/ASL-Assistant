@@ -9,7 +9,6 @@ from discord.ext import commands
 from discord import app_commands
 from .utils import manage_tool
 from .utils.manage_tool import AboutCar as AC
-from .utils import iserror
 
 class spec(commands.Cog):
     def __init__(self, app : commands.Bot):
@@ -39,19 +38,22 @@ class spec(commands.Cog):
             else:
                 await interaction.response.send_message('', embed=embed, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
         
+        except (app_commands.CommandInvokeError, discord.NotFound):
+                embed2 = discord.Embed(title='어이쿠!', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour=0xff0000)
+                await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=10)
+        
         # 파일이 존재하지 않음
-        except FileNotFoundError:
+        except Exception:
+            if FileNotFoundError:
                 embed1 = discord.Embed(title='오류', description=f'<{car_name}>의 정보가 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!', colour= 0xff0000)
                 embed1.add_field(name='조회 불가능 차량', value= get_check_list, inline= False)
                 embed1.add_field(name='',value='**<경고>** 이 메세지는 20초 뒤에 지워집니다!', inline=False)
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=20)
+            else:
+                await interaction.response.defer(ephemeral= True, thinking= True)
+                await asyncio.sleep(5)
+                await interaction.followup.send('', embed= embed, file= discord.File(f'Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)
 
-        except commands.CommandInvokeError:
-                embed2 = discord.Embed(title='어이쿠!', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour=0xff0000)
-                await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=10)
-                  
-                   
-    
     # 리스트 자동 완성 
     @car.autocomplete("car_name")
     async def car_autocompletion(self,
