@@ -38,7 +38,8 @@ class clash(commands.Cog):
         try:
             await interaction.response.send_message(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
         
-        except Exception:
+        except Exception as e:
+            print(e)
             embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
             embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
