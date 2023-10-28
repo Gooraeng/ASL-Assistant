@@ -12,7 +12,7 @@ from .utils.manage_tool import AboutCar as AC
 
 
 class spec(commands.Cog):
-    def __init__(self, app):
+    def __init__(self, app : commands.Bot):
         self.app = app
   
     # 명령어 설명
@@ -28,7 +28,7 @@ class spec(commands.Cog):
             get_check_list = (' / ').join(s for s in get_check_list)
         
         
-        embed = discord.Embed(title='주의', description='정보가 누락되거나 정확하지 않을 수 있습니다. 문제 발견 시 ASL Bot 디스코드 서버를 통해 신고해주십시오! (/link 입력)')
+        embed = discord.Embed(title='주의', description=f'정보가 누락되거나 정확하지 않을 수 있습니다. 문제 발견 시 ASL Assistant 디스코드 서버를 통해 신고해주십시오! (/link 입력)')
         embed.add_field(name='**<경고>**',value='All list From "MEI Car list", All images from "A9-Database". Type "Ref" For details. ', inline=False)
         embed.add_field(name='',value='')
         embed.add_field(name='조회 불가능 차량', value= get_check_list, inline= False)
@@ -41,7 +41,8 @@ class spec(commands.Cog):
         # 파일이 존재하지 않음
         except Exception:
             if FileNotFoundError:
-                embed1 = discord.Embed(title='오류', description='찾고자 하는 차량의 정보가 없습니다. 나중에 다시 시도해주세요!')
+                embed1 = discord.Embed(title='오류', description='찾고자 하는 차량의 정보가 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!')
+                embed1.add_field(name='조회 불가능 차량', value= get_check_list, inline= False)
                 embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤 지워집니다!', inline=False)
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
             else:
