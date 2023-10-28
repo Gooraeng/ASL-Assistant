@@ -44,7 +44,7 @@ class spec(commands.Cog):
         # 파일이 존재하지 않음
         except (error for error in errors):
             if errors:
-                embed1 = discord.Embed(title='오류', description='찾고자 하는 차량의 정보가 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!')
+                embed1 = discord.Embed(title='오류', description=f'<{car_name}>의 정보가 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!')
                 embed1.add_field(name='조회 불가능 차량', value= get_check_list, inline= False)
                 embed1.add_field(name='',value='**<경고>** 이 메세지는 20초 뒤에 지워집니다!', inline=False)
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=20)
