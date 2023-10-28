@@ -47,7 +47,7 @@ class spec(commands.Cog):
                 embed1.add_field(name='',value='**<경고>** 이 메세지는 20초 뒤에 지워집니다!', inline=False)
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=20)
             
-            elif discord.NotFound or app_commands.CommandInvokeError:
+            if app_commands.CommandInvokeError:
                 embed2 = discord.Embed(title='어이쿠!', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour=0xff0000)
                 await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=10)
             

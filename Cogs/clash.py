@@ -45,8 +45,8 @@ class clash(commands.Cog):
             await interaction.response.send_message(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
     
         except Exception:
-            if discord.NotFound or app_commands.CommandInvokeError:
-                embed2 = discord.Embed(title='어이쿠!', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour=0xff0000)
+            if app_commands.CommandInvokeError:
+                embed2 = discord.Embed(title='어이쿠!', description=f'검색을 잘못하신 것 같은데, 다시 시도해주세요.',colour=0xff0000)
                 await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=10)
             
             else:
