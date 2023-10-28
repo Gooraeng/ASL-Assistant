@@ -46,8 +46,8 @@ class spec(commands.Cog):
             if errors:
                 embed1 = discord.Embed(title='오류', description='찾고자 하는 차량의 정보가 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!')
                 embed1.add_field(name='조회 불가능 차량', value= get_check_list, inline= False)
-                embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤 지워집니다!', inline=False)
-                await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
+                embed1.add_field(name='',value='**<경고>** 이 메세지는 20초 뒤에 지워집니다!', inline=False)
+                await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=20)
             else:
                 await interaction.response.defer(ephemeral= True)
                 await asyncio.sleep(5)
