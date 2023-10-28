@@ -44,15 +44,18 @@ class clash(commands.Cog):
             same2 = int(numpy.intersect1d(a, c))
             if same2 and (car_class in set(class_data)):
                 await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
-                print(f"정상 실행 > clash > 실행자: {interaction.user} > 검색 내용 : {area} / {car_class} / {car_name}")
+                
+                print(f"정상 실행 > clash > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 검색 내용 : {area} / {car_class} / {car_name}")
                 
             else:
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-                print(f"오류 > clash > 실행자: {interaction.user} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
+                
+                print(f"오류 > clash > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
                 
         except Exception:
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-            print(f"오류 > clash > 실행자: {interaction.user} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
+            
+            print(f"오류 > clash > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
         
     @clashes.autocomplete('area')
     async def area_autocompletion(

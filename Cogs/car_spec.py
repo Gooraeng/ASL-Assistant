@@ -23,6 +23,7 @@ class spec(commands.Cog):
         
         if get_check_list == None:
             get_check_list_ = '없음'
+        
         else:
             get_check_list_ = ('\n* ').join(s for s in get_check_list)
         
@@ -39,7 +40,7 @@ class spec(commands.Cog):
                 
             else:
                 await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
-            print(f"정상 실행 > spec > 실행자: {interaction.user} > 검색 차량 : {car_name}")
+            print(f"정상 실행 > spec > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 검색 차량 : {car_name}")
         
         # 파일이 존재하지 않음
         except Exception:
@@ -48,19 +49,25 @@ class spec(commands.Cog):
                     embed2 = discord.Embed(title='❗오류', description=f'< {car_name} >의 정보가 현재 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!', colour= 0xff0000)
                     embed2.add_field(name='- 조회 불가능 차량', value=f"* {get_check_list_}", inline= False)
                     embed2.add_field(name='',value='**<경고>** 이 메세지는 20초 뒤에 지워집니다!', inline=False)
+                    
                     await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=20)
-                    print(f'오류 > spec > 실행자: {interaction.user} > 정보가 없는 차량 " {car_name} " 검색')
+                    
+                    print(f'오류 > spec > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 정보가 없는 차량 " {car_name} " 검색')
                 
                 else:
                     embed3 = discord.Embed(title='❗오류', description=f'그런 이름의 차량은 없습니다. 다시 시도해주세요!', colour= 0xff0000)
                     embed3.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)
+                    
                     await interaction.response.send_message('', embed= embed3, ephemeral= True, delete_after=10)
-                    print(f'오류 > spec > 실행자: {interaction.user} > 리스트에 없는 값 " {car_name} "> 입력')
+                    
+                    print(f'오류 > spec > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 리스트에 없는 값 " {car_name} "> 입력')
+            
             else:
                 embed4 = discord.Embed(title='❗오류', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour=0xff0000)
+                
                 await interaction.response.send_message('', embed= embed4, ephemeral= True, delete_after=10)
                 
-                print(f"오류 > spec > 실행자: {interaction.user} > 정보 조회 실패")
+                print(f"오류 > spec > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 정보 조회 실패")
                 
     # 리스트 자동 완성 
     @car.autocomplete("car_name")

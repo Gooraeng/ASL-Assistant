@@ -13,7 +13,7 @@ class link(commands.Cog):
     async def link(self, interaction : discord.Interaction):
         await interaction.response.send_message("https://discord.gg/8dpAFYXk8s", ephemeral=False)     
         
-        print(f"정상 실행 > link > 실행자: {interaction.user}")
+        print(f"정상 실행 > link > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} )")
         
 async def setup(app):
     await app.add_cog(link(app))

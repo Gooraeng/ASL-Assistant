@@ -54,6 +54,7 @@ async def on_ready():
 async def on_message(ctx : discord.Message) -> None:
     if ctx.author.bot or not app.is_ready():
         return
+    
            
 # 에러 관리
 async def on_command_error(interaction : discord.Interaction, error):
@@ -67,6 +68,7 @@ async def on_command_error(interaction : discord.Interaction, error):
         embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
         embed.add_field(name="상세", value=f"```{error}```")
         await interaction.response.send_message("",embed=embed,ephemeral=True)  
+
 
 def main():
     app.run(discord_api_token)
