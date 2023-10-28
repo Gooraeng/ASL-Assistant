@@ -3,9 +3,9 @@
 
 import discord
 import os
-from discord.ext import commands
 import Cogs.utils.settings as settings
 
+from discord.ext import commands
 from Cogs.utils import manage_tool as mt
 
 intents = discord.Intents.default()
@@ -56,12 +56,12 @@ async def on_message(ctx : discord.Message) -> None:
         return
            
 # 에러 관리
-async def on_command_error(ctx, interaction : discord.Interaction, error):
+async def on_command_error(interaction : discord.Interaction, error):
     # 존재하지 않는 명령어 에러처리
     if isinstance(error, commands.CommandNotFound):
         embed = discord.Embed(title="오류",description="존재하지 않는 명령어입니다.",colour=0xFF0000)
         await interaction.response.send_message("",embed=embed,ephemeral=True, delete_after= 5) 
-    
+
     # 명령어 오류 처리
     else:
         embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
