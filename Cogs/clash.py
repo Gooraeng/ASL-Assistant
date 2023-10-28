@@ -47,7 +47,11 @@ class clash(commands.Cog):
         except (commands.CommandInvokeError, discord.NotFound):
             embed2 = discord.Embed(title='어이쿠!', description=f'잠시 후에 다시 시도해주세요.',colour=0xff0000)
             await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=10)
-                  
+        
+        except Exception:
+                await interaction.response.defer(ephemeral= True, thinking= True)
+                await asyncio.sleep(5)
+                await interaction.followup.send(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
 
     @clashes.autocomplete('area')
     async def area_autocompletion(
