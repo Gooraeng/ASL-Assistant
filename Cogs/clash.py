@@ -25,35 +25,34 @@ class clash(commands.Cog):
         map_data = await AC.ClubClash_Database_area()
         car_data = await AC.ClubClash_Database_CarName()
         link_data = await AC.ClubClash_Database_Link()
-        class_data = await AC.ClubClash_Database_Class()
+        
         lap_time_data = await AC.ClubClash_Database_LapTime()
         
         database1 = numpy.array(map_data)
-        database2 = numpy.array(class_data)
-        database3 = numpy.array(car_data)
+        database2 = numpy.array(car_data)
             
         a = numpy.where(database1 == area)
-        b = numpy.where(database2 == car_class)
-        c = numpy.where(database3 == car_name)
+        b = numpy.where(database2 == car_name)
         
-        same = int(numpy.intersect1d(a, b, c))
+
+        same = int(numpy.intersect1d(a, b))
         
         embed1 = discord.Embed(title="경고", description='데이터를 찾을 수 없거나 검색 오류입니다.', colour= 0xff0000)
         embed1.add_field(name='',value='이 메세지는 곧 삭제됩니다')
         
         
         try:
-            await interaction.response.send_message(f'{link_data[same]}')
+            await interaction.response.send_message(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
     
         except Exception as e:
             print(e)
-            await interaction.response.defer(ephemeral= True)
+            await interaction.response.defer(ephemeral= True, thinking= True)
             await asyncio.sleep(4)
             
             if len(link_data[same]) == 0:
                 await interaction.followup.send('',embed=embed1, ephemeral=True, delete_after=7)
             else:
-                await interaction.followup.send(f'{link_data[same]}')
+                await interaction.followup.send(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
 
     @clashes.autocomplete('area')
     async def area_autocompletion(
