@@ -44,19 +44,18 @@ class clash(commands.Cog):
         try:
             await interaction.response.send_message(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
     
-        except Exception:
-            if app_commands.CommandInvokeError:
+        except app_commands.CommandInvokeError:
                 embed2 = discord.Embed(title='어이쿠!', description=f'검색을 잘못하신 것 같은데, 다시 시도해주세요.',colour=0xff0000)
                 await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=10)
             
+        finally:
+            await interaction.response.defer(ephemeral= True, thinking= True)
+            await asyncio.sleep(4)
+            
+            if len(link_data[same]) == 0:
+                await interaction.followup.send('',embed=embed1, ephemeral=True, delete_after=7)
             else:
-                await interaction.response.defer(ephemeral= True, thinking= True)
-                await asyncio.sleep(4)
-                
-                if len(link_data[same]) == 0:
-                    await interaction.followup.send('',embed=embed1, ephemeral=True, delete_after=7)
-                else:
-                    await interaction.followup.send(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
+                await interaction.followup.send(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
 
     @clashes.autocomplete('area')
     async def area_autocompletion(
