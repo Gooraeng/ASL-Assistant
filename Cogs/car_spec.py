@@ -49,7 +49,7 @@ class spec(commands.Cog):
                     embed2.add_field(name='- 조회 불가능 차량', value=f"* {get_check_list_}", inline= False)
                     embed2.add_field(name='',value='**<경고>** 이 메세지는 20초 뒤에 지워집니다!', inline=False)
                     await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=20)
-                    print(f'오류 > spec > 실행자: {interaction.user} > 정보가 없는 차량 " {car_name} "" 검색')
+                    print(f'오류 > spec > 실행자: {interaction.user} > 정보가 없는 차량 " {car_name} " 검색')
                 
                 else:
                     embed3 = discord.Embed(title='❗오류', description=f'그런 이름의 차량은 없습니다. 다시 시도해주세요!', colour= 0xff0000)
