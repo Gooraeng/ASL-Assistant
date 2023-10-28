@@ -33,25 +33,15 @@ class clash(commands.Cog):
             
         a = numpy.where(database1 == area)
         b = numpy.where(database2 == car_name)
-        
-
         same = int(numpy.intersect1d(a, b))
-        
-        embed1 = discord.Embed(title="경고", description='데이터를 찾을 수 없거나 검색 오류입니다.', colour= 0xff0000)
-        embed1.add_field(name='',value='이 메세지는 곧 삭제됩니다')
-        
         
         try:
             await interaction.response.send_message(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
         
-        except (commands.CommandInvokeError, discord.NotFound):
-            embed2 = discord.Embed(title='어이쿠!', description=f'잠시 후에 다시 시도해주세요.',colour=0xff0000)
-            await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=10)
-        
         except Exception:
-                await interaction.response.defer(ephemeral= True, thinking= True)
-                await asyncio.sleep(5)
-                await interaction.followup.send(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
+                embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
+                embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
+                await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
 
     @clashes.autocomplete('area')
     async def area_autocompletion(
