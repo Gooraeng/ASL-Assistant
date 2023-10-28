@@ -40,7 +40,7 @@ class spec(commands.Cog):
                 
             else:
                 await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
-            print(f"정상 실행 > spec > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 검색 차량 : {car_name}")
+            print(f"정상 실행 > spec > 서버: {interaction.guild.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}")
         
         # 파일이 존재하지 않음
         except Exception:

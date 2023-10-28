@@ -17,7 +17,7 @@ class ver(commands.Cog):
         embed.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤 사라집니다!')
         await interaction.response.send_message("",embed=embed, ephemeral=True,delete_after=10)
         
-        print(f"정상 실행 > ver > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} )")
+        print(f"정상 실행 > ver > 서버: {interaction.guild.name} > 실행자: {interaction.user.display_name}")
         
 async def setup(app):
     await app.add_cog(ver(app))
