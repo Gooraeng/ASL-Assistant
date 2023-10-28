@@ -23,3 +23,9 @@ images/
 
 car_list_renew.py
 manage_data.py
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+Cogs/__pycache__/
+Cogs/utils/__pycache__/
+*.py[cod]

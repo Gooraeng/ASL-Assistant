@@ -12,6 +12,8 @@ class link(commands.Cog):
     @app_commands.command(name="link",description="봇 서버 링크를 알 수 있습니다!")
     async def link(self, interaction : discord.Interaction):
         await interaction.response.send_message("https://discord.gg/8dpAFYXk8s", ephemeral=False)     
-       
+        
+        print(f"정상 실행 > link > 실행자: {interaction.user}")
+        
 async def setup(app):
     await app.add_cog(link(app))

@@ -4,12 +4,11 @@
 import discord
 import typing
 import numpy
-import asyncio
 
 from discord.ext import commands
 from discord import app_commands
 from .utils.manage_tool import AboutCar as AC
-
+from discord.ext.commands import Context
 
 
 class clash(commands.Cog):
@@ -28,32 +27,33 @@ class clash(commands.Cog):
         
         link_data = await AC.ClubClash_Database_Link()
 
-        
         lap_time_data = await AC.ClubClash_Database_LapTime()
         
         database1 = numpy.array(map_data)
-        database2 = numpy.array(class_data)
         database3 = numpy.array(car_data)
             
         a = numpy.where(database1 == area)
-        b = numpy.where(database2 == class_data)
         c = numpy.where(database3 == car_name)
         
-        same1 = int(numpy.intersect1d(a, b))
-        same2 = int(numpy.intersect1d(a, c))
         
         embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
         embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
-            
+        
+        print('---------------------------------------')    
         try:
-            if same1 == same2:
+            same2 = int(numpy.intersect1d(a, c))
+            if same2 and (car_class in set(class_data)):
                 await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
+                print(f"정상 실행 > clash > 실행자: {interaction.user} > 검색 내용 : {area} / {car_class} / {car_name}")
+                
             else:
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-        except Exception as e:
-            print(e)
+                print(f"오류 > clash > 실행자: {interaction.user} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
+                
+        except Exception:
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-
+            print(f"오류 > clash > 실행자: {interaction.user} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
+        
     @clashes.autocomplete('area')
     async def area_autocompletion(
         self,
