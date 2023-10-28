@@ -55,6 +55,7 @@ class spec(commands.Cog):
                 await interaction.response.defer(ephemeral= True, thinking= True)
                 await asyncio.sleep(5)
                 await interaction.followup.send('', embed= embed, file= discord.File(f'Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)        
+    
     # 리스트 자동 완성 
     @car.autocomplete("car_name")
     async def car_autocompletion(self,
