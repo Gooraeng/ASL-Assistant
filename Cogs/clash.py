@@ -23,25 +23,35 @@ class clash(commands.Cog):
 
         # 맵과 차량이 다같이 대응되는 유튜브 링크 제공.
         map_data = await AC.ClubClash_Database_area()
+        class_data = await AC.ClubClash_Database_Class()
         car_data = await AC.ClubClash_Database_CarName()
+        
         link_data = await AC.ClubClash_Database_Link()
+
         
         lap_time_data = await AC.ClubClash_Database_LapTime()
         
         database1 = numpy.array(map_data)
-        database2 = numpy.array(car_data)
+        database2 = numpy.array(class_data)
+        database3 = numpy.array(car_data)
             
         a = numpy.where(database1 == area)
-        b = numpy.where(database2 == car_name)
-        same = int(numpy.intersect1d(a, b))
+        b = numpy.where(database2 == class_data)
+        c = numpy.where(database3 == car_name)
         
+        same1 = int(numpy.intersect1d(a, b))
+        same2 = int(numpy.intersect1d(a, c))
+        
+        embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
+        embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
+            
         try:
-            await interaction.response.send_message(f'## 기록 : {lap_time_data[same]} \n\n{link_data[same]}')
-        
+            if same1 == same2:
+                await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
+            else:
+                await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
         except Exception as e:
             print(e)
-            embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
-            embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
 
     @clashes.autocomplete('area')
