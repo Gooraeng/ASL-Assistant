@@ -53,7 +53,7 @@ class spec(commands.Cog):
                     
                     await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=20)
                     
-                    print(f'오류 > spec > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 정보가 없는 차량 " {car_name} " 검색')
+                    print(f'오류 > spec > 서버: {interaction.guild.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car_name} " 검색')
                 
                 else:
                     embed3 = discord.Embed(title='❗오류', description=f'그런 이름의 차량은 없습니다. 다시 시도해주세요!', colour= 0xff0000)
@@ -61,14 +61,14 @@ class spec(commands.Cog):
                     
                     await interaction.response.send_message('', embed= embed3, ephemeral= True, delete_after=10)
                     
-                    print(f'오류 > spec > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 리스트에 없는 값 " {car_name} "> 입력')
+                    print(f'오류 > spec > 서버: {interaction.guild.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} "> 입력')
             
             else:
                 embed4 = discord.Embed(title='❗오류', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour=0xff0000)
                 
                 await interaction.response.send_message('', embed= embed4, ephemeral= True, delete_after=10)
                 
-                print(f"오류 > spec > 실행자: {interaction.user.display_name}(서버: {interaction.guild.name} ) > 정보 조회 실패")
+                print(f"오류 > spec > 서버: {interaction.guild.name} > 실행자: {interaction.user.display_name} > 정보 조회 실패")
             print('---------------------------------------') 
                 
     # 리스트 자동 완성 
