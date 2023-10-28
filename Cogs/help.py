@@ -24,7 +24,7 @@ class help(commands.Cog):
         embed.add_field(name="7. Date", value="향후 일정을 확인하실 수 있습니다!", inline=False)
         await interaction.response.send_message("",embed=embed, ephemeral=True)
         
-        print(f"정상 실행 > help > 서버: {interaction.guild.name} > 실행자: {interaction.user.display_name}")
+        print(f"정상 실행 > help > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
         
 async def setup(app):
     await app.add_cog(help(app))

@@ -22,7 +22,7 @@ class ref(commands.Cog):
         embed3.add_field(name="- 사용목적", value="아스팔트 9 클럽 클래시 데이터 베이스 활용")
         await interaction.response.send_message('', embeds= [embed1, embed2, embed3], ephemeral= True)
         
-        print(f"정상 실행 > ref > 서버: {interaction.guild.name} > 실행자: {interaction.user.display_name}")
+        print(f"정상 실행 > ref > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
         
 async def setup(app):
     await app.add_cog(ref(app))

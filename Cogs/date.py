@@ -17,7 +17,7 @@ class date(commands.Cog):
         embed.add_field(name= '- 기간', value= '* 230927 ~ 231219', inline= False)
         
         await interaction.response.send_message('', embed = embed, ephemeral = True, file = discord.File('./images/datesheet.png'))        
-        print(f"정상 실행 > date > 서버: {interaction.guild.name} > 실행자: {interaction.user.display_name}")
+        print(f"정상 실행 > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
         
 async def setup(app):
     await app.add_cog(date(app))
