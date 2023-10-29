@@ -53,7 +53,7 @@ async def on_ready():
 
 async def on_message(ctx : discord.Message) -> None:
     if ctx.author.bot or not app.is_ready():
-        return
+        pass
     
            
 # 에러 관리

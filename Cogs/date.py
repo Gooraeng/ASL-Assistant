@@ -5,8 +5,9 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
+
 class date(commands.Cog):
-    def __init__(self, app):
+    def __init__(self, app : commands.Bot):
         self.app = app
     
     @app_commands.command(name='date', description='향후 일정을 확인하실 수 있습니다!')
@@ -18,6 +19,9 @@ class date(commands.Cog):
         
         await interaction.response.send_message('', embed = embed, ephemeral = True, file = discord.File('./images/datesheet.png'))        
         print(f"정상 실행 > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
-        
-async def setup(app):
+
+        ch = await self.app.get_channel(1168194881580171326)
+        await ch.send(f"정상 실행 > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
+
+async def setup(app : commands.Bot):
     await app.add_cog(date(app))
