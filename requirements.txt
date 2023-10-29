@@ -10,3 +10,4 @@ requests
 discord-py-slash-command
 pip
 yarl
+pytz
