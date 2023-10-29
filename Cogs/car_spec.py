@@ -39,10 +39,10 @@ class spec(commands.Cog):
         # 로그 관리
         ch = self.app.get_channel(log_channel)
         
-        confirm = f"{print_time.get_KST()} > 정상 실행 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
-        no_list = f'{print_time.get_KST()} > 오류 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} " 입력'
-        no_data = f'{print_time.get_KST()} > 오류 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car_name} " 검색'
-        failed_read = f"{print_time.get_KST()} > 오류 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보 조회 실패"
+        confirm = f"정상 실행 > {print_time.get_KST()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
+        no_list = f'오류 > {print_time.get_KST()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} " 입력'
+        no_data = f'오류 > {print_time.get_KST()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car_name} " 검색'
+        failed_read = f"오류 > {print_time.get_KST()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보 조회 실패"
         
         try:
             if car_name == 'KTM  X-BOW GTX':

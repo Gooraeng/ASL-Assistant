@@ -28,7 +28,7 @@ class ref(commands.Cog):
         
         ch = self.app.get_channel(log_channel)
         
-        confirm = f"{print_time.get_KST()} > 정상 실행 > ref > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
+        confirm = f"정상 실행 > {print_time.get_KST()} > ref > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
         print(confirm) ; await ch.send(confirm)
         
 async def setup(app):

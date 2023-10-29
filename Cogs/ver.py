@@ -5,7 +5,7 @@ import discord
 
 from discord.ext import commands
 from discord import app_commands
-from .utils import settings
+from .utils import settings, print_time
 
 
 log_channel = int(settings.log_channel)
@@ -24,7 +24,7 @@ class ver(commands.Cog):
         
         ch = self.app.get_channel(log_channel)
         
-        confirm = f"정상 실행 > ver > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
+        confirm = f"정상 실행 > {print_time.get_KST()} > ver > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
         print(confirm) ; await ch.send(confirm)
         
 async def setup(app):
