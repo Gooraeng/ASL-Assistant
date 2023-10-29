@@ -23,7 +23,7 @@ class date(commands.Cog):
         await interaction.response.send_message('', embed = embed, ephemeral = True, file = discord.File('./images/datesheet.png'))
                 
         ch = self.app.get_channel(log_channel)
-        confirm = f"정상 실행 > {print_time.get_KST()} > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
+        confirm = f"정상 실행 > {await print_time.get_UTC()} > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
         
         print(confirm) ; await ch.send(confirm)
 

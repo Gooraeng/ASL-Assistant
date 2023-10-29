@@ -18,7 +18,7 @@ class link(commands.Cog):
         await interaction.response.send_message("https://discord.gg/8dpAFYXk8s", ephemeral=False)     
         
         ch = self.app.get_channel(log_channel)
-        confirm = f"정상 실행 > {print_time.get_KST()} > link > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
+        confirm = f"정상 실행 > {await print_time.get_UTC()} > link > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
         
         print(confirm) ; await ch.send(confirm)
         
