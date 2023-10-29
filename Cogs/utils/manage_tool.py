@@ -56,6 +56,7 @@ class AboutCar:
 
         return result
 
+
     async def utilize_list():
         data = list()
         f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
@@ -144,7 +145,6 @@ async def check_update():
             
 async def print_CP():
 
-    await AboutCar.make_new_car_list()
     data_csv = await AboutCar.utilize_list() 
     data_img = await AboutCar.make_car_img_list()
 
