@@ -4,7 +4,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-from .utils import settings
+from .utils import settings, print_time
 
 log_channel = int(settings.log_channel)
         
@@ -27,7 +27,7 @@ class help(commands.Cog):
         await interaction.response.send_message("",embed=embed, ephemeral=True)
         
         ch = self.app.get_channel(log_channel)
-        confirm = f"정상 실행 > help > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
+        confirm = f"{print_time.get_KST()} > 정상 실행 > help > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
         
         print(confirm) ; await ch.send(confirm)
         

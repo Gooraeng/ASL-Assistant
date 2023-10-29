@@ -8,7 +8,7 @@ import numpy
 from discord.ext import commands
 from discord import app_commands
 from .utils.manage_tool import AboutCar as AC
-from .utils import settings
+from .utils import settings, print_time
 
 log_channel = int(settings.log_channel)
 
@@ -43,8 +43,9 @@ class clash(commands.Cog):
         embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
         
         ch = self.app.get_channel(log_channel)
-        confirm = f"정상 실행 > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}"
-        no_list = f"오류 > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"        
+        confirm = f"{print_time.get_KST()} > 정상 실행, clash, 서버: {interaction.guild.name}, 채널 : {interaction.channel.name}, 실행자: {interaction.user.display_name}, 검색 내용 : {area} / {car_class} / {car_name}"
+        no_list = f"{print_time.get_KST()} > 오류, clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"        
+        
         try:
             same2 = int(numpy.intersect1d(a, c))
             if same2 and (car_class in set(class_data)):

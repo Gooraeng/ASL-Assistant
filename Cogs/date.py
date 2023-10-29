@@ -2,9 +2,10 @@
 # Last Update : 231030
 
 import discord
+
 from discord import app_commands
 from discord.ext import commands
-from .utils import settings
+from .utils import settings, print_time
 
 log_channel = int(settings.log_channel)
 
@@ -19,11 +20,12 @@ class date(commands.Cog):
         embed.add_field(name= '', value='')
         embed.add_field(name= '- 기간', value= '* 230927 ~ 231219', inline= False)
         
-        await interaction.response.send_message('', embed = embed, ephemeral = True, file = discord.File('./images/datesheet.png'))        
-        print(f"정상 실행 > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
-
+        await interaction.response.send_message('', embed = embed, ephemeral = True, file = discord.File('./images/datesheet.png'))
+                
         ch = self.app.get_channel(log_channel)
-        await ch.send(f"정상 실행 > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
+        confirm = f"{print_time.get_KST()} > 정상 실행 > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
+        
+        print(confirm) ; await ch.send(confirm)
 
 async def setup(app):
     await app.add_cog(date(app))
