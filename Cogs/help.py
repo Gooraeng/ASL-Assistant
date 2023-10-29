@@ -1,13 +1,15 @@
 # 사용 가능한 명령어들의 설명을 알려줌
-# Last update : 231017
+# Last Update : 231030
 
 import discord
 from discord.ext import commands
 from discord import app_commands
+from .utils import settings
 
+log_channel = int(settings.log_channel)
         
 class help(commands.Cog):
-    def __init__(self,app):
+    def __init__(self,app : commands.Bot):
         self.app = app
         
     @app_commands.command(name="help",description="사용할 수 있는 명령어를 정리했습니다!")
@@ -24,7 +26,10 @@ class help(commands.Cog):
         embed.add_field(name="7. Date", value="향후 일정을 확인하실 수 있습니다!", inline=False)
         await interaction.response.send_message("",embed=embed, ephemeral=True)
         
-        print(f"정상 실행 > help > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
+        ch = self.app.get_channel(log_channel)
+        confirm = f"정상 실행 > help > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
+        
+        print(confirm) ; await ch.send(confirm)
         
 async def setup(app):
     await app.add_cog(help(app))

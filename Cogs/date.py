@@ -1,10 +1,12 @@
 # 차량의 디테일한 성능을 알려주는 명령어
-# Last update : 231017
+# Last Update : 231030
 
 import discord
 from discord import app_commands
 from discord.ext import commands
+from .utils import settings
 
+log_channel = int(settings.log_channel)
 
 class date(commands.Cog):
     def __init__(self, app : commands.Bot):
@@ -20,8 +22,8 @@ class date(commands.Cog):
         await interaction.response.send_message('', embed = embed, ephemeral = True, file = discord.File('./images/datesheet.png'))        
         print(f"정상 실행 > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
 
-        ch = await self.app.get_channel(1168194881580171326)
+        ch = self.app.get_channel(log_channel)
         await ch.send(f"정상 실행 > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
 
-async def setup(app : commands.Bot):
+async def setup(app):
     await app.add_cog(date(app))

@@ -1,5 +1,5 @@
 # 차량의 디테일한 성능을 알려주는 명령어
-# Last update : 231026
+# Last Update : 231030
 
 import discord
 import typing
@@ -7,8 +7,10 @@ import asyncio
 
 from discord.ext import commands
 from discord import app_commands
-from .utils import manage_tool
+from .utils import manage_tool, settings
 from .utils.manage_tool import AboutCar as AC
+
+log_channel = int(settings.log_channel)
 
 class spec(commands.Cog):
     def __init__(self, app : commands.Bot):
@@ -34,6 +36,13 @@ class spec(commands.Cog):
         embed1.add_field(name='',value='')
         embed1.add_field(name='- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
         
+        # 로그 관리
+        ch = self.app.get_channel(log_channel)
+        
+        confirm = f"정상 실행 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
+        no_list = f'오류 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} "> 입력'
+        no_data = f'오류 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car_name} " 검색'
+        failed_read = f"오류 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보 조회 실패"
         
         try:
             if car_name == 'KTM  X-BOW GTX':
@@ -41,7 +50,8 @@ class spec(commands.Cog):
                 
             else:
                 await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
-            print(f"정상 실행 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}")
+            print(confirm)
+            await ch.send(confirm)
         
         # 파일이 존재하지 않음
         except Exception:
@@ -54,7 +64,9 @@ class spec(commands.Cog):
                     
                     await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=20)
                     
-                    print(f'오류 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car_name} " 검색')
+                    
+                    print(no_data)
+                    await ch.send(no_data)
                 
                 else:
                     embed3 = discord.Embed(title='❗오류', description=f'그런 이름의 차량은 없습니다. 다시 시도해주세요!', colour= 0xff0000)
@@ -62,14 +74,19 @@ class spec(commands.Cog):
                     
                     await interaction.response.send_message('', embed= embed3, ephemeral= True, delete_after=10)
                     
-                    print(f'오류 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} "> 입력')
-            
+                    
+                    print(no_list)
+                    await ch.send(no_list)
+                    
             else:
                 embed4 = discord.Embed(title='❗오류', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour=0xff0000)
                 
                 await interaction.response.send_message('', embed= embed4, ephemeral= True, delete_after=10)
                 
-                print(f"오류 > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보 조회 실패")
+                
+                print(failed_read)
+                await ch.send(failed_read)
+                
             print('---------------------------------------') 
                 
     # 리스트 자동 완성 

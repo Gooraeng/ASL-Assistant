@@ -1,13 +1,15 @@
 # 현재 봇의 마지막 업데이트 버전을 알려주는 명령어
-# Last update : 231026
+# Last Update : 231030
 
 import discord
 from discord.ext import commands
 from discord import app_commands
+from .utils import settings
 
+log_channel = int(settings.log_channel)
         
 class ver(commands.Cog):
-    def __init__(self,app):
+    def __init__(self,app : commands.Bot):
         self.app = app
         
     @app_commands.command(name="ver",description="현재 봇의 마지막 업데이트 날짜를 알려줍니다!")
@@ -18,7 +20,10 @@ class ver(commands.Cog):
         embed.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤 사라집니다!')
         await interaction.response.send_message("",embed=embed, ephemeral=True,delete_after=10)
         
-        print(f"정상 실행 > ver > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
+        ch = self.app.get_channel(log_channel)
+        
+        confirm = f"정상 실행 > ver > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
+        print(confirm) ; await ch.send(confirm)
         
 async def setup(app):
     await app.add_cog(ver(app))

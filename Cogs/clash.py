@@ -1,5 +1,5 @@
 # 클럽 클래시 관련 함수
-# Last update : 231026
+# Last Update : 231030
 
 import discord
 import typing
@@ -8,11 +8,13 @@ import numpy
 from discord.ext import commands
 from discord import app_commands
 from .utils.manage_tool import AboutCar as AC
-from discord.ext.commands import Context
+from .utils import settings
+
+log_channel = int(settings.log_channel)
 
 
 class clash(commands.Cog):
-    def __init__(self, app):
+    def __init__(self, app : commands.Bot):
         self.app = app
         
     @app_commands.command(name='clash', description='클럽 클래시 지역의 맵의 레퍼런스를 확인할 수 있습니다!')
@@ -40,23 +42,30 @@ class clash(commands.Cog):
         embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
         embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
         
-           
+        ch = self.app.get_channel(log_channel)
+        confirm = f"정상 실행 > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}"
+        no_list = f"오류 > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"        
         try:
             same2 = int(numpy.intersect1d(a, c))
             if same2 and (car_class in set(class_data)):
                 await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
                 
-                print(f"정상 실행 > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}")
+                print(confirm)
+                await ch.send(confirm)
                 
             else:
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
+                await ch.send(no_list)
+                
                 print('---------------------------------------') 
-                print(f"오류 > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
+                print(no_list)
                 print('---------------------------------------') 
         except Exception:
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-            print('---------------------------------------') 
-            print(f"오류 > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}")
+            await ch.send(no_list)
+            
+            print('---------------------------------------')
+            print(no_list)
             print('---------------------------------------') 
             
     @clashes.autocomplete('area')

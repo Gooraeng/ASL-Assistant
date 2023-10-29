@@ -1,5 +1,6 @@
 # 디코 세팅
 # 민감한 파일
+# Last Update : 231030
 
 import os, sys
 from dotenv import load_dotenv
@@ -14,3 +15,4 @@ car_list = os.getenv('car_list')
 car_img = os.getenv('car_img')
 mei = os.getenv('mei')
 a9_db = os.getenv('a9_db')
+log_channel = os.getenv('log_channel')

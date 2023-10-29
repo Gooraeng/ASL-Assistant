@@ -1,12 +1,15 @@
 # car_spec.py의 레퍼런스가 된 자료들의 정보를 알려줌
-# Last update : 231017
+# Last Update : 231030
 
 import discord
 from discord.ext import commands
 from discord import app_commands
+from .utils import settings
+
+log_channel = int(settings.log_channel)
 
 class ref(commands.Cog):
-    def __init__(self, app):
+    def __init__(self, app : commands.Bot):
         self.app = app
     
     @app_commands.command(name='ref', description='봇의 레퍼런스 및 출처를 알려줍니다.')
@@ -22,7 +25,10 @@ class ref(commands.Cog):
         embed3.add_field(name="- 사용목적", value="아스팔트 9 클럽 클래시 데이터 베이스 활용")
         await interaction.response.send_message('', embeds= [embed1, embed2, embed3], ephemeral= True)
         
-        print(f"정상 실행 > ref > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}")
+        ch = self.app.get_channel(log_channel)
+        
+        confirm = f"정상 실행 > ref > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
+        print(confirm) ; await ch.send(confirm)
         
 async def setup(app):
     await app.add_cog(ref(app))
