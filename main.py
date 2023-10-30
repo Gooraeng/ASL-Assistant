@@ -7,6 +7,7 @@ import Cogs.utils.settings as settings
 
 from discord.ext import commands
 from Cogs.utils import manage_tool as mt
+from Cogs.utils import print_time as pt
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -38,6 +39,7 @@ async def on_ready():
     print(f"{app.user.name} 준비 중")
     try:
         await load_extensions()
+        await pt.get_UTC()
         print('---------------------------------------')
         await mt.print_CP()
         print('---------------------------------------')  
@@ -70,7 +72,7 @@ async def on_command_error(interaction : discord.Interaction, error):
         await interaction.response.send_message("",embed=embed,ephemeral=True)  
 
 
-def main():
+async def main():
     app.run(discord_api_token)
 
 # 메인 실행
