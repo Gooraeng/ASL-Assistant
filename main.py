@@ -19,7 +19,8 @@ discord_api_token = str(settings.discord_api_token)
 car_img = settings.car_img
 car_list = str(settings.car_list)
 log_channel = int(settings.log_channel)
-   
+
+
 # 확장 기능(명령어) 로드
 async def load_extensions():
     for filename in os.listdir("Cogs"):
@@ -36,7 +37,7 @@ async def load_extensions():
        
 # 봇 이벤트
 @app.event
-async def on_ready():
+async def on_ready(ctx : commands.Context):
     print(f"{app.user.name} 준비 중")
     try:
         await load_extensions()
@@ -51,7 +52,7 @@ async def on_ready():
         await app.change_presence(status=discord.Status.online,activity=current_status)
         print(f"{app.user.name}이(가) 준비되었습니다!")
         ch = app.get_channel(log_channel)
-        await ch.send(f"**[{app.user.name} 작동 시작 // `{dt.utcnow()} (UTC)`]** <@&{1168445877648621638}>")
+        await ch.send(f"**[{app.user.name} 작동 시작 // `{dt.utcnow()} (UTC)`]**")
     
     except Exception as e:
         print(e)
