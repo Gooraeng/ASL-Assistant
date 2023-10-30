@@ -37,7 +37,7 @@ async def load_extensions():
        
 # 봇 이벤트
 @app.event
-async def on_ready(ctx : commands.Context):
+async def on_ready():
     print(f"{app.user.name} 준비 중")
     try:
         await load_extensions()
