@@ -17,7 +17,7 @@ discord_api_token = str(settings.discord_api_token)
 
 car_img = settings.car_img
 car_list = str(settings.car_list)
-
+log_channel = int(settings.log_channel)
     
 # 확장 기능(명령어) 로드
 async def load_extensions():
@@ -49,6 +49,8 @@ async def on_ready():
         current_status = discord.Game(name='ASL에 정보제공')
         await app.change_presence(status=discord.Status.online,activity=current_status)
         print(f"{app.user.name}이(가) 준비되었습니다!")
+        ch = app.get_channel(log_channel)
+        await ch.send(f"**{app.user.name} Deployed** : `{pt.get_UTC()} (UTC)`")
     
     except Exception as e:
         print(e)

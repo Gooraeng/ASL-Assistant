@@ -40,9 +40,6 @@ class spec(commands.Cog):
         ch = self.app.get_channel(log_channel)
         
         confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
-        no_list = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} " 입력'
-        no_data = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car_name} " 검색'
-        failed_read = f"오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보 조회 실패"
         
         try:
             if car_name == 'KTM  X-BOW GTX':
@@ -51,6 +48,8 @@ class spec(commands.Cog):
             else:
                 await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
             
+            confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
+        
             print(confirm)
             await ch.send(confirm)
         
@@ -65,7 +64,7 @@ class spec(commands.Cog):
                     
                     await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=20)
                     
-                    
+                    no_data = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car_name} " 검색'
                     print(no_data)
                     await ch.send(no_data)
                 
@@ -75,7 +74,7 @@ class spec(commands.Cog):
                     
                     await interaction.response.send_message('', embed= embed3, ephemeral= True, delete_after=10)
                     
-                    
+                    no_list = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} " 입력'
                     print(no_list)
                     await ch.send(no_list)
     
@@ -86,7 +85,7 @@ class spec(commands.Cog):
                 
                 await interaction.followup.send('', embed= embed4, ephemeral= True)
                 
-                
+                failed_read = f"오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보 조회 실패"
                 print(failed_read)
                 await ch.send(failed_read)
                 
