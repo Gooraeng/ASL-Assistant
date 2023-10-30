@@ -51,7 +51,7 @@ async def on_ready():
         await app.change_presence(status=discord.Status.online,activity=current_status)
         print(f"{app.user.name}이(가) 준비되었습니다!")
         ch = app.get_channel(log_channel)
-        await ch.send(f"### [{app.user.name} 작동 시작 : `{dt.utcnow()} (UTC)`] <@&{1168445877648621638}>")
+        await ch.send(f"**[{app.user.name} 작동 시작 // `{dt.utcnow()} (UTC)`]** <@&{1168445877648621638}>")
     
     except Exception as e:
         print(e)
