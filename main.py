@@ -8,6 +8,7 @@ import Cogs.utils.settings as settings
 from discord.ext import commands
 from Cogs.utils import manage_tool as mt
 from Cogs.utils import print_time as pt
+from datetime import datetime as dt
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -50,7 +51,7 @@ async def on_ready():
         await app.change_presence(status=discord.Status.online,activity=current_status)
         print(f"{app.user.name}이(가) 준비되었습니다!")
         ch = app.get_channel(log_channel)
-        await ch.send(f"**{app.user.name} Deployed** : `{pt.get_UTC()} (UTC)`")
+        await ch.send(f"**{app.user.name} Deployed at `{dt.utcnow()} (UTC)`")
     
     except Exception as e:
         print(e)
