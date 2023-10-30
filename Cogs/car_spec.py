@@ -50,6 +50,7 @@ class spec(commands.Cog):
                 
             else:
                 await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
+            
             print(confirm)
             await ch.send(confirm)
         
@@ -77,11 +78,13 @@ class spec(commands.Cog):
                     
                     print(no_list)
                     await ch.send(no_list)
-                    
+    
             else:
+                await interaction.response.defer(ephemeral= True, thinking= True)
+                await asyncio.sleep(5)
                 embed4 = discord.Embed(title='❗오류', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour=0xff0000)
                 
-                await interaction.response.send_message('', embed= embed4, ephemeral= True, delete_after=10)
+                await interaction.followup.send('', embed= embed4, ephemeral= True)
                 
                 
                 print(failed_read)
