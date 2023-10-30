@@ -72,7 +72,7 @@ async def on_command_error(interaction : discord.Interaction, error):
         await interaction.response.send_message("",embed=embed,ephemeral=True)  
 
 
-async def main():
+def main():
     app.run(discord_api_token)
 
 # 메인 실행
