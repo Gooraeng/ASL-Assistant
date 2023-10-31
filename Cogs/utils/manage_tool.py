@@ -1,11 +1,10 @@
 # Last Update : 231030
 
-from Cogs.utils import settings
-from bs4 import BeautifulSoup as beau
-import requests as req
 import csv
 import os, sys
-import pandas as pd
+
+from Cogs.utils import settings
+
 
 car_img = settings.car_img
 car_list = str(settings.car_list)
@@ -13,50 +12,6 @@ car_list = str(settings.car_list)
 class AboutCar:
     sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
         
-    async def make_new_car_list():
-        url = str(settings.list_url)
-
-        response = req.get(url).text.encode('utf-8')
-        response = beau(response, 'lxml')
-
-        target = response.find('table',{'id':'list', 'class':'table'})
-        thead = target.find_all('th')
-
-        theadList = []
-
-    # 사이트 내 th, td 태그 제거 
-        theadLen = len(thead)
-        for i in range(0, theadLen):
-            thead = target.find_all('th')[i].text
-            theadList.append(thead)
-
-        tdTags = target.find_all('td')
-
-        rowList=[]
-        columnList = []
-
-        tdTagsLen = len(tdTags)
-        for i in range(0, tdTagsLen):
-            element = tdTags[i].text
-            columnList.append(element)
-            if i % 2 ==1:
-                rowList.append(columnList)
-                columnList=[]
-        result = pd.DataFrame(rowList, columns=theadList)
-        
-    # 태그 제거 결과 확인
-        print(result)
-
-        # csv 파일로 우선 저장 [차량, 클래스] 꼴로 저장됨
-        f = open(car_list,'w',encoding='utf-8',newline='')
-        writer = csv.writer(f)
-        writer.writerow(theadList)
-        writer.writerows(rowList)
-        f.close()
-
-        return result
-
-
     async def utilize_list():
         data = list()
         f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
@@ -144,7 +99,7 @@ async def check_update():
             return check_new
             
 async def print_CP():
-
+    
     data_csv = await AboutCar.utilize_list() 
     data_img = await AboutCar.make_car_img_list()
 
