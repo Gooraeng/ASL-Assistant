@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 AREA,CAR_NAME,CLASS,LAP_TIME,LINK
+=======
+AREA,CAR_NAME,CLASS,LAP TIME,LINK
+>>>>>>> d9fbfb5403477b56976a184aa4dcf4e8a66d0bff
 Ancient Ruins,PAGANI IMOLA,A,0:57.230,https://youtu.be/UGo16MfXI_c?si=jd1JRUbqoW90X6pz&t=442
 Ancient Ruins,PAGANI HUAYRA R,B,0:58.161,https://youtu.be/3rTY90zpiE8?si=nXbmPGg_UC0dy_9w
 Ancient Ruins,PEUGEOT ONYX,A,0:58.329,https://youtu.be/VUQedMK6_kU?t=13
@@ -93,7 +97,10 @@ City by the Bay,MERCEDES-BENZ AMG GT BLACK SERIES,C,1:01.915,https://youtu.be/ay
 City by the Bay,MCLAREN GT,C,1:02.110,https://youtu.be/e1q9As9sMDA?t=2
 City by the Bay,BRABHAM BT62,C,1:02.128,https://youtu.be/hNoHGBqYXWU?t=10
 City by the Bay,FERRARI 599XX EVO,C,1:02.227,https://youtu.be/SvbczE-N9lo?t=20
+<<<<<<< HEAD
 City by the Bay,PORSCHE PANAMERA TURBO S,C,1:02.428,https://youtu.be/6uufyNSfT4M?si=IJG-9SiTK8Z7lRY_&t=101
+=======
+>>>>>>> d9fbfb5403477b56976a184aa4dcf4e8a66d0bff
 City by the Bay,CHEVROLET CORVETTE STINGRAY,C,1:03.049,https://youtu.be/G5BmjTyJnuA?t=95
 Cliffhanger,BUGATTI BOLIDE,S,1:00.141,https://youtu.be/B5s22hR6WLc?si=H_a_61v5-XLgt4Fh&t=15
 Cliffhanger,BUGATTI LA VOITURE NOIRE,S,1:01.479,https://youtu.be/J6q0-PRPzd8?si=ehiLrUV6q8a7rAtc&t=3
@@ -125,7 +132,11 @@ Desert Run,KOENIGSEGG CCXR,S,1:09.251,https://youtu.be/PKaJibWYlbw
 Desert Run,AUTOMOBILI PININFARINA BATTISTA,S,1:11.898,https://youtu.be/tkLYnnGOU1o?t=8
 Desert Run,MCLAREN 570S SPIDER,A,1:14.340,https://youtu.be/BGG-x-k022Q?t=868
 Desert Run,PEUGEOT ONYX,A,1:14.435,https://youtu.be/jEVIr9pMs3Q?si=CBK2nhkrYqs-FHzK&t=346
+<<<<<<< HEAD
 Desert Run,LAMBORGHINI AVENTADOR J,A,1:14.680,https://youtu.be/P7RDHku4aoc?si=PhD-WQfj2KhqOCv0&t=966
+=======
+Desert Run,LAMBORGHINI AVENTADOR J,A,1:15.762,https://youtu.be/FJHXiSIZc4E?si=m3ScS5jNV94Zueup&t=421
+>>>>>>> d9fbfb5403477b56976a184aa4dcf4e8a66d0bff
 Dipping Down,KOENIGSEGG JESKO,S,0:55.893,https://youtu.be/ncD-cUO9N-8?t=6
 Dipping Down,HENNESSEY VENOM F5,S,0:56.679,https://youtu.be/vimFJWQ1XBQ
 Dipping Down,BUGATTI CHIRON,S,0:59.118,https://youtu.be/uR4ktoUxL68?t=12
@@ -223,7 +234,11 @@ Metro,RIMAC NEVERA,S,0:36.160,https://youtu.be/3zLfahp27m4?t=8
 Metro,KOENIGSEGG GEMERA,S,0:36.371,https://youtu.be/TqwLBUShwZw?t=6
 Metropolitan,KOENIGSEGG CCXR,S,0:53.507,https://youtu.be/z2zsJGQUWDc?si=azInogK_6CwtJbkR&t=8
 Metropolitan,AUTOMOBILI PININFARINA BATTISTA,S,0:54.497,https://youtu.be/v9oEyN85QCo?si=dhJ3RJo1HYtF8dNY&t=8
+<<<<<<< HEAD
 Metropolitan,FERRARI F8 TRIBUTO,A,0:55.725,https://youtu.be/P7RDHku4aoc?si=zccflCx3qMELt9Cm&t=98
+=======
+Metropolitan,FERRARI F8 TRIBUTO,A,0:55.765,https://youtu.be/x_LCdHKjTc0?si=0SgC92F9YcgbzXoq&t=7
+>>>>>>> d9fbfb5403477b56976a184aa4dcf4e8a66d0bff
 Metropolitan,VANDA ELECTRICS DENDROBIUM,A,0:55.910,https://youtu.be/kfqpytkJ_0k?si=XFt2LvXAshn7-JmW&t=7
 Metropolitan,MERCEDES-BENZ AMG GT BLACK SERIES,C,0:58.693,https://youtu.be/bE_AAgf7A2E?si=bb-c3ZMGTrCpKy03&t=11
 Metropolitan,GLICKENHAUS 004C,D,1:02.444,https://youtu.be/tM3Z_GYE_6U?si=EdmDO_gs-oEOIi0L&t=8
@@ -281,7 +296,10 @@ Pudong Rise,MERCEDES-BENZ AMG GT BLACK SERIES,C,1:11.363,https://youtu.be/pFBK0v
 Pudong Rise,TVR GRIFFITH,D,1:14.835,https://youtu.be/oIPV7GwLzTw?si=YYR26ZO0hZlkUpy2
 Pudong Rise,GLICKENHAUS 004C,D,1:15.952,https://youtu.be/RsXEmXkZ3hw?t=7
 Pudong Rise,CHEVROLET CORVETTE C7.R,D,1:16.711,https://youtu.be/DHLYwtR3B4Q?t=385
+<<<<<<< HEAD
 Pudong Rise,FORD MUSTANG MACH-E1400,D,1:17.655,https://youtu.be/_XlurYjiZoU?si=KVJEpjKVXkx-F210&t=102
+=======
+>>>>>>> d9fbfb5403477b56976a184aa4dcf4e8a66d0bff
 Purple Boulevard,KOENIGSEGG JESKO,S,0:35.811,https://youtu.be/8h6zsWLnviE
 Purple Boulevard,SSC TUATARA,S,0:36.284,https://youtu.be/Gv3y8dXvxrg?t=8
 Purple Boulevard,BUGATTI CHIRON,S,0:36.909,https://youtu.be/UZEg6afnMzQ?t=12
@@ -370,7 +388,11 @@ The City that Never Sleeps,LAMBORGHINI GALLARDO LP 560-4,C,1:09.938,https://yout
 The Enchanted Island,HENNESSEY VENOM F5,S,0:41.067,https://youtu.be/Oyjt3l6oK8E?si=lklRt6NPx8fhp_Wy&t=325
 Thousand Minarets,ASTON MARTIN VALKYRIE,S,1:09.950,https://youtu.be/DjuxNtFRFvY?si=P-TMwEZ5byyS-OhP&t=193
 Thousand Minarets,ASTON MARTIN VALHALLA CONCEPT CAR,A,1:10.462,https://youtu.be/TuKVeFtWXEo?si=p3pYTbZYNNAnI1MV&t=7
+<<<<<<< HEAD
 Thousand Minarets,RIMAC CONCEPT_ONE,A,1:10.770,https://youtu.be/P7RDHku4aoc?si=5Z7Xz8HhkOVhBOxz&t=651
+=======
+Thousand Minarets,RIMAC CONCEPT_ONE,A,1:10.857,https://youtu.be/LOaavSEUWL8?t=7
+>>>>>>> d9fbfb5403477b56976a184aa4dcf4e8a66d0bff
 Thousand Minarets,TECHRULES AT96 TRACK VERSION,A,1:11.211,https://youtu.be/3LGsC3kUYqw?si=HJjJFy3TXP8onifu&t=14
 Thousand Minarets,LAMBORGHINI AVENTADOR J,A,1:13.243,https://youtu.be/BqFkBWmj8nE?si=TRksEX6-HVWO9UcU&t=180
 Thousand Minarets,ASTON MARTIN DBS SUPERLEGGERA,B,1:13.254,https://youtu.be/HQxr5p-jgMc?si=6BeDccEJh9BWAxWq&t=530
@@ -384,7 +406,10 @@ Thousand Minarets,PORSCHE PANAMERA TURBO S,C,1:15.884,https://youtu.be/XDEDfOo68
 Thousand Minarets,TVR GRIFFITH,D,1:20.017,https://youtu.be/WLb782Ot9BY?si=TDk4Z3P-OxnL3Wlr&t=3
 Thousand Minarets,GLICKENHAUS 004C,D,1:21.738,https://youtu.be/UGku90ucfwM?si=nbt6NCr6gQ_cCemN&t=6
 Thousand Minarets,MAZDA FURAI,D,1:22.113,https://youtu.be/3KxWohT7Qgc?t=14
+<<<<<<< HEAD
 Thousand Minarets,FORD MUSTANG MACH-E1400,D,1:22.274,https://youtu.be/_XlurYjiZoU?si=jnM1jYvlL69yUasY&t=10
+=======
+>>>>>>> d9fbfb5403477b56976a184aa4dcf4e8a66d0bff
 Thousand Minarets,CHEVROLET CORVETTE C7.R,D,1:23.093,https://youtu.be/1nr6kJXwSs8?si=stxTF4Uw2p3b_gOb&t=14
 Through the center,SSC TUATARA,S,0:36.693,https://youtu.be/pqsTsSELkoY?si=eot3OeyRl0pLtwCi&t=49
 Tiber Stream,KOENIGSEGG JESKO,S,0:57.013,https://bilibili.com/video/BV1494y1L7xr/?t=108
@@ -446,7 +471,10 @@ Winding Road,PAGANI IMOLA,A,0:41.293,https://youtu.be/FBG556LX4Vw?si=xZexyLQ5Qy1
 Winding Road,FERRARI LAFERRARI APERTA,A,0:42.291,https://youtu.be/ivGIEQTNHS0?si=khJ83K5nrFhIhrXt&t=772
 Zeppelin Race,BUGATTI CHIRON,S,0:35.331,https://youtu.be/_e1GfmHf1hM?si=GB7vkDB08w9EuTqt&t=25
 Zeppelin Race,ASTON MARTIN VALHALLA CONCEPT CAR,A,0:35.719,https://youtu.be/eyPTpRv-3E4?t=9
+<<<<<<< HEAD
 Zeppelin Race,VANDA ELECTRICS DENDROBIUM,A,0:36.229,https://youtu.be/C5tUK9yy22M?si=i5V0PJaUu5wXgOQk&t=436
+=======
+>>>>>>> d9fbfb5403477b56976a184aa4dcf4e8a66d0bff
 Zeppelin Race,PORSCHE 918 SPYDER,A,0:37.607,https://youtu.be/jEVIr9pMs3Q?si=oU27W3fAhd637aSo&t=866
 Zeppelin Race,VOLKSWAGEN ELECTRIC R,D,0:39.361,https://youtu.be/uKFtbmYeWK0?si=B7XoiL3BB_xprdiK&t=101
 Zeppelin Race,PORSCHE TAYCAN TURBO S,D,0:40.646,https://youtu.be/4s57pUGngkI?si=7gPBZSN4Vt4Ka3Pw&t=68
