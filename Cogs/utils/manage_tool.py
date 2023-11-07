@@ -84,6 +84,57 @@ class ClubClash:
         f.close()
         return data
 
+# TLE 관리 함수
+class Tle:            
+    async def type_of_tle():
+        data  = list()
+        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[0])
+        data.pop(0)
+        f.close()
+        return data
+
+    async def Area_db():
+        data = list()
+        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[1])
+        data.pop(0)
+        f.close()
+        return data
+
+    async def CarName_db():
+        data = list()
+        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[2])
+        data.pop(0)
+        f.close()
+        return data
+        
+    async def LapTime_db():
+        data = list()
+        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[4])
+        data.pop(0)
+        f.close()
+        return data
+        
+    async def Link_db():
+        data = list()
+        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[5])
+        data.pop(0)
+        f.close()
+        return data
 
 # 업데이트 확인 > car_spec에 활용
 async def check_update():

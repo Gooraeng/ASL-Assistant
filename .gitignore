@@ -9,20 +9,10 @@ ENV/
 env.bak/
 venv.bak/
 
-
-.Cogs/
-Car_spec_img/
-data/
-images/
-
-
 .vscode/
-.Procfile
-.runtime.txt
-.requirement.txt
 
 car_list_renew.py
-manage_data.py
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
