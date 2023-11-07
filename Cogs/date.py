@@ -1,5 +1,5 @@
-# 차량의 디테일한 성능을 알려주는 명령어
-# Last Update : 231030
+# 향후 일정 사진을 출력하는 명령어
+# Last Update : 231107
 
 import discord
 
@@ -17,7 +17,6 @@ class date(commands.Cog):
     @app_commands.guild_only()
     async def show_nengmyeon_bab(self, interaction : discord.Interaction):
         embed = discord.Embed(title='**<주의>**', description='* 일정이 정확하지 않을 수 있으니, 그저 참고만 해주세요!',colour=0xff0000)
-        embed.add_field(name= '', value='')
         embed.add_field(name= '- 기간', value= '* 230927 ~ 231219', inline= False)
         
         await interaction.response.send_message('', embed = embed, ephemeral = True, file = discord.File('./images/datesheet.png'))

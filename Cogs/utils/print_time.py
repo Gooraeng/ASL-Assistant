@@ -1,4 +1,8 @@
+# 시간 출력 함수 / 1초마다 집계
+# Last Update : 231107
+
 import urllib.request
+
 from discord.ext import tasks
 #-*- coding: euc-kr -*-
 

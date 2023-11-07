@@ -1,5 +1,5 @@
 # 차량의 디테일한 성능을 알려주는 명령어
-# Last Update : 231030
+# Last Update : 231107
 
 import discord
 import typing
@@ -33,7 +33,6 @@ class spec(commands.Cog):
         
         embed1 = discord.Embed(title='⚠️주의', description=f'정보가 누락되거나 정확하지 않을 수 있습니다. 문제 발견 시 ASL Assistant 디스코드 서버를 통해 신고해주십시오! (/link 입력)', colour=0x7fe6e4)
         embed1.add_field(name='',value='All list From "MEI Car list", All images from "A9-Database". Type "Ref" For details. ', inline=False)
-        embed1.add_field(name='',value='')
         embed1.add_field(name='- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
         
         # 로그 관리

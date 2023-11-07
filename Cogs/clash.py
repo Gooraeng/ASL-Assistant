@@ -1,5 +1,5 @@
-# 클럽 클래시 관련 함수
-# Last Update : 231030
+# 클럽 클래시 관련 명령어
+# Last Update : 231107
 
 import discord
 import typing
@@ -7,7 +7,7 @@ import numpy
 
 from discord.ext import commands
 from discord import app_commands
-from .utils.manage_tool import AboutCar as AC
+from .utils.manage_tool import ClubClash as CC
 from .utils import settings, print_time
 
 log_channel = int(settings.log_channel)
@@ -24,19 +24,17 @@ class clash(commands.Cog):
     async def clashes(self, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
 
         # 맵과 차량이 다같이 대응되는 유튜브 링크 제공.
-        map_data = await AC.ClubClash_Database_area()
-        class_data = await AC.ClubClash_Database_Class()
-        car_data = await AC.ClubClash_Database_CarName()
+        map_data = await CC.Area_db()
+        class_data = await CC.Class_db()
+        car_data = await CC.CarName_db()
+        link_data = await CC.Link_db()
+        lap_time_data = await CC.LapTime_db()
         
-        link_data = await AC.ClubClash_Database_Link()
-
-        lap_time_data = await AC.ClubClash_Database_LapTime()
-        
-        database1 = numpy.array(map_data)
-        database3 = numpy.array(car_data)
+        map_arr = numpy.array(map_data)
+        car_arr = numpy.array(car_data)
             
-        a = numpy.where(database1 == area)
-        c = numpy.where(database3 == car_name)
+        a = numpy.where(map_arr == area)
+        c = numpy.where(car_arr == car_name)
         
         
         embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
@@ -80,7 +78,7 @@ class clash(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 차량 리스트 선언
-        map_data = await AC.ClubClash_Database_area()
+        map_data = await CC.Area_db()
         
         # cc_db 내 겹치는 차량 리스트가 존재하고, 리스트 검색 시 이를 허용하지 않게 하기 위한
         # set을 이용하여 겹치는 차량이 없는 새 리스트 선언
@@ -105,8 +103,8 @@ class clash(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 리스트 선언
-        map_data = await AC.ClubClash_Database_area()
-        class_data = await AC.ClubClash_Database_Class()
+        map_data = await CC.Area_db()
+        class_data = await CC.Class_db()
         
         # area_autocompletion을 통해 찾으려는 맵과 관련된 요소를 불러옴.
         # 여기선 딕셔너리를 이용하여 불러옴 >> dict_values(['Sacred Heart', ''])
@@ -140,9 +138,9 @@ class clash(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 리스트 선언
-        map_data = await AC.ClubClash_Database_area()
-        car_data = await AC.ClubClash_Database_CarName()
-        class_data = await AC.ClubClash_Database_Class()
+        map_data = await CC.Area_db()
+        car_data = await CC.CarName_db()
+        class_data = await CC.Class_db()
         
         # class_autocompletion의 결과와 연동이 어려워 같은 방법 반복
         aa = list(interaction.namespace.__dict__.values())

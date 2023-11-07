@@ -1,17 +1,17 @@
-# Last Update : 231030
+# 차량 및 크럽 클래시
+# Last Update : 231107
 
 import csv
 import os, sys
 
 from Cogs.utils import settings
 
-
 car_img = settings.car_img
 car_list = str(settings.car_list)
 
-class AboutCar:
-    sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-        
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
+class AboutCar:        
     async def utilize_list():
         data = list()
         f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
@@ -32,8 +32,8 @@ class AboutCar:
         return car_img_list
 
 
-            
-    async def ClubClash_Database_area():
+class ClubClash:            
+    async def Area_db():
         data  = list()
         f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
@@ -43,7 +43,7 @@ class AboutCar:
         f.close()
         return data
 
-    async def ClubClash_Database_CarName():
+    async def CarName_db():
         data = list()
         f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
@@ -53,7 +53,7 @@ class AboutCar:
         f.close()
         return data
 
-    async def ClubClash_Database_Class():
+    async def Class_db():
         data = list()
         f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
@@ -63,7 +63,7 @@ class AboutCar:
         f.close()
         return data
         
-    async def ClubClash_Database_LapTime():
+    async def LapTime_db():
         data = list()
         f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
@@ -73,7 +73,7 @@ class AboutCar:
         f.close()
         return data
         
-    async def ClubClash_Database_Link():
+    async def Link_db():
         data = list()
         f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)

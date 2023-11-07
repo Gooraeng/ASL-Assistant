@@ -1,8 +1,8 @@
 # 디코 세팅
-# 민감한 파일
 # Last Update : 231030
 
 import os, sys
+
 from dotenv import load_dotenv
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
