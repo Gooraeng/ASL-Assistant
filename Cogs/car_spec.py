@@ -22,6 +22,8 @@ class spec(commands.Cog):
     @app_commands.rename(car_name='car')
     @app_commands.guild_only()
     async def car(self, interaction : discord.Interaction, car_name : str):
+        
+        # 조회 불가능 차량 리트를 불러옴
         get_check_list = await manage_tool.check_update()
         
         if get_check_list == None:
@@ -30,7 +32,7 @@ class spec(commands.Cog):
         else:
             get_check_list_ = ('\n* ').join(s for s in get_check_list)
         
-        
+        # 정상 실행 임베드 생성
         embed1 = discord.Embed(title='⚠️주의', description=f'정보가 누락되거나 정확하지 않을 수 있습니다. 문제 발견 시 ASL Assistant 디스코드 서버를 통해 신고해주십시오! (/link 입력)', colour=0x7fe6e4)
         embed1.add_field(name='',value='All list From "MEI Car list", All images from "A9-Database". Type "Ref" For details. ', inline=False)
         embed1.add_field(name='- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
@@ -40,6 +42,7 @@ class spec(commands.Cog):
         
         confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
         
+        # 정상 실행
         try:
             if car_name == 'KTM  X-BOW GTX':
                 await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)
@@ -52,10 +55,15 @@ class spec(commands.Cog):
             print(confirm)
             await ch.send(confirm)
         
-        # 파일이 존재하지 않음
+        # 오류 관리
         except Exception:
+            
             print('---------------------------------------')
+            
+
             if FileNotFoundError:
+                
+                # 리스트 상으로는 존재하나 세부 정보가 없는 차량명 출력
                 if car_name in get_check_list:
                     embed2 = discord.Embed(title='❗오류', description=f'< {car_name} >의 정보가 현재 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!', colour= 0xff0000)
                     embed2.add_field(name='- 조회 불가능 차량', value=f"* {get_check_list_}", inline= False)
@@ -67,6 +75,7 @@ class spec(commands.Cog):
                     print(no_data)
                     await ch.send(no_data)
                 
+                # 리스트 상에도 존재하지 않는 차량명 출력
                 else:
                     embed3 = discord.Embed(title='❗오류', description=f'그런 이름의 차량은 없습니다. 다시 시도해주세요!', colour= 0xff0000)
                     embed3.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)
@@ -76,7 +85,8 @@ class spec(commands.Cog):
                     no_list = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} " 입력'
                     print(no_list)
                     await ch.send(no_list)
-    
+
+            # 기타 오류
             else:
                 await interaction.response.defer(ephemeral= True, thinking= True)
                 await asyncio.sleep(5)
@@ -97,16 +107,18 @@ class spec(commands.Cog):
         current : str,
     ) -> typing.List[app_commands.Choice[str]]:
     
-        # Choice 리스트 제작을 위한 함수 실행
+
         new_data = await AC.utilize_list()
         
-        # Choice 갯수가 10개 초과 시 최대로 보여주는 Choice 수를 10개 까지로 제한
         result = [
             app_commands.Choice(name= choice, value= choice)
             for choice in new_data if current.lower() in choice.lower()
         ]
+        
+        # Choice 갯수가 10개 초과 시 최대로 보여주는 Choice 수를 10개 까지로 제한
         if len(result) > 10:
                 result = result[:10]
+                
         return result
 
 async def setup(app):

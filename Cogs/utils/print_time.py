@@ -1,4 +1,4 @@
-# 시간 출력 함수 / 1초마다 집계
+# 시간 출력 함수
 # Last Update : 231107
 
 import urllib.request
@@ -11,6 +11,7 @@ month = {'Jan':'01', 'Feb':'02', 'Mar':'03', 'Apr':'04', 'May':'05', 'Jun':'06',
 
 url = 'https://time.navyism.com/'
 
+# 1초마다 시간 집계
 @tasks.loop(seconds=1)
 async def get_UTC():
     date = urllib.request.urlopen(url).headers['Date'][5:-4]

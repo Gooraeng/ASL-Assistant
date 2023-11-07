@@ -11,6 +11,7 @@ car_list = str(settings.car_list)
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
+# 차량 정보 함수
 class AboutCar:        
     async def utilize_list():
         data = list()
@@ -31,7 +32,7 @@ class AboutCar:
                 car_img_list.append(filename[:-5])
         return car_img_list
 
-
+# 클럽 클래시 유틸 함수
 class ClubClash:            
     async def Area_db():
         data  = list()
@@ -84,11 +85,12 @@ class ClubClash:
         return data
 
 
+# 업데이트 확인 > car_spec에 활용
 async def check_update():
     data_csv = await AboutCar.utilize_list() 
     data_img = await AboutCar.make_car_img_list()
     
-# 업데이트 된 차량(들)의 리스트 선언 
+    # 업데이트 된 차량(들)의 리스트 선언 
     check_new = list(set(data_csv)- set(data_img))
     if len(list(data_csv))-len(list(data_img))==0:
         if 'KTM  X-BOW GTX' in data_csv:
@@ -97,7 +99,9 @@ async def check_update():
         if 'KTM  X-BOW GTX' in data_csv:
             check_new.remove('KTM  X-BOW GTX')
             return check_new
-            
+
+
+# 업데이트 확인 > 최초 실행 시 콘솔에 출력
 async def print_CP():
     
     data_csv = await AboutCar.utilize_list() 
