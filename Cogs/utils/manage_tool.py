@@ -12,7 +12,9 @@ car_list = str(settings.car_list)
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 # 차량 정보 함수
-class AboutCar:        
+class AboutCar:
+  
+            
     async def utilize_list():
         data = list()
         f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
@@ -33,7 +35,7 @@ class AboutCar:
         return car_img_list
 
 # 클럽 클래시 유틸 함수
-class ClubClash:            
+class ClubClash:                
     async def Area_db():
         data  = list()
         f = open('data/Club Clash Database.csv', "r",encoding='utf-8',newline='')
@@ -85,10 +87,10 @@ class ClubClash:
         return data
 
 # TLE 관리 함수
-class Tle:            
+class TimeLimitedEvent:                
     async def type_of_tle():
         data  = list()
-        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        f = open('data/TLE DB.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
@@ -98,7 +100,7 @@ class Tle:
 
     async def Area_db():
         data = list()
-        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        f = open('data/TLE DB.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[1])
@@ -108,7 +110,7 @@ class Tle:
 
     async def CarName_db():
         data = list()
-        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        f = open('data/TLE DB.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[2])
@@ -118,7 +120,7 @@ class Tle:
         
     async def LapTime_db():
         data = list()
-        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        f = open('data/TLE DB.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[4])
@@ -128,7 +130,7 @@ class Tle:
         
     async def Link_db():
         data = list()
-        f = open('data/TLE Database.csv', "r",encoding='utf-8',newline='')
+        f = open('data/TLE DB.csv', "r",encoding='utf-8',newline='')
         reader = csv.reader(f)
         for row in reader:
             data.append(row[5])

@@ -28,8 +28,9 @@ async def load_extensions():
             try:
                 await app.load_extension(f"Cogs.{filename[:-3]}")            
 # 오류 처리
-            except (commands.NoEntryPointError, commands.ExtensionFailed):
+            except (commands.NoEntryPointError, commands.ExtensionFailed) as e:
                 print(f"파일 오류 발생 : {filename}")
+                print(e)
             except commands.ExtensionNotFound:
                 print(f"{filename[:-3]} 파일이 존재하지 않습니다.")
             except commands.ExtensionAlreadyLoaded:
