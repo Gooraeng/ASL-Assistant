@@ -1,5 +1,5 @@
 # 차량의 디테일한 성능을 알려주는 명령어
-# Last Update : 231107
+# Last Update : 231111
 
 import discord
 import typing
@@ -117,7 +117,7 @@ class spec(commands.Cog):
         
         # Choice 갯수가 10개 초과 시 최대로 보여주는 Choice 수를 10개 까지로 제한
         if len(result) > 10:
-                result = result[:10]
+            result = result[:10]
                 
         return result
 

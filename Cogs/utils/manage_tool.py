@@ -1,5 +1,5 @@
 # 차량 및 크럽 클래시
-# Last Update : 231107
+# Last Update : 231111
 
 import csv
 import os, sys
@@ -12,9 +12,7 @@ car_list = str(settings.car_list)
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 # 차량 정보 함수
-class AboutCar:
-  
-            
+class AboutCar:        
     async def utilize_list():
         data = list()
         f = open('data/A9 Car List.csv', "r",encoding='utf-8',newline='')
@@ -138,6 +136,48 @@ class TimeLimitedEvent:
         f.close()
         return data
 
+# carhunt 관리 함수
+class CarhuntRiot:                
+    async def CarName_db():
+        data = list()
+        f = open('data/Car hunt DB.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[0])
+        data.pop(0)
+        f.close()
+        return data
+    
+    async def Area_db():
+        data = list()
+        f = open('data/Car hunt DB.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[1])
+        data.pop(0)
+        f.close()
+        return data
+        
+    async def LapTime_db():
+        data = list()
+        f = open('data/Car hunt DB.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[3])
+        data.pop(0)
+        f.close()
+        return data
+        
+    async def Link_db():
+        data = list()
+        f = open('data/Car hunt DB.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[4])
+        data.pop(0)
+        f.close()
+        return data
+    
 # 업데이트 확인 > car_spec에 활용
 async def check_update():
     data_csv = await AboutCar.utilize_list() 

@@ -1,5 +1,5 @@
 # 클럽 클래시 관련 명령어
-# Last Update : 231107
+# Last Update : 231111
 
 import discord
 import typing
@@ -87,7 +87,7 @@ class clash(commands.Cog):
         # 겹치는 차량 리스트가 존재하고, 리스트 검색 시 이를 허용하지 않게 하기 위한
         # set을 이용하여 겹치는 차량이 없는 새 리스트 선언
         filtered = list(set(map_data))
-        
+
         result1 = [
             app_commands.Choice(name=choice, value=choice)
             for choice in filtered if current.lower() in choice.lower()
@@ -168,6 +168,8 @@ class clash(commands.Cog):
             result3 = result3[:25]
             
         return result3
+    
+    
         
     
 async def setup(app):
