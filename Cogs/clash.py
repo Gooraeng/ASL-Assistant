@@ -43,26 +43,32 @@ class clash(commands.Cog):
         ch = self.app.get_channel(log_channel)        
         
         try:
-            same2 = int(numpy.intersect1d(a, c))
+            if interaction.channel.id != 1158477800504836147 or interaction.channel.id != 1158749682642714695 :
+                embed2 = discord.Embed(title= '해당 채널에서는 실행하실 수 없습니다.', colour= 0xf50500,
+                                       description= 'ASL Assistant 제작자의 승인이 없는 채널은 이용하실 수 없습니다.')
+                await interaction.response.send_message(embed= embed2, ephemeral= True, delete_after= 10)
             
-            # 정상 실행
-            if same2 and (car_class in set(class_data)):
-                await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
-                
-                confirm = f"정상 실행 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}"
-                await ch.send(confirm); print(confirm)
-
-            # 임베드 1 출력
             else:
-                await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
+                same2 = int(numpy.intersect1d(a, c))
                 
-                no_list = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
-                await ch.send(no_list)
-                
-                print('---------------------------------------') 
-                print(no_list)
-                print('---------------------------------------') 
-        
+                # 정상 실행
+                if same2 and (car_class in set(class_data)):
+                    await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
+                    
+                    confirm = f"정상 실행 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.id} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}"
+                    await ch.send(confirm); print(confirm)
+
+                # 임베드 1 출력
+                else:
+                    await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
+                    
+                    no_list = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
+                    await ch.send(no_list)
+                    
+                    print('---------------------------------------') 
+                    print(no_list)
+                    print('---------------------------------------') 
+            
         # 오류 관리 - 임베드 1 출력 
         except Exception:
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
@@ -72,8 +78,17 @@ class clash(commands.Cog):
             
             print('---------------------------------------')
             print(no_list)
-            print('---------------------------------------') 
-            
+            print('---------------------------------------')
+
+    @clashes.error
+    async def clashes_error_handling(self, interaction : discord.Interaction, error : app_commands.AppCommandError):
+        if isinstance(error, app_commands.CommandInvokeError):
+            pass
+        elif isinstance(error, discord.HTTPException):
+            pass
+        elif isinstance(error, discord.NotFound):
+            pass
+        else : raise error
     @clashes.autocomplete('area')
     async def area_autocompletion(
         self,
