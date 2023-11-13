@@ -81,11 +81,13 @@ class clash(commands.Cog):
         else:   
             embed2 = discord.Embed(title= '해당 채널에서는 실행하실 수 없습니다.', colour= 0xf51000,
                                     description= 'ASL Assistant 제작자의 승인이 없는 채널은 이용하실 수 없습니다.')
-            await interaction.response.send_message(embed= embed2, ephemeral= True, delete_after= 10)
+            failed = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 허가되지 않은 서버 / 채널에서의 명령어 입력"
+            await ch.send(failed)
             
-                
-            
-        
+            print('---------------------------------------')
+            print(failed)
+            print('---------------------------------------')   
+            await interaction.response.send_message(embed= embed2, ephemeral= True, delete_after= 10)        
 
     @clashes.error
     async def clashes_error_handling(self, interaction : discord.Interaction, error : app_commands.AppCommandError):
@@ -96,6 +98,8 @@ class clash(commands.Cog):
         elif isinstance(error, discord.NotFound):
             pass
         else : raise error
+        
+        
     @clashes.autocomplete('area')
     async def area_autocompletion(
         self,
