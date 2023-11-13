@@ -1,13 +1,8 @@
 # 차량 및 크럽 클래시
-# Last Update : 231111
+# Last Update : 231113
 
 import csv
 import os, sys
-
-from Cogs.utils import settings
-
-car_img = settings.car_img
-car_list = str(settings.car_list)
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
