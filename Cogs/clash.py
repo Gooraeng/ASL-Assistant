@@ -45,7 +45,7 @@ class clash(commands.Cog):
         
          
         # veri - asl assistant or asl assistant
-        if interaction.channel.id == 1158477800504836147 or interaction.channel.id == 1158749682642714695 :
+        if interaction.channel.id == 1158477800504836147 or interaction.channel.id == 1158749682642714695 or interaction.user.id == 303915314062557185:
             try:
                 same2 = int(numpy.intersect1d(a, c))
                 
