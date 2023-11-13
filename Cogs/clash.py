@@ -16,10 +16,11 @@ log_channel = int(settings.log_channel)
 class clash(commands.Cog):
     def __init__(self, app : commands.Bot):
         self.app = app
-        
+
     @app_commands.command(name='clash', description='클럽 클래시 지역의 맵의 레퍼런스를 확인할 수 있습니다!')
     @app_commands.describe(area = '찾고자 하는 맵을 찾아보세요!', car_class = '클래스를 선택하세요', car_name ='어떤 차량을 찾아보시겠어요?')
     @app_commands.rename(area = '맵', car_class = '클래스', car_name = '차량')
+    @app_commands.guilds(751643570758484038, 1151082666670706758)
     @app_commands.guild_only()
     async def clashes(self, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
 
@@ -40,22 +41,19 @@ class clash(commands.Cog):
         embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
         embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
         
-        ch = self.app.get_channel(log_channel)        
+        ch = self.app.get_channel(log_channel)       
         
-        try:
-            if interaction.channel.id != 1158477800504836147 or interaction.channel.id != 1158749682642714695 :
-                embed2 = discord.Embed(title= '해당 채널에서는 실행하실 수 없습니다.', colour= 0xf50500,
-                                       description= 'ASL Assistant 제작자의 승인이 없는 채널은 이용하실 수 없습니다.')
-                await interaction.response.send_message(embed= embed2, ephemeral= True, delete_after= 10)
-            
-            else:
+         
+        # veri - asl assistant or asl assistant
+        if interaction.channel.id == 1158477800504836147 or interaction.channel.id == 1158749682642714695 :
+            try:
                 same2 = int(numpy.intersect1d(a, c))
                 
                 # 정상 실행
                 if same2 and (car_class in set(class_data)):
                     await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
                     
-                    confirm = f"정상 실행 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.id} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}"
+                    confirm = f"정상 실행 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}"
                     await ch.send(confirm); print(confirm)
 
                 # 임베드 1 출력
@@ -69,16 +67,25 @@ class clash(commands.Cog):
                     print(no_list)
                     print('---------------------------------------') 
             
-        # 오류 관리 - 임베드 1 출력 
-        except Exception:
-            await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
+            # 오류 관리 - 임베드 1 출력 
+            except Exception:
+                await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
+                
+                no_list = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
+                await ch.send(no_list)
+                
+                print('---------------------------------------')
+                print(no_list)
+                print('---------------------------------------')   
+        
+        else:   
+            embed2 = discord.Embed(title= '해당 채널에서는 실행하실 수 없습니다.', colour= 0xf51000,
+                                    description= 'ASL Assistant 제작자의 승인이 없는 채널은 이용하실 수 없습니다.')
+            await interaction.response.send_message(embed= embed2, ephemeral= True, delete_after= 10)
             
-            no_list = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
-            await ch.send(no_list)
+                
             
-            print('---------------------------------------')
-            print(no_list)
-            print('---------------------------------------')
+        
 
     @clashes.error
     async def clashes_error_handling(self, interaction : discord.Interaction, error : app_commands.AppCommandError):
@@ -187,5 +194,7 @@ class clash(commands.Cog):
     
         
     
-async def setup(app):
+async def setup(app: commands.Bot):
     await app.add_cog(clash(app))
+    await app.tree.sync(guild = discord.Object(1151082666670706758))
+    await app.tree.sync(guild = discord.Object(751643570758484038))
