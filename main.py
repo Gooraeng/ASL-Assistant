@@ -1,5 +1,5 @@
 # 메인 코드 모음
-# Last update : 231026
+# Last update : 231113
 
 import discord
 import os
@@ -12,14 +12,13 @@ from datetime import datetime as dt
 
 intents = discord.Intents.default()
 intents.message_content = True
-app = commands.Bot(command_prefix="?",intents=intents, )
+app = commands.Bot(command_prefix="?",intents=intents)
 
 discord_api_token = str(settings.discord_api_token)
 
 car_img = settings.car_img
 car_list = str(settings.car_list)
 log_channel = int(settings.log_channel)
-
 
 # 확장 기능(명령어) 로드
 async def load_extensions():
@@ -58,12 +57,14 @@ async def on_ready():
     except Exception as e:
         print(e)
 
+@app.event
 async def on_message(ctx : discord.Message) -> None:
     if ctx.author.bot or not app.is_ready():
         pass
-    
-           
+
+        
 # 에러 관리
+@app.event
 async def on_command_error(interaction : discord.Interaction, error):
     # 존재하지 않는 명령어 에러처리
     if isinstance(error, commands.CommandNotFound):
@@ -75,7 +76,6 @@ async def on_command_error(interaction : discord.Interaction, error):
         embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
         embed.add_field(name="상세", value=f"```{error}```")
         await interaction.response.send_message("",embed=embed,ephemeral=True)  
-
 
 def main():
     app.run(discord_api_token)

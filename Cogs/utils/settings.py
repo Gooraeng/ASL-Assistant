@@ -1,5 +1,5 @@
 # 디코 세팅
-# Last Update : 231030
+# Last Update : 231113
 
 import os, sys
 
@@ -16,3 +16,5 @@ car_img = os.getenv('car_img')
 mei = os.getenv('mei')
 a9_db = os.getenv('a9_db')
 log_channel = os.getenv('log_channel')
+feedback_log_channel = os.getenv('feedback_log_channel')
+ASL_Assistant_owner_id = os.getenv('ASL_Assistant_owner_id')

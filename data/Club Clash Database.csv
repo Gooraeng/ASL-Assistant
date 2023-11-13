@@ -1,7 +1,7 @@
 AREA,CAR_NAME,CLASS,LAP_TIME,LINK
 Ancient Ruins,PAGANI IMOLA,A,0:57.230,https://youtu.be/UGo16MfXI_c?si=jd1JRUbqoW90X6pz&t=442
 Ancient Ruins,PAGANI HUAYRA R,B,0:58.161,https://youtu.be/3rTY90zpiE8?si=nXbmPGg_UC0dy_9w
-Ancient Ruins,PEUGEOT ONYX,A,0:58.329,https://youtu.be/VUQedMK6_kU?t=13
+Ancient Ruins,PEUGEOT ONYX,A,0:58.329,https://youtu.be/_urRYqB5XQg?si=geoFSw3JUlUTp3oR&t=340
 Ancient Ruins,GENTY AKYLONE,A,0:58.905,https://youtu.be/2Vp6bHlatS4?t=2832
 Ancient Ruins,MCLAREN 570S SPIDER,A,0:59.031,https://youtu.be/crObfEaH4nQ?t=36
 Ancient Ruins,TECHRULES AT96 TRACK VERSION,A,0:59.090,https://youtu.be/crObfEaH4nQ?t=36
@@ -33,7 +33,7 @@ Auckland Track,SSC TUATARA,S,0:44.589,https://youtu.be/F3eczvSsVeo?si=LtUlz3CFlm
 Auckland Track,LAMBORGHINI COUNTACH LPI 800-4,A,0:44.719,https://youtu.be/Sgjz2NEtU9U?si=s6H8HG8GzYP9w3rw&t=9
 Auckland Track,RIMAC CONCEPT_ONE,A,0:44.922,https://youtu.be/dWRaRI5A9qQ?si=_jwJIKs-QUGllXYB&t=5
 Auckland Track,PAGANI IMOLA,A,0:44.982,https://youtu.be/tfSDR08B_sQ?si=PEApYi6Btg-mIxgW&t=8
-Auckland Track,TECHRULES AT96 TRACK VERSION,A,0:45.229,https://youtu.be/dBe24QHbago?si=pKYdW7HC_pUgfI5l
+Auckland Track,TECHRULES AT96 TRACK VERSION,A,0:45.161,https://youtu.be/_IZGj5NmMcA?si=hiK6WMO78Pc7SLMt&t=6
 Auckland Track,VANDA ELECTRICS DENDROBIUM,A,0:45.489,https://youtu.be/UepM4ymgi6U?si=9KDVnAe33t-196tO&t=245
 Auckland Track,GENTY AKYLONE,A,0:45.620,https://youtu.be/pmBzsTelm54?t=236
 Auckland Track,PAGANI HUAYRA BC,A,0:45.875,https://youtu.be/HR4atTVvvbo
@@ -119,6 +119,7 @@ Desert Life,APOLLO N,B,1:14.965,https://youtu.be/odnYzE4ldPg?t=2
 Desert Life,PORSCHE CARRERA GT,B,1:15.216,https://youtu.be/irgdvM0pEd0?t=242
 Desert Life,PORSCHE 911 GT3 RS,B,1:15.393,https://youtu.be/tTf98pIlIic?t=215
 Desert Life,CHEVROLET CORVETTE GRAND SPORT,B,1:16.474,https://youtu.be/9gWikY72k8Q?t=451
+Desert Life,GLICKENHAUS 003S,B,1:15.822,https://youtu.be/JDx0zvSSaFQ?si=dHB-bnr72XQ_jFMY&t=6
 Desert Life,PININFARINA H2 SPEED,C,1:20.138,https://youtu.be/gVWAVgkDvqg?t=725
 Desert Run,BUGATTI BOLIDE,S,1:07.232,https://youtu.be/NX8fW_ulS_s?t=130
 Desert Run,KOENIGSEGG GEMERA,S,1:09.079,https://youtu.be/ThBfs-7UzHg?si=wZJPqMdE2vTx6u9O&t=366
@@ -152,7 +153,7 @@ Downtown Rise,MASERATI ALFIERI,C,1:06.882,https://youtu.be/L4gqXVZS2LI
 Fire and Ice,BUGATTI LA VOITURE NOIRE,S,1:09.293,https://youtu.be/USj28luWg7o?si=hvcvwkPJHgsOHDjJ&t=6
 Fire and Ice,LAMBORGHINI SIAN FKP 37,S,1:13.742,https://youtu.be/d3nDYJK-ASk?si=idpx0u1XcHocowEI&t=69
 Fire and Ice,MCLAREN F1 LM,B,1:14.475,https://youtu.be/EIYBtX6dadg?si=mgmW-PCkAkMoWjLf
-Fire and Ice,LAMBORGHINI TERZO MILLENNIO,S,1:14.994,https://youtu.be/Oyjt3l6oK8E?si=-HmL_YhCaNSf1KcD&t=230
+Fire and Ice,LAMBORGHINI TERZO MILLENNIO,S,1:14.870,https://youtu.be/_urRYqB5XQg?si=NVgNHbHGv7e2At73&t=247
 Fire and Ice,VOLKSWAGEN W12 COUPE,B,1:16.522,https://youtu.be/uKFtbmYeWK0?si=5-mbk1xXcE7W9c8h&t=562
 Fire and Ice,LAMBORGHINI AVENTADOR J,A,1:16.631,https://youtu.be/MFpGk1vuFVs?si=NTXgVPFpStjBt_Nw&t=9
 Fire and Ice,PORSCHE 911 GT3 RS,B,1:17.476,https://youtu.be/ekfZD-7BYQw?si=-ILBV8_3mM3Y-DvP&t=11
@@ -164,7 +165,7 @@ Fire and Ice,NISSAN GT R NISMO,A,1:20.599,https://youtu.be/u-yIEWG_Oqo?t=21
 Football & Politics,ASPARK OWL,S,0:39.664,https://youtu.be/d0V4bngyCO4?si=cj1nKoKK0Z5VXphu
 Football & Politics,BUGATTI CHIRON,S,0:39.790,https://youtu.be/em2j7eCc_dU?si=B_juJL3itlCrxFMd
 Football & Politics,VOLKSWAGEN W12 COUPE,B,0:42.023,https://youtu.be/QxL4x-ChT1I?si=cnRrQ1t3-w3HEmTc&t=12
-Frozen Route,KOENIGSEGG JESKO,S,1:00.913,https://www.bilibili.com/video/BV19H4y1X7x2/
+Frozen Route,KOENIGSEGG JESKO,S,1:00.706,https://www.bilibili.com/video/BV1oj411h7Lg/?share_source=copy_web&t=560
 Frozen Route,TVR GRIFFITH,D,1:14.660,https://youtu.be/ZGJsgvISBdM?si=a0tCX4VqVgE7JIZe&t=21
 Future Road,SSC TUATARA,S,0:37.797,https://youtu.be/xpofzRK3I6U?t=24
 Future Road,KOENIGSEGG JESKO,S,0:38.125,https://youtu.be/59l1OpUEJMs?t=237
@@ -181,14 +182,14 @@ Hairpin Sprint,RIMAC NEVERA,S,0:30.689,https://youtu.be/lw44jh1uQXU?t=12
 Hairpin Sprint,LAMBORGHINI MURCIELAGO LP 640 ROADSTER,B,0:33.872,https://youtu.be/akJrByhuyo0?t=25
 Hairpin Sprint,PININFARINA H2 SPEED,C,0:35.795,https://youtu.be/5cG8upAKAJE?si=ZKIkco2LRRWcCU6i&t=253
 Harbor Run,PORSCHE 911 GT3 RS,B,0:39.927,https://youtu.be/fvqvpKWBHW0?si=rKvh_hQjoW7AJs1r&t=5
-Harbor Run,VANDA ELECTRICS DENDROBIUM,A,0:40.612,https://youtu.be/akJrByhuyo0?t=704
+Harbor Run,VANDA ELECTRICS DENDROBIUM,A,0:39.843,https://youtu.be/0DHrmEhmQ_w?si=VWLTLnEab5XCcTH0&t=6
 Harbor Run,PORSCHE CARRERA GT,B,0:41.118,https://youtu.be/fMgEeIJlRyw?t=13
 Harbor Run,APEX AP-0,B,0:41.535,https://youtu.be/PRksOredFs0?si=uVVozJSonexuSqRC&t=7
 Harbor Run,FERRARI 599XX EVO,C,0:41.989,https://youtu.be/dc1qippUb90?si=6A3YRGvbBK9d5pJE&t=705
 Harbor Run,ASTON MARTIN ONE77,B,0:42.717,https://youtu.be/giu0WeBWdZg?si=9LVL7UhJZgbNrZG5&t=348
 Harbor Run,MCLAREN GT,C,0:44.451,https://youtu.be/B1RGTBzuY2M?t=249
 Hotel Road,BUGATTI DIVO,S,0:28.873,https://youtu.be/gVWAVgkDvqg?t=354
-Icy Loop,CHEVROLET CORVETTE GRAND SPORT,B,1:00.697,https://youtu.be/xiUpSBpej-E?t=173
+Icy Loop,CHEVROLET CORVETTE GRAND SPORT,B,1:00.450,https://youtu.be/T0W0JP2BXrk?si=Bv4EN8wzDyOwxEl9&t=8
 Icy Loop,ACURA NSX GT3 EVO,C,1:02.380,https://youtu.be/VUC_nDUDcPA?si=dzw2NSj5GFRu-snL&t=690
 Icy Loop,PININFARINA H2 SPEED,C,1:03.972,https://youtu.be/9gWikY72k8Q?t=268
 Islet Race,FERRARI F8 TRIBUTO,A,0:30.159,https://youtu.be/F3eczvSsVeo?si=42GcC2ZYwQLvfA31&t=277
@@ -356,7 +357,7 @@ Snow Vault,KOENIGSEGG JESKO,S,0:32.009,https://youtu.be/uycN0IQpw6A?si=i3fb627TO
 Snow Vault,SSC TUATARA,S,0:32.518,https://youtu.be/nk9hr_oQMcA?t=7
 Snow Vault,BUGATTI CHIRON,S,0:34.112,https://youtu.be/yfvLXIeq21k?t=38
 Straights & Hairpins,KOENIGSEGG GEMERA,S,1:10.472,https://youtu.be/x9p4fkena0k?si=6iYAT-QYi0kV7PHx
-Streets of SF,ASTON MARTIN DBS SUPERLEGGERA,B,1:06.763,https://youtu.be/HQxr5p-jgMc?si=ziIUVhZErzxSuGtx&t=701
+Streets of SF,ASTON MARTIN DBS SUPERLEGGERA,B,1:06.421,https://youtu.be/_urRYqB5XQg?si=HDgLzoZVH6N-Lfmr&t=821
 The Cave,MCLAREN 600LT SPIDER,B,0:54.161,https://youtu.be/S_a8boywYWw?si=hm_X89nw8fwII3t8&t=19
 The Cave,MCLAREN P1,A,0:54.701,https://youtu.be/tfbf8ca49jc?t=19
 The Cave,PORSCHE PANAMERA TURBO S,C,0:55.649,https://youtu.be/q0vATbi4Fn0?si=Hd_eh6GEhbw-qCsa&t=7
@@ -377,6 +378,7 @@ Thousand Minarets,TECHRULES AT96 TRACK VERSION,A,1:11.211,https://youtu.be/3LGsC
 Thousand Minarets,LAMBORGHINI AVENTADOR J,A,1:13.243,https://youtu.be/BqFkBWmj8nE?si=TRksEX6-HVWO9UcU&t=180
 Thousand Minarets,ASTON MARTIN DBS SUPERLEGGERA,B,1:13.254,https://youtu.be/HQxr5p-jgMc?si=6BeDccEJh9BWAxWq&t=530
 Thousand Minarets,ASTON MARTIN ONE77,B,1:14.045,https://youtu.be/Oyjt3l6oK8E?si=aVAT6Rfu6JytwqB1&t=573
+Thousand Minarets,LAMBORGHINI HURACAN EVO SPYDER,B,1:12.985,https://youtu.be/ycUZ9XklPPk?si=CRLOt1LWCq7itYwf&t=16
 Thousand Minarets,LAMBORGHINI GALLARDO LP 560-4,C,1:15.195,https://youtu.be/iWOKke7H00U?si=zrQjGLOuA7IPB7hi
 Thousand Minarets,ARRINERA HUSSARYA 33,C,1:15.350,https://streamable.com/v8jpnh
 Thousand Minarets,BUGATTI EB110,C,1:15.371,https://youtu.be/Pvvs-RXVLT0
@@ -388,8 +390,8 @@ Thousand Minarets,GLICKENHAUS 004C,D,1:21.738,https://youtu.be/UGku90ucfwM?si=nb
 Thousand Minarets,CHEVROLET CORVETTE C7.R,D,1:22.004,https://youtu.be/RC_SVBtmgz4?si=XJCibC9h_oqBrpWt&t=3
 Thousand Minarets,MAZDA FURAI,D,1:22.113,https://youtu.be/3KxWohT7Qgc?t=14
 Thousand Minarets,FORD MUSTANG MACH-E1400,D,1:22.274,https://youtu.be/_XlurYjiZoU?si=jnM1jYvlL69yUasY&t=10
-Through the center,SSC TUATARA,S,0:36.693,https://youtu.be/pqsTsSELkoY?si=eot3OeyRl0pLtwCi&t=49
-Tiber Stream,KOENIGSEGG JESKO,S,0:57.013,https://bilibili.com/video/BV1494y1L7xr/?t=108
+Through the center,SSC TUATARA,S,0:36.470,https://youtu.be/_urRYqB5XQg?si=S_DQa2z63gm4ma4R&t=191
+Tiber Stream,KOENIGSEGG JESKO,S,0:56.977,https://www.bilibili.com/video/BV1au4y1N7yg/?share_source=copy_web&t=5
 Tiber Stream,KOENIGSEGG CCXR,S,1:00.351,https://youtu.be/ki15vBmOlpI?si=0U8J-BEq1ELFeprd&t=7
 Tiber Stream,CHEVROLET CORVETTE GRAND SPORT,B,1:06.976,https://youtu.be/2Q7ye8f-KzY?t=387
 Tiber Stream,ACURA NSX GT3 EVO,C,1:08.358,https://youtu.be/DLOFOwSzXnY?si=8bpip4hMsyUVgk6e&t=834
@@ -435,7 +437,7 @@ Uptown,BRABHAM BT62,C,1:10.530,https://youtu.be/1QJoELKtlLM?t=10
 Uptown,VENCER SARTHE,C,1:10.624,https://youtu.be/WoV4stN7AYs?t=4
 Uptown,PORSCHE 718 CAYMAN GT4 CLUBSPORT,C,1:10.929,https://youtu.be/nlcnAX4AgfU
 Volcano run,BUGATTI LA VOITURE NOIRE,S,1:10.194,https://youtu.be/L-TpX4sTyb0
-Volcano run,LAMBORGHINI SIAN FKP 37,S,1:14.587,https://youtu.be/DjuxNtFRFvY?si=0b-SVBAcmwhezMBf&t=42
+Volcano run,LAMBORGHINI SIAN FKP 37,S,1:14.434,https://youtu.be/kfeyoluTegY?si=JDMngAP6dRFAIk8M&t=7
 Volcano run,MCLAREN 570S SPIDER,A,1:16.009,https://youtu.be/akJrByhuyo0?t=919
 Volcano run,GENTY AKYLONE,A,1:16.746,https://youtu.be/i5s-tmZJq7U?si=NJV1noqT7ss8Dt_4&t=8
 Whirlwind Curve,KOENIGSEGG GEMERA,S,1:06.176,https://youtu.be/RmuHUcP9GcY?si=-0PvCzwU731LXCBX&t=797
