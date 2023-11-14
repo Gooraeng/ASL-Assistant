@@ -65,7 +65,8 @@ async def on_message(ctx : discord.Message) -> None:
         pass
 
 @app.event
-async def on_guild_join(guild : discord.Guild, invite : discord.Invite):
+async def on_guild_join(guild):
+    invite = discord.Invite
     ch = app.get_channel(log_channel)
     inviter_name = invite.inviter.name
     inviter_id = invite.inviter.id
