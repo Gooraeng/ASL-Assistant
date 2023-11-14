@@ -12,6 +12,8 @@ from datetime import datetime as dt
 
 intents = discord.Intents.default()
 intents.message_content = True
+intents.guilds = True
+
 app = commands.Bot(command_prefix="?",intents=intents)
 
 discord_api_token = str(settings.discord_api_token)
@@ -62,7 +64,21 @@ async def on_message(ctx : discord.Message) -> None:
     if ctx.author.bot or not app.is_ready():
         pass
 
-        
+@app.event
+async def on_guild_join(guild : discord.Guild, invite : discord.Invite):
+    ch = app.get_channel(log_channel)
+    inviter_name = invite.inviter.name
+    inviter_id = invite.inviter.id
+    
+    guild_joined_log = f'서버 입장 > 서버명 : {guild.name} (ID : {guild.id}) > 초대자 : {inviter_name} (ID : {inviter_id})'
+    
+    await ch.send(guild_joined_log)
+    
+    print('---------------------------------------') 
+    print(guild_joined_log)
+    print('---------------------------------------') 
+    
+       
 # 에러 관리
 @app.event
 async def on_command_error(interaction : discord.Interaction, error):
