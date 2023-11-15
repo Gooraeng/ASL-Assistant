@@ -66,19 +66,16 @@ async def on_message(ctx : discord.Message) -> None:
 
 @app.event
 async def on_guild_join(guild):
-    invite = discord.Invite
-    ch = app.get_channel(log_channel)
-    inviter_name = invite.inviter.name
-    inviter_id = invite.inviter.id
     
-    guild_joined_log = f'서버 입장 > 서버명 : {guild.name} (ID : {guild.id}) > 초대자 : {inviter_name} (ID : {inviter_id})'
+    ch = app.get_channel(log_channel)    
     
+    guild_joined_log = f'서버 입장 > {pt.get_UTC()} > 서버명 : {guild.name} (ID : {guild.id})'
     await ch.send(guild_joined_log)
     
     print('---------------------------------------') 
     print(guild_joined_log)
     print('---------------------------------------') 
-    
+
        
 # 에러 관리
 @app.event

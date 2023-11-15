@@ -11,7 +11,8 @@ from .utils import print_time, settings
 
 feedback_log_channel = int(settings.feedback_log_channel)
 log_channel = int(settings.log_channel)
- 
+
+# 명령어 함수 
 class SpawnModal(commands.Cog):
     def __init__(self, app : commands.Bot) :
         self.app = app
@@ -44,8 +45,9 @@ class SpawnModal(commands.Cog):
                                         description= '2023년 11월 13일 오후 10시 ~ 2023년 11월 17일 0시')
         
         if interaction.channel.id == 1174018559685447760:
-            return await interaction.response.send_message('', embeds= [embed_beta_test, embed_warn_asl_assistant], view= warn_before_asl_assistant_only())
-          
+            await interaction.response.defer()
+            return await interaction.followup.send(embeds= [embed_beta_test, embed_warn_asl_assistant], view= warn_before_asl_assistant_only())
+           
         else:
             return await interaction.response.send_message('', embeds= [embed_beta_test, embed_warn], view= warn_before(), ephemeral= True, delete_after= 60)
           
