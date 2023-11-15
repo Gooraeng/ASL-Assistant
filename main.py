@@ -5,16 +5,17 @@ import discord
 import os
 import Cogs.utils.settings as settings
 
+
 from discord.ext import commands
 from Cogs.utils import manage_tool as mt
 from Cogs.utils import print_time as pt
-from Cogs.utils.embed_log import succeed, failed, etc 
-from datetime import datetime as dt
+from Cogs.utils.embed_log import succeed, failed, etc
 
 intents = discord.Intents.default()
 intents.message_content = True
 intents.guilds = True
-app = commands.Bot(command_prefix="?",intents=intents)
+
+app = commands.Bot(command_prefix="!!",intents=intents)
 discord_api_token = str(settings.discord_api_token)
 
 log_channel = int(settings.log_channel)
@@ -39,7 +40,9 @@ async def load_extensions():
 @app.event
 async def on_ready():
     print(f"{app.user.name} 준비 중")
+    
     ch = app.get_channel(log_channel)
+    
     try:
         await load_extensions()
         await pt.get_UTC()
@@ -65,22 +68,25 @@ async def on_ready():
     
 @app.event
 async def on_message(ctx : discord.Message) -> None:
-    if ctx.author.bot or not app.is_ready():
-        pass
+    pass
 
 @app.event
 async def on_guild_join(guild):
     
     ch = app.get_channel(log_channel)    
+    guild_joined_embed = discord.Embed(title= '서버 입장', description= f'{await pt.get_UTC()} (UTC)', colour= succeed)
+    guild_joined_embed.add_field(name= '서버명', value= guild.name, inline= True)
+    guild_joined_embed.add_field(name= '서버 ID', value= guild.id)
     
-    guild_joined_log = f'서버 입장 > {pt.get_UTC()} > 서버명 : {guild.name} (ID : {guild.id})'
-    await ch.send(guild_joined_log)
+    await ch.send(embed= guild_joined_embed)
     
     print('---------------------------------------') 
+    guild_joined_log = f'서버 입장 > {await pt.get_UTC()} > 서버명 : {guild.name} (ID : {guild.id})'
     print(guild_joined_log)
-    print('---------------------------------------') 
+    print('---------------------------------------')
 
-       
+    
+    
 # 에러 관리
 @app.event
 async def on_command_error(interaction : discord.Interaction, error):
