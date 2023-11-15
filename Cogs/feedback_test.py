@@ -47,7 +47,7 @@ class SpawnModal(commands.Cog):
         # await interaction.response.send_message('', embeds= embed_warn, view= warn_before(), ephemeral= True, delete_after= 60)
         
         confirm = f"정상 실행 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm) 
-        await log_ch.send(no_variable_embed)  
+        await log_ch.send(embed = no_variable_embed)  
         
         
         # 베타 테스트 임베드 표시
