@@ -2,6 +2,7 @@
 # Last Update : 231113
 
 import discord
+import asyncio
 
 from discord.ext import commands
 from discord import app_commands
@@ -25,15 +26,7 @@ class SpawnModal(commands.Cog):
         log_ch = interaction.client.get_channel(log_channel)
         
         embed_warn = discord.Embed(title= '❗경고', description= '문제 전송 시 중간에 취소할 수 없습니다!', colour= 0xf50900)
-        embed_warn.add_field(name= '', value= '이 명령어를 실행하실 때 마다 30초의 쿨타임이 존재합니다!', inline= False)
-        embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
-        embed_warn.add_field(name= '', value= '이 메세지는 60초 안에 지워집니다.')
-        
-        embed_warn_asl_assistant = discord.Embed(title= '❗경고', description= '문제 전송 시 중간에 취소할 수 없습니다!', colour= 0xf50900)
-        embed_warn_asl_assistant.add_field(name= '', value= '버튼 클릭마다 30초의 쿨타임이 존재합니다!', inline= False)
-        embed_warn_asl_assistant.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
-        
-        
+
         # await interaction.response.send_message('', embeds= embed_warn, view= warn_before(), ephemeral= True, delete_after= 60)
         
         confirm = f"정상 실행 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
@@ -45,11 +38,18 @@ class SpawnModal(commands.Cog):
                                         description= '2023년 11월 13일 오후 10시 ~ 2023년 11월 17일 0시')
         
         if interaction.channel.id == 1174018559685447760:
-            await interaction.response.defer()
-            return await interaction.followup.send(embeds= [embed_beta_test, embed_warn_asl_assistant], view= warn_before_asl_assistant_only())
+            embed_warn.add_field(name= '', value= '버튼 클릭마다 30초의 쿨타임이 존재합니다!', inline= False)
+            embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
+            
+            await interaction.response.defer(ephemeral= True, thinking= True)
+            await asyncio.sleep(0.5)
+            await interaction.followup.send(embeds= [embed_beta_test, embed_warn], view= warn_before_asl_assistant_only())
            
         else:
-            return await interaction.response.send_message('', embeds= [embed_beta_test, embed_warn], view= warn_before(), ephemeral= True, delete_after= 60)
+            embed_warn.add_field(name= '', value= '이 명령어를 실행하실 때 마다 30초의 쿨타임이 존재합니다!', inline= False)
+            embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
+            embed_warn.add_field(name= '', value= '이 메세지는 60초 안에 지워집니다.')
+            await interaction.response.send_message('', embeds= [embed_beta_test, embed_warn], view= warn_before(), ephemeral= True, delete_after= 60)
           
     @warn_spawnmodal.error
     async def cooldown_err(self, interaction : discord.Interaction, error : app_commands.AppCommandError):
@@ -187,7 +187,7 @@ class warn_before_asl_assistant_only(View):
                                            colour= 0xf40404)
         
         if retry:
-            await interaction.response.send_message(embed= embed_cd_error)
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 10)
         
         else:
             await interaction.response.send_modal(ReportModal())
@@ -205,7 +205,7 @@ class warn_before_asl_assistant_only(View):
                                            colour= 0xf40404)
         
         if retry:
-            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, )
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 10)
         
         else:
             await interaction.response.send_modal(FixModal())
@@ -223,10 +223,11 @@ class warn_before_asl_assistant_only(View):
                                            colour= 0xf40404)
         
         if retry:
-            await interaction.response.send_message(embed= embed_cd_error)
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 10)
         
         else:
             await interaction.response.send_modal(SuggestModal()) 
+ 
               
 async def setup(app : commands.Bot):
     await app.add_cog(SpawnModal(app))
