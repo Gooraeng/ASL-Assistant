@@ -9,7 +9,7 @@ import Cogs.utils.settings as settings
 from discord.ext import commands
 from Cogs.utils import manage_tool as mt
 from Cogs.utils import print_time as pt
-from Cogs.utils.embed_log import succeed, failed, etc
+from Cogs.utils.embed_log import succeed, failed, etc, interaction_with_server
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -77,7 +77,7 @@ async def on_message(ctx : discord.Message) -> None:
 async def on_guild_join(guild):
     
     ch = app.get_channel(log_channel)    
-    guild_joined_embed = discord.Embed(title= '서버 입장', description= f'{await pt.get_UTC()} (UTC)', colour= succeed)
+    guild_joined_embed = discord.Embed(title= '서버 입장', description= f'{await pt.get_UTC()} (UTC)', colour= interaction_with_server)
     guild_joined_embed.add_field(name= '서버명', value= guild.name, inline= True)
     guild_joined_embed.add_field(name= '서버 ID', value= guild.id)
     
@@ -88,7 +88,20 @@ async def on_guild_join(guild):
     print(guild_joined_log)
     print('---------------------------------------')
 
+@app.event
+async def on_guild_remove(guild):    
+    ch = app.get_channel(log_channel)    
     
+    guild_left_embed = discord.Embed(title= '서버 퇴장', description= f'{await pt.get_UTC()} (UTC)', colour= interaction_with_server)
+    guild_left_embed.add_field(name= '서버명', value= guild.name, inline= True)
+    guild_left_embed.add_field(name= '서버 ID', value= guild.id)
+    
+    await ch.send(embed= guild_left_embed)
+    
+    print('---------------------------------------') 
+    guild_left_log = f'서버 퇴장 > {await pt.get_UTC()} > 서버명 : {guild.name} (ID : {guild.id})'
+    print(guild_left_log)
+    print('---------------------------------------')  
     
 # 에러 관리
 @app.event
