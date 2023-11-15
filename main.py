@@ -55,15 +55,18 @@ async def on_ready():
         current_status = discord.Game(name='ASL에 정보제공')
         await app.change_presence(status=discord.Status.online,activity=current_status)
         print(f"{app.user.name}이(가) 준비되었습니다!")
+        if app.is_ready() :   
+            ready_embed = discord.Embed(title= f'{app.user.name} 작동 시작' , description= f'{await pt.get_UTC()} (UTC)', colour= succeed)
+            await ch.send(embed= ready_embed)
         
-        ready_embed = discord.Embed(title= f'{app.user.name} 작동 시작' , description= f'{await pt.get_UTC()} (UTC)', colour= succeed)
-        await ch.send(embed= ready_embed)
-    
     except Exception as e:
-        not_ready_embed = discord.Embed(title= f'{app.user.name} 작동 실패' , description= f'{await pt.get_UTC()} (UTC)', colour= failed)
-        not_ready_embed.add_field(name='사유', value= e)
+        if not app.is_ready():
+            not_ready_embed = discord.Embed(title= f'{app.user.name} 작동 실패' , description= f'{await pt.get_UTC()} (UTC)', colour= failed)
+            not_ready_embed.add_field(name='사유', value= e)
+            await ch.send(embed= not_ready_embed)
+        
         print(e)
-        await ch.send(embed= not_ready_embed)
+        
 
     
 @app.event
