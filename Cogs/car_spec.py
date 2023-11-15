@@ -59,13 +59,13 @@ class spec(commands.Cog):
             
             log_embed = discord.Embed(title= '정상 실행', description= f'spec', colour= etc)
             log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
-            log_embed.add_field(name='입력 값' , value= f'{car_name}', inline= False)
             log_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             log_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
             log_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
             log_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
             log_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
             log_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+            log_embed.add_field(name='입력 값' , value= f'{car_name}', inline= False)
                 
             print(confirm)
             await ch.send(embed= log_embed)
