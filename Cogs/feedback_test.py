@@ -187,10 +187,10 @@ class warn_before_asl_assistant_only(View):
                                            colour= 0xf40404)
         
         if retry:
-            return await interaction.response.send_message(embed= embed_cd_error)
+            await interaction.response.send_message(embed= embed_cd_error)
         
         else:
-            return await interaction.response.send_modal(ReportModal())
+            await interaction.response.send_modal(ReportModal())
         
           
         
@@ -205,10 +205,10 @@ class warn_before_asl_assistant_only(View):
                                            colour= 0xf40404)
         
         if retry:
-            return await interaction.response.send_message(embed= embed_cd_error)
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, )
         
         else:
-            return await interaction.response.send_modal(FixModal())
+            await interaction.response.send_modal(FixModal())
         
         
     
@@ -223,10 +223,10 @@ class warn_before_asl_assistant_only(View):
                                            colour= 0xf40404)
         
         if retry:
-            return await interaction.response.send_message(embed= embed_cd_error)
+            await interaction.response.send_message(embed= embed_cd_error)
         
         else:
-            return await interaction.response.send_modal(SuggestModal()) 
+            await interaction.response.send_modal(SuggestModal()) 
               
 async def setup(app : commands.Bot):
     await app.add_cog(SpawnModal(app))
