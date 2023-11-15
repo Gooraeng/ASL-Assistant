@@ -1,5 +1,5 @@
 # 클럽 클래시 관련 명령어
-# Last Update : 231111
+# Last Update : 231115
 
 import discord
 import typing
@@ -9,6 +9,7 @@ from discord.ext import commands
 from discord import app_commands
 from .utils.manage_tool import ClubClash as CC
 from .utils import settings, print_time
+from .utils.embed_log import succeed, failed, etc
 
 log_channel = int(settings.log_channel)
 
@@ -38,11 +39,20 @@ class clash(commands.Cog):
         c = numpy.where(car_arr == car_name)
         
         # 임베드 1 선언 (오류)
-        embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
-        embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
+        embed1 = discord.Embed(title= '어이쿠!', description= f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
+        embed1.add_field(name='입력 값', value= f'{area} / {car_class} / {car_name}', inline=False)    
+        embed1.add_field(name='', value= '**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
         
         ch = self.app.get_channel(log_channel)       
         
+        log_embed_error = discord.Embed(title= '오류', description= f'clash', colour= failed)
+        log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+        log_embed_error.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+        log_embed_error.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+        log_embed_error.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+        log_embed_error.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+        log_embed_error.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+        log_embed_error.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
          
         # veri - asl assistant or asl assistant
         if interaction.channel.id == 1158477800504836147 or interaction.channel.id == 1158749682642714695 or interaction.user.id == 303915314062557185:
@@ -54,14 +64,27 @@ class clash(commands.Cog):
                     await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
                     
                     confirm = f"정상 실행 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}"
-                    await ch.send(confirm); print(confirm)
+                    
+                    log_embed = discord.Embed(title= '정상 실행', description= f'clash', colour= etc)
+                    log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+                    log_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+                    log_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+                    log_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+                    log_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+                    log_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+                    log_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+                    log_embed.add_field(name='입력 값' , value= f'{area} / {car_class} / {car_name}', inline= False)
+                    
+                    await ch.send(embed= log_embed)
+                    print(confirm)
 
                 # 임베드 1 출력
                 else:
                     await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-                    
+                    log_embed_error.add_field(name='리스트에 없는 값 입력' , value= f'{area} / {car_class} / {car_name}', inline= False)
+        
                     no_list = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
-                    await ch.send(no_list)
+                    await ch.send(embed= log_embed_error)
                     
                     print('---------------------------------------') 
                     print(no_list)
@@ -71,8 +94,10 @@ class clash(commands.Cog):
             except Exception:
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
                 
+                log_embed_error.add_field(name='리스트에 없는 값 입력' , value= f'{area} / {car_class} / {car_name}', inline= False)
+        
                 no_list = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
-                await ch.send(no_list)
+                await ch.send(embed= log_embed_error)
                 
                 print('---------------------------------------')
                 print(no_list)
@@ -81,11 +106,13 @@ class clash(commands.Cog):
         else:   
             embed2 = discord.Embed(title= '해당 채널에서는 실행하실 수 없습니다.', colour= 0xf51000,
                                     description= 'ASL Assistant 제작자의 승인이 없는 채널은 이용하실 수 없습니다.')
-            failed = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 허가되지 않은 서버 / 채널에서의 명령어 입력"
-            await ch.send(failed)
+            failed_excute = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 허가되지 않은 서버 / 채널에서의 명령어 입력"
+            
+            log_embed_error.add_field(name='실행할 수 없는 서버 / 채널에서 실행' , value= '', inline= False)
+            await ch.send(embed= log_embed_error)
             
             print('---------------------------------------')
-            print(failed)
+            print(failed_excute)
             print('---------------------------------------')   
             await interaction.response.send_message(embed= embed2, ephemeral= True, delete_after= 10)        
 

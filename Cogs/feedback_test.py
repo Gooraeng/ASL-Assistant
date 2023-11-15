@@ -1,5 +1,5 @@
 # 피드백 요청을 남기는 명령어
-# Last Update : 231113
+# Last Update : 231115
 
 import discord
 import asyncio
@@ -8,10 +8,11 @@ from discord.ext import commands
 from discord import app_commands
 from discord.ui import Modal, View
 from .utils import print_time, settings
-
+from .utils.embed_log import succeed, failed, etc
 
 feedback_log_channel = int(settings.feedback_log_channel)
 log_channel = int(settings.log_channel)
+
 
 # 명령어 함수 
 class SpawnModal(commands.Cog):
@@ -26,29 +27,45 @@ class SpawnModal(commands.Cog):
         log_ch = interaction.client.get_channel(log_channel)
         
         embed_warn = discord.Embed(title= '❗경고', description= '문제 전송 시 중간에 취소할 수 없습니다!', colour= 0xf50900)
-
+        embed_warn.add_field(name= '', value= '이 명령어를 실행하실 때 마다 30초의 쿨타임이 존재합니다!', inline= False)
+        embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
+        embed_warn.add_field(name= '', value= '이 메세지는 60초 안에 지워집니다.')
+        
+        embed_warn_asl_assistant = discord.Embed(title= '❗경고', description= '문제 전송 시 중간에 취소할 수 없습니다!', colour= 0xf50900)
+        embed_warn_asl_assistant.add_field(name= '', value= '버튼 클릭마다 30초의 쿨타임이 존재합니다!', inline= False)
+        embed_warn_asl_assistant.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
+        
+        no_variable_embed = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
+        no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+        no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+        no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+        no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+        no_variable_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+        no_variable_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+        no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+        
         # await interaction.response.send_message('', embeds= embed_warn, view= warn_before(), ephemeral= True, delete_after= 60)
         
-        confirm = f"정상 실행 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}"
-        await log_ch.send(confirm); print(confirm)   
+        confirm = f"정상 실행 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm) 
+        await log_ch.send(no_variable_embed)  
         
         
         # 베타 테스트 임베드 표시
         embed_beta_test = discord.Embed(title= '베타 테스트 기간', colour= 0xf50900,
                                         description= '2023년 11월 13일 오후 10시 ~ 2023년 11월 17일 0시')
         
-        if interaction.channel.id == 1174018559685447760:
-            embed_warn.add_field(name= '', value= '버튼 클릭마다 30초의 쿨타임이 존재합니다!', inline= False)
-            embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
+        if interaction.channel.id == 1174229865877213234:
             
-            await interaction.response.defer(ephemeral= True, thinking= True)
-            await asyncio.sleep(0.5)
-            await interaction.followup.send(embeds= [embed_beta_test, embed_warn], view= warn_before_asl_assistant_only())
+            no_variable_embed_owner = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
+            no_variable_embed_owner.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+            no_variable_embed_owner.add_field(name='예외 사항 발생', value= f'{interaction.guild.name} 서버 > {interaction.channel.name} 채널', inline= False)
+            no_variable_embed_owner.add_field(name='실행자', value= f'{interaction.user.display_name}')
+            
+            await interaction.response.send_message(embeds= [embed_beta_test, embed_warn_asl_assistant], view= warn_before_asl_assistant_only())
+            
+            # await interaction.response.send_message(embeds= [embed_beta_test, embed_warn_asl_assistant], view= warn_before_asl_assistant_only())
            
         else:
-            embed_warn.add_field(name= '', value= '이 명령어를 실행하실 때 마다 30초의 쿨타임이 존재합니다!', inline= False)
-            embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
-            embed_warn.add_field(name= '', value= '이 메세지는 60초 안에 지워집니다.')
             await interaction.response.send_message('', embeds= [embed_beta_test, embed_warn], view= warn_before(), ephemeral= True, delete_after= 60)
           
     @warn_spawnmodal.error
@@ -62,8 +79,19 @@ class SpawnModal(commands.Cog):
             
             await interaction.response.send_message(embed= embed_cd_error, delete_after=5, ephemeral= True)
             
+            no_variable_embed = discord.Embed(title= '에러', description= f'feedback', colour= failed)
+    
+            no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+            no_variable_embed.add_field(name='사유', value= '타임 아웃', inline= False)
+            no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+            no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+            no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+            no_variable_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+            no_variable_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+            no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+            
             err = f"오류 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > timeout_err"
-            await ch.send(err)
+            await ch.send(no_variable_embed)
             
             print('---------------------------------------') 
             print(err)
@@ -151,7 +179,6 @@ class ReportModal(Modal, title = '봇 작동 신고'):
 class warn_before(View):
     def __init__(self):
         super().__init__(timeout= None)
-        self.cooldown = commands.CooldownMapping.from_cooldown(1, 30, commands.BucketType.member)
         
     @discord.ui.button(label= '봇 작동 신고', style= discord.ButtonStyle.danger, custom_id= 'button_cooldown')
     async def report_prob(self, interaction : discord.Interaction, button : discord.ui.Button):
@@ -182,15 +209,13 @@ class warn_before_asl_assistant_only(View):
         bucket = self.cooldown.get_bucket(interaction.message)
         retry = bucket.update_rate_limit()
         
-        embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!',
-                                           description= f'{int(retry)}초 후에 다시 시도해주세요!',
-                                           colour= 0xf40404)
-        
-        if retry:
-            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 10)
+       
+        if retry == None:
+            await interaction.response.send_modal(FixModal())
         
         else:
-            await interaction.response.send_modal(ReportModal())
+            embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!', description= f'{round(retry, 1)}초 후에 다시 시도해주세요!', colour= 0xf40404)
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True)
         
           
         
@@ -200,15 +225,14 @@ class warn_before_asl_assistant_only(View):
         bucket = self.cooldown.get_bucket(interaction.message)
         retry = bucket.update_rate_limit()
         
-        embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!',
-                                           description= f'{int(retry)}초 후에 다시 시도해주세요!',
-                                           colour= 0xf40404)
         
-        if retry:
-            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 10)
+        
+        if retry == None:
+            await interaction.response.send_modal(FixModal())
         
         else:
-            await interaction.response.send_modal(FixModal())
+            embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!', description= f'{round(retry, 1)}초 후에 다시 시도해주세요!', colour= 0xf40404)
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True)
         
         
     
@@ -218,16 +242,13 @@ class warn_before_asl_assistant_only(View):
         bucket = self.cooldown.get_bucket(interaction.message)
         retry = bucket.update_rate_limit()
         
-        embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!',
-                                           description= f'{int(retry)}초 후에 다시 시도해주세요!',
-                                           colour= 0xf40404)
-        
-        if retry:
-            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 10)
+        if retry == None:
+            await interaction.response.send_modal(FixModal())
         
         else:
-            await interaction.response.send_modal(SuggestModal()) 
- 
-              
+            embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!', description= f'{round(retry, 1)}초 후에 다시 시도해주세요!', colour= 0xf40404)
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True)
+
+                          
 async def setup(app : commands.Bot):
     await app.add_cog(SpawnModal(app))

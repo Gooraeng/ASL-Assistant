@@ -1,5 +1,5 @@
 # 차량의 디테일한 성능을 알려주는 명령어
-# Last Update : 231111
+# Last Update : 231115
 
 import discord
 import typing
@@ -9,6 +9,7 @@ from discord.ext import commands
 from discord import app_commands
 from .utils import manage_tool, settings, print_time
 from .utils.manage_tool import AboutCar as AC
+from .utils.embed_log import succeed, failed, etc
 
 log_channel = int(settings.log_channel)
 
@@ -42,18 +43,32 @@ class spec(commands.Cog):
         
         confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
         
+        log_embed_error = discord.Embed(title= '오류', description= f'spec', colour= failed)
+        log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+        log_embed_error.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+        log_embed_error.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+        log_embed_error.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+        log_embed_error.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+        log_embed_error.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+        log_embed_error.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+        
         # 정상 실행
         try:
-            if car_name == 'KTM  X-BOW GTX':
-                await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/KTM X-BOW GTX.png'),ephemeral=True)
-                
-            else:
-                await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
             
-            confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
-        
+            await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
+            
+            log_embed = discord.Embed(title= '정상 실행', description= f'spec', colour= etc)
+            log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+            log_embed.add_field(name='입력 값' , value= f'{car_name}', inline= False)
+            log_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+            log_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+            log_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+            log_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+            log_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+            log_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+                
             print(confirm)
-            await ch.send(confirm)
+            await ch.send(embed= log_embed)
         
         # 오류 관리
         except Exception:
@@ -73,7 +88,9 @@ class spec(commands.Cog):
                     
                     no_data = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car_name} " 검색'
                     print(no_data)
-                    await ch.send(no_data)
+                    log_embed_error.add_field(name='세부 정보가 없는 차량 입력', value= f'{car_name}', inline= False)
+        
+                    await ch.send(embed= log_embed_error)
                 
                 # 리스트 상에도 존재하지 않는 차량명 출력
                 else:
@@ -84,7 +101,9 @@ class spec(commands.Cog):
                     
                     no_list = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} " 입력'
                     print(no_list)
-                    await ch.send(no_list)
+                    
+                    log_embed_error.add_field(name='리스트에 없는 차량명 입력', value= f'{car_name}', inline= False)
+                    await ch.send(embed= log_embed_error)
 
             # 기타 오류
             else:
@@ -93,10 +112,11 @@ class spec(commands.Cog):
                 embed4 = discord.Embed(title='❗오류', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour=0xff0000)
                 
                 await interaction.followup.send('', embed= embed4, ephemeral= True)
-                
                 failed_read = f"오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보 조회 실패"
                 print(failed_read)
-                await ch.send(failed_read)
+                
+                log_embed_error.add_field(name='서버 오류로 인한 조회 불가', value= '', inline= False)
+                await ch.send(embed= log_embed_error)
                 
             print('---------------------------------------') 
                 

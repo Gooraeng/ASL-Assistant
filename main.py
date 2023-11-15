@@ -1,5 +1,5 @@
 # 메인 코드 모음
-# Last update : 231113
+# Last update : 231115
 
 import discord
 import os
@@ -8,19 +8,17 @@ import Cogs.utils.settings as settings
 from discord.ext import commands
 from Cogs.utils import manage_tool as mt
 from Cogs.utils import print_time as pt
+from Cogs.utils.embed_log import succeed, failed, etc 
 from datetime import datetime as dt
 
 intents = discord.Intents.default()
 intents.message_content = True
 intents.guilds = True
-
 app = commands.Bot(command_prefix="?",intents=intents)
-
 discord_api_token = str(settings.discord_api_token)
 
-car_img = settings.car_img
-car_list = str(settings.car_list)
 log_channel = int(settings.log_channel)
+
 
 # 확장 기능(명령어) 로드
 async def load_extensions():
@@ -41,6 +39,7 @@ async def load_extensions():
 @app.event
 async def on_ready():
     print(f"{app.user.name} 준비 중")
+    ch = app.get_channel(log_channel)
     try:
         await load_extensions()
         await pt.get_UTC()
@@ -53,12 +52,17 @@ async def on_ready():
         current_status = discord.Game(name='ASL에 정보제공')
         await app.change_presence(status=discord.Status.online,activity=current_status)
         print(f"{app.user.name}이(가) 준비되었습니다!")
-        ch = app.get_channel(log_channel)
-        await ch.send(f"## [{app.user.name} 작동 시작 // `{dt.utcnow()} (UTC)`]")
+        
+        ready_embed = discord.Embed(title= f'{app.user.name} 작동 시작' , description= f'{await pt.get_UTC()} (UTC)', colour= succeed)
+        await ch.send(embed= ready_embed)
     
     except Exception as e:
+        not_ready_embed = discord.Embed(title= f'{app.user.name} 작동 실패' , description= f'{await pt.get_UTC()} (UTC)', colour= failed)
+        not_ready_embed.add_field(name='사유', value= e)
         print(e)
+        await ch.send(embed= not_ready_embed)
 
+    
 @app.event
 async def on_message(ctx : discord.Message) -> None:
     if ctx.author.bot or not app.is_ready():
@@ -82,12 +86,12 @@ async def on_guild_join(guild):
 async def on_command_error(interaction : discord.Interaction, error):
     # 존재하지 않는 명령어 에러처리
     if isinstance(error, commands.CommandNotFound):
-        embed = discord.Embed(title="오류",description="존재하지 않는 명령어입니다.",colour=0xFF0000)
+        embed = discord.Embed(title="오류",description="존재하지 않는 명령어입니다.",colour= failed)
         await interaction.response.send_message("",embed=embed,ephemeral=True, delete_after= 5) 
 
     # 명령어 오류 처리
     else:
-        embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour=0xFF0000)
+        embed = discord.Embed(title="오류",description="예기치 못한 오류가 발생했습니다.",colour= failed)
         embed.add_field(name="상세", value=f"```{error}```")
         await interaction.response.send_message("",embed=embed,ephemeral=True)  
 

@@ -1,5 +1,5 @@
 # 클럽 클래시 관련 명령어
-# Last Update : 231107
+# Last Update : 231115
 
 import discord
 import typing
@@ -9,6 +9,7 @@ from discord.ext import commands
 from discord import app_commands
 from .utils.manage_tool import TimeLimitedEvent as TimeLE
 from .utils import settings, print_time
+from .utils.embed_log import succeed, failed, etc
 
 log_channel = int(settings.log_channel)
 
@@ -39,9 +40,22 @@ class tle(commands.Cog):
         
         # 임베드 1 선언 (오류)
         embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
+        embed1.add_field(name= '검색', value= f'{tle_type} / {area} / {car_name}')
         embed1.add_field(name='',value='**<경고>** 이 메세지는 10초 뒤에 지워집니다!', inline=False)    
         
         ch = self.app.get_channel(log_channel)        
+        
+        log_embed_error = discord.Embed(title= '오류', description= f'tle', colour= failed)
+    
+        log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+        log_embed_error.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+        log_embed_error.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+        log_embed_error.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+        log_embed_error.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+        log_embed_error.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+        log_embed_error.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+        log_embed_error.add_field(name='리스트에 없는 값 입력' , value= f'{tle_type} / {area} / {car_name}', inline= False)
+        
         
         try:
             same2 = int(numpy.intersect1d(b, c))
@@ -50,15 +64,25 @@ class tle(commands.Cog):
             if same2 and (tle_type in set(tle_data)):
                 await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
                 
+                log_embed = discord.Embed(title= '정상 실행', description= f'tle', colour= etc)
+                log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)        
+                log_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+                log_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+                log_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+                log_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+                log_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+                log_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+                log_embed.add_field(name='입력 값' , value= f'{tle_type} / {area} / {car_name}', inline= False)
+                
                 confirm = f"정상 실행 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {tle_type} / {area} / {car_name}"
-                await ch.send(confirm); print(confirm)
+                await ch.send(embed= log_embed); print(confirm)
 
             # 임베드 1 출력
             else:
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
                 
                 no_list = f"오류 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {tle_type} / {area} / {car_name}"
-                await ch.send(no_list)
+                await ch.send(embed = log_embed_error)
                 
                 print('---------------------------------------') 
                 print(no_list)
@@ -69,7 +93,7 @@ class tle(commands.Cog):
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
             
             no_list = f"오류 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {tle_type} / {area} / {car_name}"
-            await ch.send(no_list)
+            await ch.send(embed = log_embed_error)
             
             print('---------------------------------------')
             print(no_list)
