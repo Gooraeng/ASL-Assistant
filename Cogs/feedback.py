@@ -45,13 +45,9 @@ class SpawnModal(commands.Cog):
         
         # await interaction.response.send_message('', embeds= embed_warn, view= warn_before(), ephemeral= True, delete_after= 60)
         
-        confirm = f"정상 실행 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm) 
-        await log_ch.send(embed = no_variable_embed)  
         
         
-        # 베타 테스트 임베드 표시
-        embed_beta_test = discord.Embed(title= '베타 테스트 기간', colour= 0xf50900,
-                                        description= '2023년 11월 13일 오후 10시 ~ 2023년 11월 17일 0시')
+        
         
         if interaction.channel.id == 1174229865877213234:
             
@@ -60,12 +56,13 @@ class SpawnModal(commands.Cog):
             no_variable_embed_owner.add_field(name='예외 사항 발생', value= f'{interaction.guild.name} 서버 > {interaction.channel.name} 채널', inline= False)
             no_variable_embed_owner.add_field(name='실행자', value= f'{interaction.user.display_name}')
             
-            await interaction.response.send_message(embeds= [embed_beta_test, embed_warn_asl_assistant], view= warn_before_asl_assistant_only())
-            
-            # await interaction.response.send_message(embeds= [embed_beta_test, embed_warn_asl_assistant], view= warn_before_asl_assistant_only())
+            await interaction.response.send_message(embed= embed_warn_asl_assistant, view= warn_before_asl_assistant_only())
+            await log_ch.send(embed = no_variable_embed_owner)
            
         else:
-            await interaction.response.send_message('', embeds= [embed_beta_test, embed_warn], view= warn_before(), ephemeral= True, delete_after= 60)
+            await interaction.response.send_message('', embed= embed_warn, view= warn_before(), ephemeral= True, delete_after= 60)
+            confirm = f"정상 실행 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm) 
+            await log_ch.send(embed = no_variable_embed)  
           
     @warn_spawnmodal.error
     async def cooldown_err(self, interaction : discord.Interaction, error : app_commands.AppCommandError):
@@ -114,7 +111,7 @@ class FixModal(Modal, title = '데이터 수정 요청'):
         
         
         embed_problem = discord.Embed(title= 'Feedback 추가', description= '데이터 수정 요청', colour= 0x09f000)
-        embed_problem.add_field(name= '서버명', value= f'{interaction.guild.name}', inline= True)
+        embed_problem.add_field(name= '서버명 (ID)', value= f'{interaction.guild.name} ({interaction.guild.id})', inline= True)
         embed_problem.add_field(name= '유저명 (Global)', value= f'{interaction.user.global_name}')
         embed_problem.add_field(name= '문제 묘사', value= self.fix_problem.value, inline= False)
         
@@ -141,7 +138,7 @@ class SuggestModal(Modal, title= '기타 제안'):
         
         
         embed_problem = discord.Embed(title= 'Feedback 추가', description= '기타 제안', colour= 0x0407f9)
-        embed_problem.add_field(name= '서버명', value= f'{interaction.guild.name}', inline= True)
+        embed_problem.add_field(name= '서버명 (ID)', value= f'{interaction.guild.name} ({interaction.guild.id})', inline= True)
         embed_problem.add_field(name= '유저명 (Global)', value= f'{interaction.user.global_name}')
         embed_problem.add_field(name= '문제 묘사', value= self.suggest.value, inline= False)
         
@@ -166,7 +163,7 @@ class ReportModal(Modal, title = '봇 작동 신고'):
         await interaction.response.send_message(embed= embed_sent, ephemeral= True, delete_after= 10)
         
         embed_problem = discord.Embed(title= '봇 작동 신고', description= 'Report', colour= 0xf50500)
-        embed_problem.add_field(name= '서버명', value= f'{interaction.guild.name}', inline= True)
+        embed_problem.add_field(name= '서버명 (ID)', value= f'{interaction.guild.name} ({interaction.guild.id})', inline= True)
         embed_problem.add_field(name= '유저명 (Global)', value= f'{interaction.user.global_name}')
         embed_problem.add_field(name= '세부 설명', value= self.problem.value, inline= False)
         
