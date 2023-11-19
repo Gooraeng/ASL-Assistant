@@ -15,22 +15,30 @@ class link(commands.Cog):
         self.app = app
         
     @app_commands.command(name="link",description="봇 서버 링크를 알 수 있습니다!")
-    @app_commands.guild_only()
     async def link(self, interaction : discord.Interaction):
         await interaction.response.send_message("https://discord.gg/8dpAFYXk8s", ephemeral=False)     
         ch = self.app.get_channel(log_channel)
         
         no_variable_embed = discord.Embed(title= '정상 실행', description= f'link', colour= etc)
         no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
-        no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
-        no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
-        no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
-        no_variable_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
-        no_variable_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
-        no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+
         
-        await ch.send(embed = no_variable_embed)
-        confirm = f"정상 실행 > {await print_time.get_UTC()} > link > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm)
+        
+        if interaction.channel == discord.DMChannel:
+            no_variable_embed.add_field(name='채널명 (ID)', value= f'DM ({interaction.channel.id})', inline= True)
+            no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+            no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+            
+        else:
+            no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+            no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+            no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+            no_variable_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+            no_variable_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+            no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
+            
+            await ch.send(embed = no_variable_embed)
+            confirm = f"정상 실행 > {await print_time.get_UTC()} > link > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm)
         
         
 async def setup(app):
