@@ -18,9 +18,10 @@ class link(commands.Cog):
     async def link(self, interaction : discord.Interaction):
         await interaction.response.send_message("https://discord.gg/8dpAFYXk8s", ephemeral=False)     
         ch = self.app.get_channel(log_channel)
-               
         
-        if interaction.channel == discord.DMChannel:
+        DmChannel = discord.DMChannel.id  
+        
+        if interaction.channel.id == DmChannel:
             no_variable_embed_dm = discord.Embed(title= '정상 실행', description= f'link', colour= etc)
             no_variable_embed_dm.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
             no_variable_embed_dm.add_field(name='채널명 (ID)', value= f'DM ({interaction.channel.id})', inline= True)
