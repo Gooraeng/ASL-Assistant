@@ -32,11 +32,8 @@ class clash(commands.Cog):
         link_data = await CC.Link_db()
         lap_time_data = await CC.LapTime_db()
         
-        map_arr = numpy.array(map_data)
-        car_arr = numpy.array(car_data)
-            
-        a = numpy.where(map_arr == area)
-        c = numpy.where(car_arr == car_name)
+        area_arr = numpy.array(map_data); car_name_arr = numpy.array(car_data)
+        area_search = numpy.where(area_arr == area); car_name_search = numpy.where(car_name_arr == car_name)
         
         # 임베드 1 선언 (오류)
         embed1 = discord.Embed(title= '어이쿠!', description= f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
@@ -56,8 +53,9 @@ class clash(commands.Cog):
          
         # veri - asl assistant or asl assistant
         if interaction.channel.id == 1158477800504836147 or interaction.channel.id == 1158749682642714695 or interaction.user.id == 303915314062557185:
+            same2 = int(numpy.intersect1d(area_search, car_name_search))
+            
             try:
-                same2 = int(numpy.intersect1d(a, c))
                 
                 # 정상 실행
                 if same2 and (car_class in set(class_data)):
@@ -79,9 +77,10 @@ class clash(commands.Cog):
                     print(confirm)
 
                 # 임베드 1 출력
+
                 else:
                     await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-                    log_embed_error.add_field(name='리스트에 없는 값 입력' , value= f'{area} / {car_class} / {car_name}', inline= False)
+                    log_embed_error.add_field(name= f'리스트에 없는 값 입력 ({e})' , value= f'{area} / {car_class} / {car_name}', inline= False)
         
                     no_list = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
                     await ch.send(embed= log_embed_error)
@@ -91,10 +90,10 @@ class clash(commands.Cog):
                     print('---------------------------------------') 
             
             # 오류 관리 - 임베드 1 출력 
-            except Exception:
+            except Exception as e:
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
                 
-                log_embed_error.add_field(name='리스트에 없는 값 입력' , value= f'{area} / {car_class} / {car_name}', inline= False)
+                log_embed_error.add_field(name= f'리스트에 없는 값 입력 ({e})' , value= f'{area} / {car_class} / {car_name}', inline= False)
         
                 no_list = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
                 await ch.send(embed= log_embed_error)
@@ -137,6 +136,7 @@ class clash(commands.Cog):
         # 차량 리스트 선언
         map_data = await CC.Area_db()
         
+        map_data.pop(0) 
         # 겹치는 차량 리스트가 존재하고, 리스트 검색 시 이를 허용하지 않게 하기 위한
         # set을 이용하여 겹치는 차량이 없는 새 리스트 선언
         filtered = list(set(map_data))
@@ -163,6 +163,7 @@ class clash(commands.Cog):
         map_data = await CC.Area_db()
         class_data = await CC.Class_db()
         
+        map_data.pop(0) ; class_data.pop(0)
         # area_autocompletion을 통해 찾으려는 맵과 관련된 요소를 불러옴.
         # 여기선 딕셔너리를 이용하여 불러옴 >> dict_values(['Sacred Heart', ''])
         # 리스트로 변환
@@ -199,6 +200,7 @@ class clash(commands.Cog):
         car_data = await CC.CarName_db()
         class_data = await CC.Class_db()
         
+        map_data.pop(0); car_data.pop(0); class_data.pop(0)
         # class_autocompletion의 결과와 연동이 어려워 같은 방법 반복
         aa = list(interaction.namespace.__dict__.values())
         rest_list_1 = list(filter(lambda x: map_data[x] == str(aa[0]), range(len(map_data))))

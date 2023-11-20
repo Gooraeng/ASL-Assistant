@@ -35,7 +35,6 @@ class ClubClash:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
-        data.pop(0)
         f.close()
         return data
 
@@ -45,7 +44,6 @@ class ClubClash:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[1])
-        data.pop(0)
         f.close()
         return data
 
@@ -55,7 +53,6 @@ class ClubClash:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[2])
-        data.pop(0)
         f.close()
         return data
         
@@ -65,7 +62,6 @@ class ClubClash:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[3])
-        data.pop(0)
         f.close()
         return data
         
@@ -75,7 +71,6 @@ class ClubClash:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[4])
-        data.pop(0)
         f.close()
         return data
 
@@ -87,7 +82,6 @@ class TimeLimitedEvent:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
-        data.pop(0)
         f.close()
         return data
 
@@ -97,7 +91,6 @@ class TimeLimitedEvent:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[1])
-        data.pop(0)
         f.close()
         return data
 
@@ -107,7 +100,6 @@ class TimeLimitedEvent:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[2])
-        data.pop(0)
         f.close()
         return data
         
@@ -117,7 +109,6 @@ class TimeLimitedEvent:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[4])
-        data.pop(0)
         f.close()
         return data
         
@@ -127,7 +118,6 @@ class TimeLimitedEvent:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[5])
-        data.pop(0)
         f.close()
         return data
 
@@ -139,7 +129,6 @@ class CarhuntRiot:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[0])
-        data.pop(0)
         f.close()
         return data
     
@@ -149,7 +138,6 @@ class CarhuntRiot:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[1])
-        data.pop(0)
         f.close()
         return data
         
@@ -159,7 +147,6 @@ class CarhuntRiot:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[3])
-        data.pop(0)
         f.close()
         return data
         
@@ -169,7 +156,6 @@ class CarhuntRiot:
         reader = csv.reader(f)
         for row in reader:
             data.append(row[4])
-        data.pop(0)
         f.close()
         return data
     

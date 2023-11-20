@@ -31,9 +31,6 @@ class link(commands.Cog):
         await ch.send(embed = no_variable_embed)
         confirm = f"정상 실행 > {await print_time.get_UTC()} > link > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm)
 
-        
-       
-    
     @link.error
     async def link_error_is_dm(self, interaction : discord.Interaction, error : app_commands.AppCommandError):
         ch = self.app.get_channel(log_channel) 

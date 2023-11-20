@@ -109,6 +109,7 @@ class tle(commands.Cog):
         # 차량 리스트 선언
         tle_type_data = await TimeLE.type_of_tle()
         
+        tle_type_data.pop(0)
         # 겹치는 TLE Type 리스트가 존재하고, 리스트 검색 시 이를 허용하지 않게 하기 위한
         # set을 이용하여 겹치는 Type이 없는 새 리스트 선언
         filtered = list(set(tle_type_data))
@@ -135,6 +136,7 @@ class tle(commands.Cog):
         tle_type_data = await TimeLE.type_of_tle()
         map_data = await TimeLE.Area_db()
         
+        tle_type_data.pop(0); map_data.pop(0)
         # tle_type_autocompletion을 통해 찾으려는 맵과 관련된 요소를 불러옴.
         # 여기선 딕셔너리를 이용하여 불러옴 >> dict_values(['Weekly Competition', ''])
         # 리스트로 변환
@@ -175,6 +177,7 @@ class tle(commands.Cog):
         map_data = await TimeLE.Area_db()
         car_data = await TimeLE.CarName_db()
         
+        tle_type_data.pop(0); map_data.pop(0); car_data.pop(0)
         # class_autocompletion의 결과와 연동이 어려워 같은 방법 반복
         aa = list(interaction.namespace.__dict__.values())
         rest_list_1 = list(filter(lambda x: tle_type_data[x] == str(aa[0]), range(len(tle_type_data))))
