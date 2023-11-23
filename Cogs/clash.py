@@ -10,14 +10,16 @@ from discord import app_commands
 from .utils.manage_tool import ClubClash as CC
 from .utils import settings, print_time
 from .utils.embed_log import succeed, failed, etc
+from .utils.not_here import not_here_return_embed
 
 log_channel = int(settings.log_channel)
-
+feedback_log_channel = int(settings.feedback_log_channel)
 
 class clash(commands.Cog):
     def __init__(self, app : commands.Bot):
         self.app = app
 
+    
     @app_commands.command(name='clash', description='클럽 클래시 지역의 맵의 레퍼런스를 확인할 수 있습니다!')
     @app_commands.describe(area = '찾고자 하는 맵을 찾아보세요!', car_class = '클래스를 선택하세요', car_name ='어떤 차량을 찾아보시겠어요?')
     @app_commands.rename(area = '맵', car_class = '클래스', car_name = '차량')
@@ -25,6 +27,9 @@ class clash(commands.Cog):
     @app_commands.guild_only()
     async def clashes(self, interaction: discord.Interaction, area : str, car_class : str, car_name : str):
 
+        if interaction.channel.id == log_channel or interaction.channel.id == feedback_log_channel:
+            return await not_here_return_embed(interaction= interaction)
+ 
         # ./utils/manage_tool.py 참고
         map_data = await CC.Area_db()
         class_data = await CC.Class_db()

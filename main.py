@@ -80,8 +80,9 @@ async def on_message(ctx : discord.Message) -> None:
     
     else:
         if ctx.channel.id == log_channel or ctx.channel.id == feedback_log_channel:
+            not_here_embed = discord.Embed(title= '여기는 로그가 남는 채널입니다', description= f'5초 후에 지워집니다.', colour= 0xfe7866)
             await ctx.delete()
-            await ctx.channel.send('여기에서는 메세지를 보내실 수 없습니다!', delete_after= 3, mention_author= True)
+            await ctx.channel.send(embed= not_here_embed, delete_after= 5, mention_author= True)
 
             
 @app.event

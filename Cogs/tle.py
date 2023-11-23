@@ -10,20 +10,24 @@ from discord import app_commands
 from .utils.manage_tool import TimeLimitedEvent as TimeLE
 from .utils import settings, print_time
 from .utils.embed_log import succeed, failed, etc
+from .utils.not_here import not_here_return_embed
 
 log_channel = int(settings.log_channel)
-
+feedback_log_channel = int(settings.feedback_log_channel)
 
 class tle(commands.Cog):
     def __init__(self, app : commands.Bot):
         self.app = app
+    
         
     @app_commands.command(name='tle', description='주간 경쟁, 엘리트컵부터 다른 TLE까지 알려드립니다!')
     @app_commands.describe(tle_type = '어떤 TLE 타입인가요?', area = '맵을 고르세요!', car_name ='어떤 차량을 찾아보시겠어요?')
     @app_commands.rename(tle_type = '타입', area = '맵', car_name = '차량')
     @app_commands.guild_only()
     async def TimeLEs(self, interaction: discord.Interaction, tle_type : str, area : str, car_name : str):
-
+        if interaction.channel.id == log_channel or interaction.channel.id == feedback_log_channel:
+            return await not_here_return_embed(interaction= interaction)
+        
         # ./utils/manage_tool.py 참고
         tle_data = await TimeLE.type_of_tle()
         map_data = await TimeLE.Area_db()
@@ -55,6 +59,7 @@ class tle(commands.Cog):
         log_embed_error.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
         log_embed_error.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
         log_embed_error.add_field(name='리스트에 없는 값 입력' , value= f'{tle_type} / {area} / {car_name}', inline= False)
+        
         
         
         try:

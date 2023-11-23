@@ -10,13 +10,16 @@ from discord import app_commands
 from .utils import manage_tool, settings, print_time
 from .utils.manage_tool import AboutCar as AC
 from .utils.embed_log import succeed, failed, etc
+from .utils.not_here import not_here_return_embed
 
 log_channel = int(settings.log_channel)
+feedback_log_channel = int(settings.feedback_log_channel)
 
 class spec(commands.Cog):
     def __init__(self, app : commands.Bot):
         self.app = app
-  
+    
+    
     # 명령어 설명
     @app_commands.command(name='spec', description='차량의 성능을 확인합니다! 이 기능은 외부 데이터에 의해 작동되므로 언제든지 비활성화 될 수 있습니다.')
     @app_commands.describe(car_name='차량 성능 확인')
@@ -24,6 +27,9 @@ class spec(commands.Cog):
     @app_commands.guild_only()
     async def car(self, interaction : discord.Interaction, car_name : str):
         
+        if interaction.channel.id == log_channel or interaction.channel.id == feedback_log_channel:
+            return await not_here_return_embed(interaction= interaction)
+ 
         # 조회 불가능 차량 리트를 불러옴
         get_check_list = await manage_tool.check_update()
         

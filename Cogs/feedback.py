@@ -8,6 +8,7 @@ from discord import app_commands
 from discord.ui import Modal, View
 from .utils import print_time, settings
 from .utils.embed_log import succeed, failed, etc, interaction_with_server
+from .utils.not_here import not_here_return_embed
 
 feedback_log_channel = int(settings.feedback_log_channel)
 log_channel = int(settings.log_channel)
@@ -18,49 +19,47 @@ class SpawnModal(commands.Cog):
     def __init__(self, app : commands.Bot) :
         self.app = app
 
-        
+             
     @app_commands.command(name= 'feedback', description= '뭔가 피드백을 남기고 싶은 게 있나요?')
     @app_commands.checks.cooldown(1, 30, key= lambda i :(i.guild_id, i.user.id))
     @app_commands.guild_only()
     async def warn_spawnmodal(self, interaction : discord.Interaction):
+        
+        if interaction.channel.id == log_channel or interaction.channel.id == feedback_log_channel:
+            return await not_here_return_embed(interaction= interaction)
+        
         log_ch = interaction.client.get_channel(log_channel)
         
-        embed_warn = discord.Embed(title= '❗경고', description= '문제 전송 시 중간에 취소할 수 없습니다!', colour= interaction_with_server)
-        embed_warn.add_field(name= '', value= '이 명령어를 실행하실 때 마다 30초의 쿨타임이 존재합니다!', inline= False)
-        embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
-        embed_warn.add_field(name= '', value= '이 메세지는 60초 안에 지워집니다.')
-        
-        embed_warn_asl_assistant = discord.Embed(title= '❗경고', description= '문제 전송 시 중간에 취소할 수 없습니다!', colour= interaction_with_server)
-        embed_warn_asl_assistant.add_field(name= '', value= '버튼 클릭마다 30초의 쿨타임이 존재합니다!', inline= False)
-        embed_warn_asl_assistant.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
-        
-        no_variable_embed = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
-        no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
-        no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
-        no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
-        no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
-        no_variable_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
-        no_variable_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
-        no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
-        
-        # await interaction.response.send_message('', embeds= embed_warn, view= warn_before(), ephemeral= True, delete_after= 60)
-        
-        
-        
-        
-        
         if interaction.channel.id == 1174229865877213234:
+            
+            embed_warn_asl_assistant = discord.Embed(title= '❗경고', description= '문제 전송 시 중간에 취소할 수 없습니다!', colour= interaction_with_server)
+            embed_warn_asl_assistant.add_field(name= '', value= '버튼 클릭마다 30초의 쿨타임이 존재합니다!', inline= False)
+            embed_warn_asl_assistant.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
+            await interaction.response.send_message(embed= embed_warn_asl_assistant, view= warn_before_asl_assistant_only())
+            
             
             no_variable_embed_owner = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
             no_variable_embed_owner.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
             no_variable_embed_owner.add_field(name='예외 사항 발생', value= f'{interaction.guild.name} 서버 > {interaction.channel.name} 채널', inline= False)
             no_variable_embed_owner.add_field(name='실행자', value= f'{interaction.user.display_name}')
-            
-            await interaction.response.send_message(embed= embed_warn_asl_assistant, view= warn_before_asl_assistant_only())
             await log_ch.send(embed = no_variable_embed_owner)
            
         else:
+            embed_warn = discord.Embed(title= '❗경고', description= '문제 전송 시 중간에 취소할 수 없습니다!', colour= interaction_with_server)
+            embed_warn.add_field(name= '', value= '이 명령어를 실행하실 때 마다 30초의 쿨타임이 존재합니다!', inline= False)
+            embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
+            embed_warn.add_field(name= '', value= '이 메세지는 60초 안에 지워집니다.')
             await interaction.response.send_message('', embed= embed_warn, view= warn_before(), ephemeral= True, delete_after= 60)
+            
+            
+            no_variable_embed = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
+            no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+            no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
+            no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
+            no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
+            no_variable_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
+            no_variable_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
+            no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
             confirm = f"정상 실행 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm) 
             await log_ch.send(embed = no_variable_embed)  
           
