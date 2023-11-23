@@ -130,19 +130,19 @@ async def on_error(interaciton : discord.Interaction, error : Exception):
     if isinstance(error, discord.ConnectionClosed):
         error_embed1 = discord.Embed(title= '에러 발생', description= f'{pt.get_UTC()}', colour= failed)
         error_embed1.add_field(name= '사유', value= f'discord.ConnectionClosed / Koyeb 확인 요망')
-        await app.connect(reconnect= True)
-        return await ch.send(content= f'{bot_developer.mention}', embed= error_embed1)
+        
+        await ch.send(content= f'{bot_developer.mention}', embed= error_embed1); return await app.connect(reconnect= True)
     
     if isinstance(error, discord.DiscordServerError):
         error_embed2 = discord.Embed(title= '에러 발생', description= f'{pt.get_UTC()}', colour= failed)
         error_embed2.add_field(name= '사유', value= f'discord.DiscordServerError / 재연결 시도')
-        await app.connect(reconnect= True)
-        return await ch.send(embed= error_embed2) 
+        
+        await ch.send(embed= error_embed2); return await app.connect(reconnect= True)
     
     if isinstance(error, discord.GatewayNotFound):
         error_embed3 = discord.Embed(title= '에러 발생', description= f'{pt.get_UTC()}', colour= failed)
         error_embed3.add_field(name= '사유', value= f'discord.GatewayNotFound 에러')
-        return await ch.send(embed= error_embed3)
+        await ch.send(embed= error_embed3); return await app.connect(reconnect= True)
     
     else: raise error
     
