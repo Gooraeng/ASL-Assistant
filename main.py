@@ -5,10 +5,12 @@ import discord
 import os
 import Cogs.utils.settings as settings
 
+from discord import app_commands
 from discord.ext import commands
 from Cogs.utils import manage_tool as mt
 from Cogs.utils import print_time as pt
 from Cogs.utils.embed_log import succeed, failed, etc, interaction_with_server
+from typing import Literal
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -18,7 +20,7 @@ app = commands.Bot(command_prefix="!!",intents=intents)
 discord_api_token = str(settings.discord_api_token)
 
 log_channel = int(settings.log_channel)
-
+feedback_log_channel = int(settings.feedback_log_channel)
 
 # 확장 기능(명령어) 로드
 async def load_extensions():
@@ -43,6 +45,10 @@ async def on_ready():
     
     print(f"{app.user.name} 준비 중")
     
+    await load_extensions()
+    synced = await app.tree.sync()
+    print(f"명령어 {len(synced)}개 사용 가능")   
+    
     current_status = discord.Game(name= 'ASL에 정보제공')
     await app.change_presence(status= discord.Status.online, activity= current_status)
     await pt.get_UTC()
@@ -63,18 +69,21 @@ async def on_ready():
             await ch.send(embed= not_ready_embed)
             
             print(e)
-    
-@app.event
-async def setup_hook():
-    await load_extensions()
-    synced = await app.tree.sync()
-    print(f"명령어 {len(synced)}개 사용 가능")    
+
    
         
 @app.event
 async def on_message(ctx : discord.Message) -> None:
-    pass
+    
+    if ctx.author.bot == True:
+        pass
+    
+    else:
+        if ctx.channel.id == log_channel or ctx.channel.id == feedback_log_channel:
+            await ctx.delete()
+            await ctx.channel.send('여기에서는 메세지를 보내실 수 없습니다!', delete_after= 3, mention_author= True)
 
+            
 @app.event
 async def on_guild_join(guild):
     
@@ -90,6 +99,7 @@ async def on_guild_join(guild):
     print(guild_joined_log)
     print('---------------------------------------')
 
+
 @app.event
 async def on_guild_remove(guild):    
     ch = app.get_channel(log_channel)    
@@ -104,8 +114,8 @@ async def on_guild_remove(guild):
     guild_left_log = f'서버 퇴장 > {await pt.get_UTC()} > 서버명 : {guild.name} (ID : {guild.id})'
     print(guild_left_log)
     print('---------------------------------------')  
-    
-    
+
+
 # 커맨드 에러 관리
 @app.event
 async def on_command_error(interaction : discord.Interaction, error):
@@ -119,6 +129,7 @@ async def on_command_error(interaction : discord.Interaction, error):
         embed = discord.Embed(title="오류", description="예기치 못한 오류가 발생했습니다.", colour= failed)
         embed.add_field(name="상세", value=f"```{error}```")
         await interaction.response.send_message("",embed=embed,ephemeral=True)  
+
 
 # 연결 에러 처리
 @app.event
