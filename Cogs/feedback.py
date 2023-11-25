@@ -128,7 +128,7 @@ class SuggestModal(Modal, title= '기타 제안'):
     
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
-        await interaction.delete_original_response()
+
         feedback_ch = interaction.client.get_channel(feedback_log_channel)
         
         embed_sent = discord.Embed(title= '전송 완료', description= '정상적으로 전송이 완료되었습니다!', colour= succeed)
@@ -156,7 +156,6 @@ class ReportModal(Modal, title = '봇 작동 신고'):
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
         
-        await interaction.delete_original_response()
         feedback_ch = interaction.client.get_channel(feedback_log_channel)
         
         embed_sent = discord.Embed(title= '전송 완료', description= '정상적으로 전송이 완료되었습니다!', colour= succeed)
@@ -174,20 +173,51 @@ class ReportModal(Modal, title = '봇 작동 신고'):
 class warn_before(View):
     def __init__(self):
         super().__init__(timeout= None)
+        self.cooldown = commands.CooldownMapping.from_cooldown(1, 30, commands.BucketType.member)
         
     @discord.ui.button(label= '봇 작동 신고', style= discord.ButtonStyle.danger)
     async def report_prob(self, interaction : discord.Interaction, button : discord.ui.Button):
-        await interaction.response.send_modal(ReportModal())
+        interaction.message.author = interaction.user
+        bucket = self.cooldown.get_bucket(interaction.message)
+        retry = bucket.update_rate_limit()
+        
+        if retry == None:
+            await interaction.response.send_modal(ReportModal())
+        
+        else:
+            embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!', description= f'{round(retry, 1)}초 후에 다시 시도해주세요!', colour= failed)
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 5)
+        
           
         
     @discord.ui.button(label= '데이터 수정 요청', style= discord.ButtonStyle.green)
     async def request_fix(self, interaction : discord.Interaction, button : discord.ui.Button):
-        await interaction.response.send_modal(FixModal())
+        interaction.message.author = interaction.user
+        bucket = self.cooldown.get_bucket(interaction.message)
+        retry = bucket.update_rate_limit()
+        
+        if retry == None:
+            await interaction.response.send_modal(FixModal())
+        
+        else:
+            embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!', description= f'{round(retry, 1)}초 후에 다시 시도해주세요!', colour= failed)
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 5)
+        
         
     
     @discord.ui.button(label= '기타 제안', style= discord.ButtonStyle.primary)
     async def suggestion(self, interaction : discord.Interaction, button : discord.ui.Button):
-        await interaction.response.send_modal(SuggestModal())
+        interaction.message.author = interaction.user
+        bucket = self.cooldown.get_bucket(interaction.message)
+        retry = bucket.update_rate_limit()
+        
+        if retry == None:
+            await interaction.response.send_modal(SuggestModal())
+        
+        else:
+            embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!', description= f'{round(retry, 1)}초 후에 다시 시도해주세요!', colour= failed)
+            await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 5)
+        
 
         
 class warn_before_asl_assistant_only(View):
