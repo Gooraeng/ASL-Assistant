@@ -9,4 +9,3 @@ lxml
 requests
 discord-py-slash-command
 pip
-yarl

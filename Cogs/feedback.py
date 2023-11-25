@@ -48,8 +48,7 @@ class SpawnModal(commands.Cog):
             embed_warn = discord.Embed(title= '❗경고', description= '문제 전송 시 중간에 취소할 수 없습니다!', colour= interaction_with_server)
             embed_warn.add_field(name= '', value= '이 명령어를 실행하실 때 마다 30초의 쿨타임이 존재합니다!', inline= False)
             embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
-            embed_warn.add_field(name= '', value= '이 메세지는 60초 안에 지워집니다.')
-            await interaction.response.send_message('', embed= embed_warn, view= warn_before(), ephemeral= True, delete_after= 60)
+            await interaction.response.send_message('', embed= embed_warn, view= warn_before(), ephemeral= True)
             
             
             no_variable_embed = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
@@ -102,7 +101,7 @@ class FixModal(Modal, title = '데이터 수정 요청'):
     )
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
-        
+        await interaction.delete_original_response()
         feedback_ch = interaction.client.get_channel(feedback_log_channel)
         
         embed_sent = discord.Embed(title= '전송 완료', description= '정상적으로 전송이 완료되었습니다!', colour= succeed)
@@ -129,7 +128,7 @@ class SuggestModal(Modal, title= '기타 제안'):
     
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
-        
+        await interaction.delete_original_response()
         feedback_ch = interaction.client.get_channel(feedback_log_channel)
         
         embed_sent = discord.Embed(title= '전송 완료', description= '정상적으로 전송이 완료되었습니다!', colour= succeed)
@@ -156,6 +155,8 @@ class ReportModal(Modal, title = '봇 작동 신고'):
     )
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
+        
+        await interaction.delete_original_response()
         feedback_ch = interaction.client.get_channel(feedback_log_channel)
         
         embed_sent = discord.Embed(title= '전송 완료', description= '정상적으로 전송이 완료되었습니다!', colour= succeed)
@@ -177,19 +178,16 @@ class warn_before(View):
     @discord.ui.button(label= '봇 작동 신고', style= discord.ButtonStyle.danger)
     async def report_prob(self, interaction : discord.Interaction, button : discord.ui.Button):
         await interaction.response.send_modal(ReportModal())
-        await interaction.delete_original_response()
           
         
     @discord.ui.button(label= '데이터 수정 요청', style= discord.ButtonStyle.green)
     async def request_fix(self, interaction : discord.Interaction, button : discord.ui.Button):
         await interaction.response.send_modal(FixModal())
-        await interaction.delete_original_response()
         
     
     @discord.ui.button(label= '기타 제안', style= discord.ButtonStyle.primary)
     async def suggestion(self, interaction : discord.Interaction, button : discord.ui.Button):
         await interaction.response.send_modal(SuggestModal())
-        await interaction.delete_original_response()
 
         
 class warn_before_asl_assistant_only(View):
