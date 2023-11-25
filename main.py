@@ -20,7 +20,7 @@ discord_api_token = str(settings.discord_api_token)
 
 log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
-ch = app.get_channel(log_channel)
+
 
 
 # 확장 기능(명령어) 로드
@@ -41,6 +41,8 @@ async def load_extensions():
 # 봇 이벤트
 @app.event
 async def on_ready():
+    
+    ch = app.get_channel(log_channel)
        
     print(f"{app.user.name} 준비 중")
     
@@ -86,7 +88,7 @@ async def on_message(ctx : discord.Message) -> None:
             
 @app.event
 async def on_guild_join(guild):
-   
+    ch = app.get_channel(log_channel)
     guild_joined_embed = discord.Embed(title= '서버 입장', description= f'{await pt.get_UTC()} (UTC)', colour= interaction_with_server)
     guild_joined_embed.add_field(name= '서버명', value= guild.name, inline= True)
     guild_joined_embed.add_field(name= '서버 ID', value= guild.id)
@@ -101,7 +103,7 @@ async def on_guild_join(guild):
 
 @app.event
 async def on_guild_remove(guild):       
-    
+    ch = app.get_channel(log_channel)
     guild_left_embed = discord.Embed(title= '서버 퇴장', description= f'{await pt.get_UTC()} (UTC)', colour= interaction_with_server)
     guild_left_embed.add_field(name= '서버명', value= guild.name, inline= True)
     guild_left_embed.add_field(name= '서버 ID', value= guild.id)
@@ -132,7 +134,7 @@ async def on_command_error(interaction : discord.Interaction, error):
 # 연결 에러 처리
 @app.event
 async def on_error(interaciton : discord.Interaction, error : Exception):
-    
+    ch = app.get_channel(log_channel)
     bot_developer = app.get_user(303915314062557185)
     
     if isinstance(error, discord.ConnectionClosed):
