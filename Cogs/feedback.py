@@ -85,7 +85,7 @@ class SpawnModal(commands.Cog):
             no_variable_embed.add_field(name='사유', value= '타임 아웃', inline= False)
             
             err = f"오류 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > timeout_err"
-            await ch.send(no_variable_embed)
+            await ch.send(embed = no_variable_embed)
             
             print('---------------------------------------') 
             print(err)
