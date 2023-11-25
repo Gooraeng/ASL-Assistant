@@ -101,7 +101,7 @@ class FixModal(Modal, title = '데이터 수정 요청'):
     )
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
-        await interaction.delete_original_response()
+
         feedback_ch = interaction.client.get_channel(feedback_log_channel)
         
         embed_sent = discord.Embed(title= '전송 완료', description= '정상적으로 전송이 완료되었습니다!', colour= succeed)
