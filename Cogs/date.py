@@ -34,7 +34,7 @@ class date(commands.Cog):
             ch = self.app.get_channel(log_channel)
             
             no_variable_embed = discord.Embed(title= '정상 실행', description= f'date', colour= etc)
-            no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+            no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
             no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
             no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)

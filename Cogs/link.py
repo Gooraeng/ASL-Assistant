@@ -30,7 +30,7 @@ class link(commands.Cog):
         await interaction.response.send_message("https://discord.gg/8dpAFYXk8s", ephemeral=False)   
             
         no_variable_embed = discord.Embed(title= '정상 실행', description= f'link', colour= etc)
-        no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+        no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
         no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
         no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
         no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
@@ -48,7 +48,7 @@ class link(commands.Cog):
         if isinstance(error, app_commands.CommandInvokeError):
             if interaction.channel.type == discord.ChannelType.private:
                 no_variable_embed_dm = discord.Embed(title= '정상 실행', description= f'link', colour= etc)
-                no_variable_embed_dm.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+                no_variable_embed_dm.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
                 no_variable_embed_dm.add_field(name='채널명 (ID)', value= f'DM ({interaction.channel.id})', inline= True)
                 no_variable_embed_dm.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
                 no_variable_embed_dm.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)

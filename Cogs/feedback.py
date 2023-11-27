@@ -39,7 +39,7 @@ class SpawnModal(commands.Cog):
             
             
             no_variable_embed_owner = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
-            no_variable_embed_owner.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+            no_variable_embed_owner.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
             no_variable_embed_owner.add_field(name='예외 사항 발생', value= f'{interaction.guild.name} 서버 > {interaction.channel.name} 채널', inline= False)
             no_variable_embed_owner.add_field(name='실행자', value= f'{interaction.user.display_name}')
             await log_ch.send(embed = no_variable_embed_owner)
@@ -52,7 +52,7 @@ class SpawnModal(commands.Cog):
             
             
             no_variable_embed = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
-            no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+            no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
             no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
             no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
@@ -74,7 +74,7 @@ class SpawnModal(commands.Cog):
             await interaction.response.send_message(embed= embed_cd_error, delete_after=5, ephemeral= True)
             
             no_variable_embed = discord.Embed(title= '에러', description= f'feedback', colour= failed)
-            no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+            no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
             no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
             no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
@@ -109,6 +109,7 @@ class FixModal(Modal, title = '데이터 수정 요청'):
         
         
         embed_problem = discord.Embed(title= 'Feedback 추가', description= '데이터 수정 요청', colour= 0x09f000)
+        embed_problem.add_field(name= '시간 (UTC)', value= f'{print_time.get_UTC()}', inline= True)
         embed_problem.add_field(name= '서버명 (ID)', value= f'{interaction.guild.name} ({interaction.guild.id})', inline= True)
         embed_problem.add_field(name= '유저명 (Global)', value= f'{interaction.user.global_name}')
         embed_problem.add_field(name= '문제 묘사', value= self.fix_problem.value, inline= False)
@@ -136,6 +137,7 @@ class SuggestModal(Modal, title= '기타 제안'):
         
         
         embed_problem = discord.Embed(title= 'Feedback 추가', description= '기타 제안', colour= 0x0407f9)
+        embed_problem.add_field(name= '시간 (UTC)', value= f'{print_time.get_UTC()}', inline= True)
         embed_problem.add_field(name= '서버명 (ID)', value= f'{interaction.guild.name} ({interaction.guild.id})', inline= True)
         embed_problem.add_field(name= '유저명 (Global)', value= f'{interaction.user.global_name}')
         embed_problem.add_field(name= '문제 묘사', value= self.suggest.value, inline= False)
@@ -162,6 +164,7 @@ class ReportModal(Modal, title = '봇 작동 신고'):
         await interaction.response.send_message(embed= embed_sent, ephemeral= True, delete_after= 10)
         
         embed_problem = discord.Embed(title= '봇 작동 신고', description= 'Report', colour= 0xf50500)
+        embed_problem.add_field(name= '시간 (UTC)', value= f'{print_time.get_UTC()}', inline= True)
         embed_problem.add_field(name= '서버명 (ID)', value= f'{interaction.guild.name} ({interaction.guild.id})', inline= True)
         embed_problem.add_field(name= '유저명 (Global)', value= f'{interaction.user.global_name}')
         embed_problem.add_field(name= '세부 설명', value= self.problem.value, inline= False)
@@ -231,7 +234,6 @@ class warn_before_asl_assistant_only(View):
         bucket = self.cooldown.get_bucket(interaction.message)
         retry = bucket.update_rate_limit()
         
-       
         if retry == None:
             await interaction.response.send_modal(FixModal())
         
@@ -246,8 +248,6 @@ class warn_before_asl_assistant_only(View):
         interaction.message.author = interaction.user
         bucket = self.cooldown.get_bucket(interaction.message)
         retry = bucket.update_rate_limit()
-        
-        
         
         if retry == None:
             await interaction.response.send_modal(FixModal())

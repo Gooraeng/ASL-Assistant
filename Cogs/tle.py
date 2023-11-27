@@ -50,8 +50,7 @@ class tle(commands.Cog):
         ch = self.app.get_channel(log_channel)        
         
         log_embed_error = discord.Embed(title= '오류', description= f'tle', colour= failed)
-    
-        log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+        log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
         log_embed_error.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
         log_embed_error.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
         log_embed_error.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
@@ -61,16 +60,18 @@ class tle(commands.Cog):
         log_embed_error.add_field(name='리스트에 없는 값 입력' , value= f'{tle_type} / {area} / {car_name}', inline= False)
         
         
-        
         try:
             same2 = int(numpy.intersect1d(b, c))
             
             # 정상 실행
             if same2 and (tle_type in set(tle_data)):
-                await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
+                await interaction.response.send_message(f'```차량 : {car_data[same2]}\n\
+                                                            맵 : {map_data[same2]}\n\
+                                                            기록 : {lap_time_data[same2]}```\n\
+                                                            {link_data[same2]}')
                 
                 log_embed = discord.Embed(title= '정상 실행', description= f'tle', colour= etc)
-                log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)        
+                log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)        
                 log_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
                 log_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
                 log_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)

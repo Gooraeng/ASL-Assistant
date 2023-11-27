@@ -30,7 +30,7 @@ class Donation(commands.Cog):
         await interaction.response.send_message("## 이용해주셔서 매번 감사드립니다!\n\nhttps://twip.kr/gooraeng_", ephemeral= True)   
             
         no_variable_embed = discord.Embed(title= '정상 실행', description= f'donate', colour= etc)
-        no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+        no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
         no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
         no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
         no_variable_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
@@ -48,7 +48,7 @@ class Donation(commands.Cog):
         if isinstance(error, app_commands.CommandInvokeError):
             if interaction.channel.type == discord.ChannelType.private:
                 no_variable_embed_dm = discord.Embed(title= '정상 실행', description= f'donate', colour= etc)
-                no_variable_embed_dm.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+                no_variable_embed_dm.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
                 no_variable_embed_dm.add_field(name='채널명 (ID)', value= f'DM ({interaction.channel.id})', inline= True)
                 no_variable_embed_dm.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
                 no_variable_embed_dm.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)

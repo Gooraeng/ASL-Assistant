@@ -39,10 +39,13 @@ class car_hunt(commands.Cog):
             try:            
                 CarName_found = car_data.index(car)
             
-                await interaciton.response.send_message(f'### 기록 : {lap_time_data[CarName_found]} \n ### 맵 : {map_data[CarName_found]}\n\n {link_data[CarName_found]}')
+                await interaciton.response.send_message(f'```차량 : {car_data[CarName_found]}\n\
+                                                            맵 : {map_data[CarName_found]}\n\
+                                                            기록 : {lap_time_data[CarName_found]}```\n\
+                                                            {link_data[CarName_found]}')
                 
                 log_embed = discord.Embed(title= '정상 실행', description= f'car hunt', colour= etc)
-                log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+                log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
                 log_embed.add_field(name='서버명', value= f'{interaciton.guild.name}', inline= True)
                 log_embed.add_field(name='채널명', value= f'{interaciton.channel.name}', inline= True)
                 log_embed.add_field(name='유저', value= f'{interaciton.user.display_name}', inline= True)
@@ -61,7 +64,7 @@ class car_hunt(commands.Cog):
                 await interaciton.response.send_message('', embed= embed1, ephemeral= True, delete_after=20)
             
                 log_embed_error = discord.Embed(title= '오류', description= f'car hunt', colour= failed)
-                log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+                log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
                 log_embed_error.add_field(name='서버명', value= f'{interaciton.guild.name}', inline= True)
                 log_embed_error.add_field(name='채널명', value= f'{interaciton.channel.name}', inline= True)
                 log_embed_error.add_field(name='유저', value= f'{interaciton.user.display_name}', inline= True)

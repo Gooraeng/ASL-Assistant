@@ -48,7 +48,7 @@ class clash(commands.Cog):
         ch = self.app.get_channel(log_channel)       
         
         log_embed_error = discord.Embed(title= '오류', description= f'clash', colour= failed)
-        log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+        log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
         log_embed_error.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
         log_embed_error.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
         log_embed_error.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
@@ -57,19 +57,22 @@ class clash(commands.Cog):
         log_embed_error.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
          
         # veri - asl assistant or asl assistant
-        if interaction.channel.id == 1158477800504836147 or interaction.channel.id == 1158749682642714695 or interaction.user.id == 303915314062557185:
+        if interaction.channel.id == 1158477800504836147 or interaction.channel.id == 1158749682642714695:
             same2 = int(numpy.intersect1d(area_search, car_name_search))
             
             try:
                 
                 # 정상 실행
                 if same2 and (car_class in set(class_data)):
-                    await interaction.response.send_message(f'## 기록 : {lap_time_data[same2]} \n\n{link_data[same2]}')
+                    await interaction.response.send_message(f'```차량 : {car_data[same2]}\n\
+                                                                맵 : {map_data[same2]}\n\
+                                                                기록 : {lap_time_data[same2]}```\n\
+                                                                {link_data[same2]}')
                     
                     confirm = f"정상 실행 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}"
                     
                     log_embed = discord.Embed(title= '정상 실행', description= f'clash', colour= etc)
-                    log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()} (UTC)', inline= False)
+                    log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
                     log_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
                     log_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
                     log_embed.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
