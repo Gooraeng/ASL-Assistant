@@ -65,10 +65,7 @@ class tle(commands.Cog):
             
             # 정상 실행
             if same2 and (tle_type in set(tle_data)):
-                await interaction.response.send_message(f'```차량 : {car_data[same2]}\n\
-                                                            맵 : {map_data[same2]}\n\
-                                                            기록 : {lap_time_data[same2]}```\n\
-                                                            {link_data[same2]}')
+                await interaction.response.send_message(f'```차량 : {car_data[same2]}\n맵 : {map_data[same2]}\n기록 : {lap_time_data[same2]}```\n{link_data[same2]}')
                 
                 log_embed = discord.Embed(title= '정상 실행', description= f'tle', colour= etc)
                 log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)        

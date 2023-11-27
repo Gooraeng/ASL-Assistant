@@ -39,10 +39,7 @@ class car_hunt(commands.Cog):
             try:            
                 CarName_found = car_data.index(car)
             
-                await interaciton.response.send_message(f'```차량 : {car_data[CarName_found]}\n\
-                                                            맵 : {map_data[CarName_found]}\n\
-                                                            기록 : {lap_time_data[CarName_found]}```\n\
-                                                            {link_data[CarName_found]}')
+                await interaciton.response.send_message(f'```차량 : {car_data[CarName_found]}\n맵 : {map_data[CarName_found]}\n기록 : {lap_time_data[CarName_found]}```\n{link_data[CarName_found]}')
                 
                 log_embed = discord.Embed(title= '정상 실행', description= f'car hunt', colour= etc)
                 log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
