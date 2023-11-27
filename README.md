@@ -22,7 +22,7 @@
 - Python(3.10.10 / 64-bit)
 - Discord.py (2.3.2)
 - **IDE** : Microsoft Visual Studio Code
-- Bot Host System : Koyeb
+- **Bot Host System** : Koyeb
 
 
 
