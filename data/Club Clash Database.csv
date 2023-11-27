@@ -1,5 +1,5 @@
 AREA,CAR_NAME,CLASS,LAP_TIME,LINK
-Ancient Ruins,PAGANI IMOLA,A,0:57.230,https://youtu.be/UGo16MfXI_c?si=jd1JRUbqoW90X6pz&t=442
+Ancient Ruins,PAGANI IMOLA,A,0:57.153,https://youtu.be/GrbXcoqYM8Q?si=wRI1HaIf9myqwbAO&t=187
 Ancient Ruins,PAGANI HUAYRA R,B,0:58.161,https://youtu.be/3rTY90zpiE8?si=nXbmPGg_UC0dy_9w
 Ancient Ruins,PEUGEOT ONYX,A,0:58.329,https://youtu.be/_urRYqB5XQg?si=geoFSw3JUlUTp3oR&t=340
 Ancient Ruins,GENTY AKYLONE,A,0:58.905,https://youtu.be/2Vp6bHlatS4?t=2832
@@ -34,8 +34,8 @@ Auckland Track,LAMBORGHINI COUNTACH LPI 800-4,A,0:44.719,https://youtu.be/Sgjz2N
 Auckland Track,RIMAC CONCEPT_ONE,A,0:44.922,https://youtu.be/dWRaRI5A9qQ?si=_jwJIKs-QUGllXYB&t=5
 Auckland Track,PAGANI IMOLA,A,0:44.982,https://youtu.be/tfSDR08B_sQ?si=PEApYi6Btg-mIxgW&t=8
 Auckland Track,TECHRULES AT96 TRACK VERSION,A,0:45.161,https://youtu.be/_IZGj5NmMcA?si=hiK6WMO78Pc7SLMt&t=6
+Auckland Track,GENTY AKYLONE,A,0:45.429,https://youtu.be/dSHomWoYj7s?si=LVcNV589s6GrTjoc&t=93
 Auckland Track,VANDA ELECTRICS DENDROBIUM,A,0:45.489,https://youtu.be/UepM4ymgi6U?si=9KDVnAe33t-196tO&t=245
-Auckland Track,GENTY AKYLONE,A,0:45.620,https://youtu.be/pmBzsTelm54?t=236
 Auckland Track,PAGANI HUAYRA BC,A,0:45.875,https://youtu.be/HR4atTVvvbo
 Auckland Track,LAMBORGHINI AVENTADOR J,A,0:46.128,https://youtu.be/xwKpoDccl2s?si=jNYK7jrvrTgvm-s_&t=1540
 Auckland Track,LAMBORGHINI SC18,A,0:46.727,https://youtu.be/UepM4ymgi6U?si=SeNd1hhJl_vP-nli&t=301
@@ -51,9 +51,11 @@ Beach Landing,NISSAN GTR-50 ITALDESIGN,B,1:10.764,https://youtu.be/9V8qudRbqig?t
 Beach Landing,PAGANI HUAYRA R,B,1:10.890,https://youtu.be/ernjM3zwe2w?t=29
 Beach Landing,ZENVO TSR-S,B,1:10.953,https://youtu.be/OXc9DTaoKUs
 Beach Landing,APEX AP-0,B,1:12.010,https://youtu.be/qBOpFLyqOhw?t=3
+Big Passions,KOENIGSEGG GEMERA,S,0:40.680,https://youtu.be/pvGErBBE1LU?si=hAF7_v_OVCF0zlQj&t=8
 Big Passions,VANDA ELECTRICS DENDROBIUM,A,0:41.930,https://youtu.be/wmeEeBPYI1A?si=VZFnB7_Zf7i3W6Tj&t=12
 Big Passions,GLICKENHAUS 007S,A,0:42.041,https://youtu.be/OXkQE51qysM?si=fraMnXVbm3LlSFOU&t=8
 Big Passions,FERRARI LAFERRARI APERTA,A,0:44.177,https://youtu.be/VnZc3a1VtBA?t=701
+Big Passions,PORSCHE 918 SPYDER,A,0:45.224,https://youtu.be/sWpEJhmcZOA?si=840ziEmoX4FVtxa7&t=206
 Big Passions,FERRARI FXX K,S,0:46.630,https://youtu.be/2QVyWPBoqvU
 Big Passions,VOLKSWAGEN ELECTRIC R,D,0:47.017,https://youtu.be/YfieWdWb06w?si=RjKwPCEy8egpGPe7&t=7
 Big Passions,GLICKENHAUS 004C,D,0:47.388,https://youtu.be/SJsm2pCjK4s?si=Vw_75SijdfHonpme&t=18
@@ -83,6 +85,7 @@ Canyon Launch,ACURA NSX GT3 EVO,C,1:15.250,https://youtu.be/Atgqj7ix48Q?si=NDlm1
 Canyon Launch,PININFARINA H2 SPEED,C,1:16.083,https://youtu.be/4THp2deK19U?t=645
 Canyon Launch,GLICKENHAUS 004C,D,1:17.478,https://youtu.be/j2GGz8yNg0E
 Canyon Launch,TVR GRIFFITH,D,1:17.550,https://youtu.be/HeTXI55mV3g
+Canyon Launch,FORD MUSTANG MACH-E1400,D,1:18.320,https://youtu.be/JFQwTK2BVcw?si=JEocxBw4THYQXLc2&t=8
 Canyon Launch,LAMBORGHINI HURACAN SUPER TROFEO EVO,D,1:18.908,https://youtu.be/K5ueq_r7n6Q?t=7
 Canyon Launch,VOLKSWAGEN ELECTRIC R,D,1:19.435,https://youtu.be/RgxoURzs5YU?t=18
 Canyon Launch,CHEVROLET CORVETTE C7.R,D,1:19.676,https://youtu.be/NEJs986ToJA?si=4CH_zo0hvHrhbXoR
@@ -111,11 +114,11 @@ Cliffhanger,MAZDA FURAI,D,1:16.624,https://youtu.be/LoxOOPkT_n4?t=26
 Dam Buster,KOENIGSEGG JESKO,S,1:14.123,https://youtu.be/UNc5f7q4L_0?t=423
 Dam Buster,PAGANI HUAYRA BC,A,1:17.547,https://youtu.be/PfkctrN_s6Q?t=498
 Dam Buster,MCLAREN P1,A,1:21.657,https://youtu.be/YgRWcpQFIMo?t=445
-Desert Life,HENNESSEY VENOM F5,S,1:05.166,https://youtu.be/us1h1ga-0dw
+Desert Life,HENNESSEY VENOM F5,S,1:04.366,https://youtu.be/DCeXUWQsmcQ?si=i5Dqb6vfA9nWd2cp&t=15
 Desert Life,KOENIGSEGG JESKO,S,1:08.137,https://youtu.be/jEVIr9pMs3Q?si=rqNk07gazbFb5RFj&t=917
 Desert Life,MCLAREN F1 LM,B,1:12.439,https://youtu.be/Rh5Ae2NJKJw?t=9
 Desert Life,VOLKSWAGEN W12 COUPE,B,1:13.506,https://youtu.be/657pCdScxyc?t=11
-Desert Life,APOLLO N,B,1:14.965,https://youtu.be/odnYzE4ldPg?t=2
+Desert Life,APOLLO N,B,1:14.944,https://youtu.be/JZWb8rTCAuU?si=7RZhuBur7oGQjTIV&t=8
 Desert Life,PORSCHE CARRERA GT,B,1:15.216,https://youtu.be/irgdvM0pEd0?t=242
 Desert Life,PORSCHE 911 GT3 RS,B,1:15.393,https://youtu.be/tTf98pIlIic?t=215
 Desert Life,GLICKENHAUS 003S,B,1:15.822,https://youtu.be/JDx0zvSSaFQ?si=dHB-bnr72XQ_jFMY&t=6
@@ -139,6 +142,8 @@ Dipping Down,VENCER SARTHE,C,1:06.680,https://youtu.be/9Ly-k1ZHLY0
 Dipping Down,BUGATTI EB110,C,1:06.912,https://youtu.be/0E9BLo2k85M
 Dipping Down,LAMBORGHINI GALLARDO LP 560-4,C,1:07.692,https://youtu.be/nc6nahp5tgs?t=92
 Dipping Down,TVR GRIFFITH,D,1:10.274,https://youtu.be/aOD6-yHVRlo?si=2tqj4PAawXpgPBQV
+Dipping Down,PININFARINA H2 SPEED,C,1:11.380,https://youtu.be/8fpJDIqXm20?si=vpBw-fNBgchnnG-S&t=496
+Dipping Down,FORD MUSTANG MACH-E1400,D,1:12.560,https://youtu.be/dSHomWoYj7s?si=JYqlenkMD8bQLQf5&t=9
 Downtown Rise,KOENIGSEGG JESKO,S,0:54.524,https://youtu.be/78dMQlJHiC0?t=26
 Downtown Rise,KOENIGSEGG GEMERA,S,0:56.738,https://youtu.be/vh_WjuXQtZU
 Downtown Rise,ASTON MARTIN VALHALLA CONCEPT CAR,A,0:59.178,https://youtu.be/UGo16MfXI_c?si=v_yqc6JVA-oYmfeN&t=757
@@ -149,6 +154,7 @@ Downtown Rise,PAGANI HUAYRA BC,A,1:01.203,https://youtu.be/f4ccWr7svhA?t=209
 Downtown Rise,LAMBORGHINI GALLARDO LP 560-4,C,1:03.066,https://youtu.be/QvOHf-Fh-R0
 Downtown Rise,MCLAREN GT,C,1:04.247,https://youtu.be/LuHLmvC2X9M
 Downtown Rise,FERRARI 599XX EVO,C,1:05.125,https://youtu.be/f4lv_2j3QBo?si=kgO_Aqomh4ajWOBL&t=227
+Downtown Rise,FERRARI MONZA SP1,C,1:06.025,https://youtu.be/QupHmh2M1lY?si=G2XGWlX14Cx-XVRv&t=193
 Downtown Rise,MASERATI ALFIERI,C,1:06.882,https://youtu.be/L4gqXVZS2LI
 Fire and Ice,BUGATTI LA VOITURE NOIRE,S,1:09.258,https://youtu.be/kjs0EjR12HI?si=ZDUHLKFfE7sXdnEm&t=4
 Fire and Ice,LAMBORGHINI SIAN FKP 37,S,1:13.742,https://youtu.be/d3nDYJK-ASk?si=idpx0u1XcHocowEI&t=69
@@ -237,6 +243,7 @@ Metropolitan,MERCEDES-BENZ AMG GT BLACK SERIES,C,0:58.693,https://youtu.be/bE_AA
 Metropolitan,GLICKENHAUS 004C,D,1:02.444,https://youtu.be/tM3Z_GYE_6U?si=EdmDO_gs-oEOIi0L&t=8
 Metropolitan,PORSCHE TAYCAN TURBO S,D,1:03.994,https://youtu.be/UGo16MfXI_c?si=Kk-tzJaEbMzS6sPx&t=1011
 Nanjing Stroll,PAGANI IMOLA,A,1:04.337,https://youtu.be/WQyth7aJsTM?si=D2PehKXoiGgDkuw_&t=330
+Nanjing Stroll,PAGANI HUAYRA BC,A,1:05.019,https://youtu.be/XWPUjPVLY8M?si=z14BkdmSgqqsDdsk&t=22
 Nanjing Stroll,FERRARI LAFERRARI APERTA,A,1:05.248,https://youtu.be/Km0rxJOHkSM?si=s8CBqWcsWi9Pcfgb&t=9
 Nanjing Stroll,LAMBORGHINI TERZO MILLENNIO,S,1:05.388,https://youtu.be/JpatvtQH_Q4?si=PudvplML3X2mEtne&t=309
 Nanjing Stroll,ASTON MARTIN VALHALLA CONCEPT CAR,A,1:05.491,https://youtu.be/AZoZscDSIOQ?t=704
@@ -251,12 +258,14 @@ Nanjing Stroll,LAMBORGHINI HURACAN EVO SPYDER,B,1:07.524,https://youtu.be/PmJqCb
 Nanjing Stroll,DRAKO GTE,B,1:08.074,https://youtu.be/7bDZV_4Buis?si=O_nXUvLJpwxRdBWq&t=21
 Nile River,GENTY AKYLONE,A,1:12.768,https://youtu.be/LpBP3EszW1U?t=8
 Nile River,PAGANI HUAYRA R,B,1:12.955,https://youtu.be/N84csX_Sr3U?si=PwBth9tyMy9m8k3L&t=9
+Nile River,LOTUS EVIJA,B,1:13.413,https://youtu.be/GrbXcoqYM8Q?si=umxZIR5V-An9Zz0i&t=930
 Nile River,MCLAREN F1 LM,B,1:13.500,https://youtu.be/UGo16MfXI_c?si=MugyYQZVxNRACLmF&t=915
 Nile River,LAMBORGHINI HURACAN EVO SPYDER,B,1:15.025,https://youtu.be/F2xPXMfyXH8?t=2
 Nile River,BUGATTI EB110,C,1:17.757,https://youtu.be/xwKpoDccl2s?si=FRKxqNYwPopzShwh&t=1366
 Nile River,MCLAREN GT,C,1:18.730,https://youtu.be/Exj9G-DEbrM?si=wQw_zpjqVNxweu47&t=217
 Nile River,ARES S1,C,1:20.039,https://youtu.be/MGSwRYz_OoE?si=-sjNAGI7GNT-u2Jv&t=190
 Nile River,TVR GRIFFITH,D,1:22.815,https://youtu.be/ThBfs-7UzHg?si=HHmeMebvcblFRxc2&t=598
+Nile River,GLICKENHAUS 004C,D,1:23.683,https://youtu.be/QupHmh2M1lY?si=zRHxUeSzSqiZsSBc&t=334
 Paradise Resort,HENNESSEY VENOM F5,S,0:54.771,https://youtu.be/M7szbNh4Rss?t=7
 Paradise Resort,KOENIGSEGG GEMERA,S,0:56.120,https://youtu.be/EmcfuPzLews?si=L-mqm86fqAnqw1qy&t=2
 Paradise Resort,KOENIGSEGG CCXR,S,0:56.755,https://youtu.be/tstQSNtc9zc?si=MBNVoZW5WryTVEtn&t=6
@@ -337,6 +346,7 @@ Sacred Heart,MCLAREN F1 LM,B,0:54.147,https://youtu.be/VW_ZHkij7hA?si=LRbqQdJkvM
 Sacred Heart,FERRARI F8 TRIBUTO,A,0:54.155,https://youtu.be/mqiRI7wyP2Q?si=6p23pbVlGv6BJgGD&t=209
 Sacred Heart,LAMBORGHINI REVUELTO,B,0:54.193,https://youtu.be/dxe8KNu-CBw?si=QByH2JBYOYgrRRX1
 Sacred Heart,PAGANI HUAYRA R,B,0:54.339,https://youtu.be/GNhe429ct_s?si=m9dpI4sQVvbF9G90
+Sacred Heart,LAMBORGHINI TERZO MILLENNIO,S,0:54.811,https://youtu.be/QupHmh2M1lY?si=g_ary6wsf4A9C9xM&t=428
 Sacred Heart,APOLLO N,B,0:54.938,https://youtu.be/2Z2PsAQ__0k?t=8
 Sacred Heart,LAMBORGHINI HURACAN EVO SPYDER,B,0:55.025,https://youtu.be/nQxfi_y8NV8?si=4wizenmx4hmhnyzq&t=3
 Sacred Heart,PORSCHE 911 GT3 RS,B,0:55.875,https://youtu.be/78ZSKfGLHCM?t=755
@@ -359,6 +369,7 @@ Slippery When Icy,MCLAREN F1 LM,B,1:08.559,https://youtu.be/7sYrutCrX1s?si=jsj6_
 Slippery When Icy,VOLKSWAGEN W12 COUPE,B,1:08.976,https://youtu.be/PiGrGRdIoaE?si=HscJntBj87CCG04-&t=7
 Slippery When Icy,PORSCHE 911 GT3 RS,B,1:09.723,https://youtu.be/nWc_9nILndw?t=19
 Slippery When Icy,LAMBORGHINI HURACAN EVO SPYDER,B,1:10.100,https://youtu.be/F3eczvSsVeo?si=vmJ6pm8P7P-tT8kB&t=189
+Slippery When Icy,ZENVO TSR-S,B,1:10.195,https://youtu.be/6zaorTpR6VY?si=8alM1Xnsvrs_p0xw&t=7
 Slippery When Icy,ASTON MARTIN DBS SUPERLEGGERA,B,1:10.244,https://youtu.be/zEPQl6NrEAA?t=744
 Snow Vault,KOENIGSEGG JESKO,S,0:32.009,https://youtu.be/uycN0IQpw6A?si=i3fb627TOl4_gyP_&t=8
 Snow Vault,SSC TUATARA,S,0:32.518,https://youtu.be/nk9hr_oQMcA?t=7
@@ -386,7 +397,7 @@ Thousand Minarets,LAMBORGHINI HURACAN EVO SPYDER,B,1:12.985,https://youtu.be/ycU
 Thousand Minarets,LAMBORGHINI AVENTADOR J,A,1:13.243,https://youtu.be/BqFkBWmj8nE?si=TRksEX6-HVWO9UcU&t=180
 Thousand Minarets,ASTON MARTIN DBS SUPERLEGGERA,B,1:13.254,https://youtu.be/HQxr5p-jgMc?si=6BeDccEJh9BWAxWq&t=530
 Thousand Minarets,ASTON MARTIN ONE77,B,1:14.045,https://youtu.be/Oyjt3l6oK8E?si=aVAT6Rfu6JytwqB1&t=573
-Thousand Minarets,LAMBORGHINI GALLARDO LP 560-4,C,1:15.195,https://youtu.be/iWOKke7H00U?si=zrQjGLOuA7IPB7hi
+Thousand Minarets,LAMBORGHINI GALLARDO LP 560-4,C,1:15.062,https://youtu.be/CqoAUPRhOEs?si=fr8KgTHtmKtevggL&t=240
 Thousand Minarets,ARRINERA HUSSARYA 33,C,1:15.350,https://streamable.com/v8jpnh
 Thousand Minarets,BUGATTI EB110,C,1:15.371,https://youtu.be/Pvvs-RXVLT0
 Thousand Minarets,MCLAREN GT,C,1:15.430,https://youtu.be/UGo16MfXI_c?si=xQ3kv5aznDhkff1f&t=586

@@ -187,7 +187,7 @@ class warn_before(View):
         else:
             embed_cd_error = discord.Embed(title= '버튼을 마구 누르시면 안 됩니다!', description= f'{round(retry, 1)}초 후에 다시 시도해주세요!', colour= failed)
             await interaction.response.send_message(embed= embed_cd_error, ephemeral= True, delete_after= 5)
-        
+
           
         
     @discord.ui.button(label= '데이터 수정 요청', style= discord.ButtonStyle.green)
