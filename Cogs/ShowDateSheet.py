@@ -13,7 +13,7 @@ log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
 
 
-class date(commands.Cog):
+class ShowDateSheet(commands.Cog):
     def __init__(self, app : commands.Bot):
         self.app = app
     
@@ -47,4 +47,4 @@ class date(commands.Cog):
          
 
 async def setup(app):
-    await app.add_cog(date(app))
+    await app.add_cog(ShowDateSheet(app))

@@ -17,8 +17,7 @@ class Donation(commands.Cog):
     def __init__(self,app : commands.Bot):
         self.app = app
     
-
-      
+  
     @app_commands.command(name="donate", description="봇 개발자에게 따뜻한 캔 커피 하나 값을 후원해주실 수 있으실까요?")
     async def donate(self, interaction : discord.Interaction):
         

@@ -13,7 +13,7 @@ from .utils.embed_log import succeed, failed, etc
 log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
         
-class link(commands.Cog):
+class SendLink(commands.Cog):
     def __init__(self,app : commands.Bot):
         self.app = app
     
@@ -59,4 +59,4 @@ class link(commands.Cog):
                 pass
               
 async def setup(app):
-    await app.add_cog(link(app))
+    await app.add_cog(SendLink(app))

@@ -14,7 +14,7 @@ from .utils.not_here import not_here_return_embed
 log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
 
-class car_hunt(commands.Cog):
+class CarHunt(commands.Cog):
     
     def __init__(self, app : commands.Bot) -> None:
         self.app = app
@@ -25,6 +25,7 @@ class car_hunt(commands.Cog):
     @app_commands.guild_only()
     async def car_hunt_search(self, interaciton : discord.Interaction, car : str):
 
+        # 로그 채널에 명령어 입력 시 실행을 막는 임베드 출력
         if interaciton.channel.id == log_channel or interaciton.channel.id == feedback_log_channel:
             return await not_here_return_embed(interaction= interaciton)
 
@@ -36,11 +37,13 @@ class car_hunt(commands.Cog):
             
             ch = self.app.get_channel(log_channel)
             
-            try:            
+            try:
+                # 입력한 차량명과 일치하는 차량의 인덱스 넘버 변수 선언 
                 CarName_found = car_data.index(car)
             
                 await interaciton.response.send_message(f'```차량 : {car_data[CarName_found]}\n맵 : {map_data[CarName_found]}\n기록 : {lap_time_data[CarName_found]}```\n{link_data[CarName_found]}')
                 
+                # 정상 실행 로그
                 log_embed = discord.Embed(title= '정상 실행', description= f'car hunt', colour= etc)
                 log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
                 log_embed.add_field(name='서버명', value= f'{interaciton.guild.name}', inline= True)
@@ -97,5 +100,5 @@ class car_hunt(commands.Cog):
         return result
 
 async def setup(app):
-    await app.add_cog(car_hunt(app))
+    await app.add_cog(CarHunt(app))
         

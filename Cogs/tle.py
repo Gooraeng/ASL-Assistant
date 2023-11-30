@@ -7,7 +7,7 @@ import numpy
 
 from discord.ext import commands
 from discord import app_commands
-from .utils.manage_tool import TimeLimitedEvent as TimeLE
+from .utils.manage_tool import TimeLimitedEventData as TLED
 from .utils import settings, print_time
 from .utils.embed_log import succeed, failed, etc
 from .utils.not_here import not_here_return_embed
@@ -15,7 +15,7 @@ from .utils.not_here import not_here_return_embed
 log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
 
-class tle(commands.Cog):
+class TLE(commands.Cog):
     def __init__(self, app : commands.Bot):
         self.app = app
     
@@ -24,23 +24,22 @@ class tle(commands.Cog):
     @app_commands.describe(tle_type = '어떤 TLE 타입인가요?', area = '맵을 고르세요!', car_name ='어떤 차량을 찾아보시겠어요?')
     @app_commands.rename(tle_type = '타입', area = '맵', car_name = '차량')
     @app_commands.guild_only()
-    async def TimeLEs(self, interaction: discord.Interaction, tle_type : str, area : str, car_name : str):
+    async def tle(self, interaction: discord.Interaction, tle_type : str, area : str, car_name : str):
         if interaction.channel.id == log_channel or interaction.channel.id == feedback_log_channel:
             return await not_here_return_embed(interaction= interaction)
         
         # ./utils/manage_tool.py 참고
-        tle_data = await TimeLE.type_of_tle()
-        map_data = await TimeLE.Area_db()
-        car_data = await TimeLE.CarName_db()
-        
-        lap_time_data = await TimeLE.LapTime_db()
-        link_data = await TimeLE.Link_db()
+        tle_data = await TLED.type_of_tle()
+        map_data = await TLED.Area_db()
+        car_data = await TLED.CarName_db()
+        lap_time_data = await TLED.LapTime_db()
+        link_data = await TLED.Link_db()
         
         map_arr = numpy.array(map_data)
         car_arr = numpy.array(car_data)
             
-        b = numpy.where(map_arr == area)
-        c = numpy.where(car_arr == car_name)
+        map_arr_where = numpy.where(map_arr == area)
+        car_arr_where = numpy.where(car_arr == car_name)
         
         # 임베드 1 선언 (오류)
         embed1 = discord.Embed(title='어이쿠!', description=f'무언가 잘못되었습니다. 잠시 후에 다시 시도해주세요.',colour=0xff0000)
@@ -61,11 +60,11 @@ class tle(commands.Cog):
         
         
         try:
-            same2 = int(numpy.intersect1d(b, c))
+            same_num_list = int(numpy.intersect1d(map_arr_where, car_arr_where))
             
             # 정상 실행
-            if same2 and (tle_type in set(tle_data)):
-                await interaction.response.send_message(f'```차량 : {car_data[same2]}\n맵 : {map_data[same2]}\n기록 : {lap_time_data[same2]}```\n{link_data[same2]}')
+            if same_num_list and (tle_type in set(tle_data)):
+                await interaction.response.send_message(f'```차량 : {car_data[same_num_list]}\n맵 : {map_data[same_num_list]}\n기록 : {lap_time_data[same_num_list]}```\n{link_data[same_num_list]}')
                 
                 log_embed = discord.Embed(title= '정상 실행', description= f'tle', colour= etc)
                 log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)        
@@ -80,7 +79,7 @@ class tle(commands.Cog):
                 confirm = f"정상 실행 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {tle_type} / {area} / {car_name}"
                 await ch.send(embed= log_embed); print(confirm)
 
-            # 임베드 1 출력
+            # 오류(알맞지 않은 입력) - 임베드 1 출력
             else:
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
                 
@@ -91,7 +90,7 @@ class tle(commands.Cog):
                 print(no_list)
                 print('---------------------------------------') 
         
-        # 오류 관리 - 임베드 1 출력 
+        # 오류(알맞지 않은 입력) - 임베드 1 출력 
         except Exception:
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
             
@@ -102,7 +101,7 @@ class tle(commands.Cog):
             print(no_list)
             print('---------------------------------------') 
             
-    @TimeLEs.autocomplete(name= 'tle_type')
+    @tle.autocomplete(name= 'tle_type')
     async def tle_type_autocompletion(
         self,
         interaciton : discord.Interaction,
@@ -110,7 +109,7 @@ class tle(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 차량 리스트 선언
-        tle_type_data = await TimeLE.type_of_tle()
+        tle_type_data = await TLED.type_of_tle()
         
         tle_type_data.pop(0)
         # 겹치는 TLE Type 리스트가 존재하고, 리스트 검색 시 이를 허용하지 않게 하기 위한
@@ -128,7 +127,7 @@ class tle(commands.Cog):
         return result1
         
     
-    @TimeLEs.autocomplete(name= 'area')
+    @tle.autocomplete(name= 'area')
     async def area_autocompletion(
         self,
         interaction : discord.Interaction,
@@ -136,8 +135,8 @@ class tle(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 리스트 선언
-        tle_type_data = await TimeLE.type_of_tle()
-        map_data = await TimeLE.Area_db()
+        tle_type_data = await TLED.type_of_tle()
+        map_data = await TLED.Area_db()
         
         tle_type_data.pop(0); map_data.pop(0)
         # tle_type_autocompletion을 통해 찾으려는 맵과 관련된 요소를 불러옴.
@@ -168,7 +167,7 @@ class tle(commands.Cog):
             
         return result2
             
-    @TimeLEs.autocomplete(name='car_name')
+    @tle.autocomplete(name='car_name')
     async def car_autocompletion(
         self,
         interaction : discord.Interaction,
@@ -176,9 +175,9 @@ class tle(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         # 리스트 선언
-        tle_type_data = await TimeLE.type_of_tle()
-        map_data = await TimeLE.Area_db()
-        car_data = await TimeLE.CarName_db()
+        tle_type_data = await TLED.type_of_tle()
+        map_data = await TLED.Area_db()
+        car_data = await TLED.CarName_db()
         
         tle_type_data.pop(0); map_data.pop(0); car_data.pop(0)
         # class_autocompletion의 결과와 연동이 어려워 같은 방법 반복
@@ -206,4 +205,4 @@ class tle(commands.Cog):
         
     
 async def setup(app : commands.Bot):
-    await app.add_cog(tle(app))
+    await app.add_cog(TLE(app))

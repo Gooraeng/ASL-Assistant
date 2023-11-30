@@ -15,7 +15,7 @@ from .utils.not_here import not_here_return_embed
 log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
 
-class spec(commands.Cog):
+class CarSpec(commands.Cog):
     def __init__(self, app : commands.Bot):
         self.app = app
     
@@ -33,6 +33,8 @@ class spec(commands.Cog):
         # 조회 불가능 차량 리트를 불러옴
         get_check_list = await manage_tool.check_update()
         
+        ch = self.app.get_channel(log_channel)
+        
         if get_check_list == None:
             get_check_list_ = '없음'
         
@@ -44,11 +46,11 @@ class spec(commands.Cog):
         embed1.add_field(name='',value='All list From "MEI Car list", All images from "A9-Database". Type "Ref" For details. ', inline=False)
         embed1.add_field(name='- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
         
-        # 로그 관리
-        ch = self.app.get_channel(log_channel)
         
+        # 정상 실행 (콘솔)
         confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
         
+        # 오류 임베드
         log_embed_error = discord.Embed(title= '오류', description= f'spec', colour= failed)
         log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
         log_embed_error.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
@@ -60,9 +62,9 @@ class spec(commands.Cog):
         
         # 정상 실행
         try:
-            
             await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
             
+            # 정상 실행 로그
             log_embed = discord.Embed(title= '정상 실행', description= f'spec', colour= etc)
             log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
             log_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
@@ -113,14 +115,17 @@ class spec(commands.Cog):
             else:
                 await interaction.response.defer(ephemeral= True, thinking= True)
                 await asyncio.sleep(5)
-                embed4 = discord.Embed(title='❗오류', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour= failed)
                 
-                await interaction.followup.send('', embed= embed4, ephemeral= True)
+                
+                embed4 = discord.Embed(title='❗오류', description=f'지금은 조회할 수 없습니다! 잠시 후에 다시 시도해주세요.',colour= failed)
+                await interaction.followup.send(embed= embed4, ephemeral= True)
+                
                 failed_read = f"오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보 조회 실패"
                 print(failed_read)
                 
+                gooraeng = self.app.get_user(303915314062557185)
                 log_embed_error.add_field(name='서버 오류로 인한 조회 불가', value= '', inline= False)
-                await ch.send(embed= log_embed_error)
+                await ch.send(f'{gooraeng.mention}',embed= log_embed_error)
                 
             print('---------------------------------------') 
                 
@@ -146,4 +151,4 @@ class spec(commands.Cog):
         return result
 
 async def setup(app):
-    await app.add_cog(spec(app))
+    await app.add_cog(CarSpec(app))

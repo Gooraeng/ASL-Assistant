@@ -15,7 +15,7 @@ from .utils.not_here import not_here_return_embed
 log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
 
-class clash(commands.Cog):
+class Clash(commands.Cog):
     def __init__(self, app : commands.Bot):
         self.app = app
 
@@ -233,6 +233,6 @@ class clash(commands.Cog):
         
     
 async def setup(app: commands.Bot):
-    await app.add_cog(clash(app))
+    await app.add_cog(Clash(app))
     await app.tree.sync(guild = discord.Object(1151082666670706758))
     await app.tree.sync(guild = discord.Object(751643570758484038))

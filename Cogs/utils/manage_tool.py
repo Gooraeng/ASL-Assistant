@@ -75,7 +75,7 @@ class ClubClash:
         return data
 
 # TLE 관리 함수
-class TimeLimitedEvent:                
+class TimeLimitedEventData:                
     async def type_of_tle():
         data  = list()
         f = open('data/TLE DB.csv', "r",encoding='utf-8',newline='')

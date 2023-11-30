@@ -15,7 +15,7 @@ log_channel = int(settings.log_channel)
 
 
 # 명령어 함수 
-class SpawnModal(commands.Cog):
+class Feedback(commands.Cog):
     def __init__(self, app : commands.Bot) :
         self.app = app
 
@@ -273,4 +273,4 @@ class warn_before_asl_assistant_only(View):
 
                           
 async def setup(app : commands.Bot):
-    await app.add_cog(SpawnModal(app))
+    await app.add_cog(Feedback(app))

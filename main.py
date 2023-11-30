@@ -15,7 +15,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.guilds = True
 
-app = commands.Bot(command_prefix="!!",intents=intents)
+app = commands.Bot(command_prefix= "!!", intents= intents)
 discord_api_token = str(settings.discord_api_token)
 
 log_channel = int(settings.log_channel)
