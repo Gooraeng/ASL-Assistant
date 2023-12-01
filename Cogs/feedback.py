@@ -12,7 +12,7 @@ from .utils.not_here import not_here_return_embed
 
 feedback_log_channel = int(settings.feedback_log_channel)
 log_channel = int(settings.log_channel)
-ASL_ASSISTANT_OWNER_ID = 303915314062557185
+
 
 # 명령어 함수 
 class Feedback(commands.Cog):
@@ -104,7 +104,6 @@ class FixModal(Modal, title = '데이터 수정 요청'):
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
         feedback_ch = interaction.client.get_channel(feedback_log_channel)
-        ASL_ASSISTANT_OWNER = interaction.client.get_user(int(ASL_ASSISTANT_OWNER_ID))
         
         embed_sent = discord.Embed(title= '전송 완료', description= '정상적으로 전송이 완료되었습니다!', colour= succeed)
         await interaction.response.send_message(embed= embed_sent, ephemeral= True, delete_after= 10)
@@ -114,7 +113,8 @@ class FixModal(Modal, title = '데이터 수정 요청'):
         embed_problem.add_field(name= '서버명 (ID)', value= f'{interaction.guild.name} ({interaction.guild.id})', inline= True)
         embed_problem.add_field(name= '유저명 (Global)', value= f'{interaction.user.global_name}')
         embed_problem.add_field(name= '문제 묘사', value= self.fix_problem.value, inline= False)
-        await feedback_ch.send(f'{ASL_ASSISTANT_OWNER.mention}',embed= embed_problem)
+        
+        await feedback_ch.send(embed= embed_problem)
         
     
     
@@ -155,7 +155,6 @@ class ReportModal(Modal, title = '봇 작동 신고'):
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
         feedback_ch = interaction.client.get_channel(feedback_log_channel)
-        ASL_ASSISTANT_OWNER = interaction.client.get_user(int(ASL_ASSISTANT_OWNER_ID))
         
         embed_sent = discord.Embed(title= '전송 완료', description= '정상적으로 전송이 완료되었습니다!', colour= succeed)
         await interaction.response.send_message(embed= embed_sent, ephemeral= True, delete_after= 10)
@@ -166,7 +165,7 @@ class ReportModal(Modal, title = '봇 작동 신고'):
         embed_problem.add_field(name= '유저명 (Global)', value= f'{interaction.user.global_name}')
         embed_problem.add_field(name= '세부 설명', value= self.problem.value, inline= False)
         
-        await feedback_ch.send(f'{ASL_ASSISTANT_OWNER.mention}', embed= embed_problem)
+        await feedback_ch.send(embed= embed_problem)
         
         
         
