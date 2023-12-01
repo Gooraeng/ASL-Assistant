@@ -15,7 +15,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.guilds = True
 
-app = commands.Bot(command_prefix="!!",intents=intents)
+app = commands.Bot(command_prefix= "../", intents= intents)
 discord_api_token = str(settings.discord_api_token)
 
 log_channel = int(settings.log_channel)
@@ -149,7 +149,17 @@ async def on_error(error : Exception):
     
     else: raise error
     
-         
+
+@app.command(name= "todo", aliases = ["td", "투두"])
+async def todo(ctx : commands.Context):
+    
+    if ctx.channel.id == 1168905892469682177 and (ctx.author.id == 303915314062557185 or ctx.author.id == 571212273973067786):
+        await ctx.send(f'<#1173249968199438406>')
+    
+    else:
+        await ctx.channel.send('이상하네요, 다시 확인해보세요', delete_after= 5)
+
+        
 def main():
     app.run(discord_api_token)
 
