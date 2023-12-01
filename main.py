@@ -150,14 +150,14 @@ async def on_error(error : Exception):
     else: raise error
     
 
-@app.command(name= "todo", aliases = ["td", "투두"])
-async def todo(ctx : commands.Context):
+@app.command(aliases = ['todo', 'td', '투두'])
+async def to_do(ctx : commands.Context):
     
     if ctx.channel.id == 1168905892469682177 and (ctx.author.id == 303915314062557185 or ctx.author.id == 571212273973067786):
         await ctx.send(f'<#1173249968199438406>')
     
     else:
-        await ctx.channel.send('이상하네요, 다시 확인해보세요', delete_after= 5)
+        await ctx.send('이상하네요, 다시 확인해보세요', delete_after= 5)
 
         
 def main():
