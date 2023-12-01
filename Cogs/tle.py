@@ -75,17 +75,17 @@ class TLE(commands.Cog):
                 log_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
                 log_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
                 log_embed.add_field(name='입력 값' , value= f'{tle_type} / {area} / {car_name}', inline= False)
+                await ch.send(embed= log_embed)
                 
                 confirm = f"정상 실행 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {tle_type} / {area} / {car_name}"
-                await ch.send(embed= log_embed); print(confirm)
+                print(confirm)
 
             # 오류(알맞지 않은 입력) - 임베드 1 출력
             else:
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-                
-                no_list = f"오류 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {tle_type} / {area} / {car_name}"
                 await ch.send(embed = log_embed_error)
                 
+                no_list = f"오류 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {tle_type} / {area} / {car_name}"
                 print('---------------------------------------') 
                 print(no_list)
                 print('---------------------------------------') 
@@ -93,13 +93,13 @@ class TLE(commands.Cog):
         # 오류(알맞지 않은 입력) - 임베드 1 출력 
         except Exception:
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
-            
-            no_list = f"오류 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {tle_type} / {area} / {car_name}"
             await ch.send(embed = log_embed_error)
             
+            no_list = f"오류 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {tle_type} / {area} / {car_name}"
             print('---------------------------------------')
             print(no_list)
             print('---------------------------------------') 
+
             
     @tle.autocomplete(name= 'tle_type')
     async def tle_type_autocompletion(
@@ -147,15 +147,13 @@ class TLE(commands.Cog):
         # 검색된 맵의 행들을 인덱스로 가지는 리스트를 선언함
         # 이 때, map_data와 aa의 value가 일치하도록 필터링 (aa[0])
         rest_list = list(filter(lambda x: tle_type_data[x] == str(aa[0]), range(len(tle_type_data))))
-        
-          
+           
         emp_list = list()
         for i in range(len(rest_list)):
             emp_list.append(map_data[rest_list[i]])
         
         # emp_list 내 존재하는 중복 요소 제거
         filetered = list(set(emp_list))
-        
         
         result2 = [
             app_commands.Choice(name=choice,value=choice)
@@ -166,6 +164,7 @@ class TLE(commands.Cog):
             result2 = result2[:25]
             
         return result2
+
             
     @tle.autocomplete(name='car_name')
     async def car_autocompletion(
@@ -183,8 +182,7 @@ class TLE(commands.Cog):
         # class_autocompletion의 결과와 연동이 어려워 같은 방법 반복
         aa = list(interaction.namespace.__dict__.values())
         rest_list_1 = list(filter(lambda x: tle_type_data[x] == str(aa[0]), range(len(tle_type_data))))
-        
-        
+         
         emp_list_1 = list(); emp_list_2 = list()
         
         for i in range(len(rest_list_1)):
@@ -203,6 +201,7 @@ class TLE(commands.Cog):
             
         return result3
         
+
     
 async def setup(app : commands.Bot):
     await app.add_cog(TLE(app))

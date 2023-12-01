@@ -57,7 +57,7 @@ class Clash(commands.Cog):
         log_embed_error.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
          
         # veri - asl assistant or asl assistant
-        if interaction.channel.id == 1158477800504836147 or interaction.channel.id == 1158749682642714695:
+        if interaction.channel.id == 1158477800504836147 or interaction.channel.id == 1158749682642714695 or interaction.channel.id == 1168905892469682177:
             same2 = int(numpy.intersect1d(area_search, car_name_search))
             
             try:
@@ -230,8 +230,7 @@ class Clash(commands.Cog):
         return result3
     
     
-        
-    
+            
 async def setup(app: commands.Bot):
     await app.add_cog(Clash(app))
     await app.tree.sync(guild = discord.Object(1151082666670706758))

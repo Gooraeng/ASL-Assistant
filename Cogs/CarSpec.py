@@ -46,7 +46,6 @@ class CarSpec(commands.Cog):
         embed1.add_field(name='',value='All list From "MEI Car list", All images from "A9-Database". Type "Ref" For details. ', inline=False)
         embed1.add_field(name='- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
         
-        
         # 정상 실행 (콘솔)
         confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
         
@@ -136,7 +135,6 @@ class CarSpec(commands.Cog):
         current : str,
     ) -> typing.List[app_commands.Choice[str]]:
     
-
         new_data = await AC.utilize_list()
         
         result = [
@@ -149,6 +147,8 @@ class CarSpec(commands.Cog):
             result = result[:10]
                 
         return result
+
+
 
 async def setup(app):
     await app.add_cog(CarSpec(app))

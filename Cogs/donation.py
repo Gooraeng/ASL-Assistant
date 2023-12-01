@@ -39,6 +39,7 @@ class Donation(commands.Cog):
         
         await ch.send(embed = no_variable_embed)
         confirm = f"정상 실행 > {await print_time.get_UTC()} > donate > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm)
+
             
     @donate.error
     async def donate_error(self, interaction : discord.Interaction, error : app_commands.AppCommandError):
@@ -56,6 +57,8 @@ class Donation(commands.Cog):
                 confirm = f"정상 실행 > {await print_time.get_UTC()} > donate > 서버: - > 채널 : DM ({interaction.channel.id}) > 실행자: {interaction.user.display_name}" ; print(confirm)
             else:
                 pass
+
+
               
 async def setup(app : commands.Bot):
     await app.add_cog(Donation(app))

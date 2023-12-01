@@ -41,10 +41,11 @@ class ShowDateSheet(commands.Cog):
             no_variable_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
             no_variable_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
             no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
-            
             await ch.send(embed = no_variable_embed)
+            
             confirm = f"정상 실행 > {await print_time.get_UTC()} > date > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm)
          
+
 
 async def setup(app):
     await app.add_cog(ShowDateSheet(app))

@@ -15,47 +15,50 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.guilds = True
 
-app = commands.Bot(command_prefix= "!!", intents= intents)
+app = commands.Bot(command_prefix="!!",intents=intents)
 discord_api_token = str(settings.discord_api_token)
 
 log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
 
 
-
-# 확장 기능(명령어) 로드
-async def load_extensions():
+# ASL ASSISTANT load extention
+@app.event
+async def setup_hook():
+    print(f"{app.user.name} 준비 중")
+    
     for filename in os.listdir("Cogs"):
         if filename.endswith(".py"):
             try:
                 await app.load_extension(f"Cogs.{filename[:-3]}")            
-# 오류 처리
+            # 오류 처리
             except (commands.NoEntryPointError, commands.ExtensionFailed) as e:
                 print(f"파일 오류 발생 : {filename}")
                 print(e)
+                
             except commands.ExtensionNotFound:
                 print(f"{filename[:-3]} 파일이 존재하지 않습니다.")
+                
             except commands.ExtensionAlreadyLoaded:
-                print(f"{filename[:-3]} 이(가) 이미 로드되었습니다.")
-       
-# 봇 이벤트
-@app.event
-async def on_ready():
+                print(f"{filename[:-3]} 이(가) 이미 로드되었습니다.")    
     
-    ch = app.get_channel(log_channel)
-       
-    print(f"{app.user.name} 준비 중")
-    
-    await load_extensions()
-    synced = await app.tree.sync()
-    print(f"명령어 {len(synced)}개 사용 가능")   
-    
-    current_status = discord.Game(name= 'ASL에 정보제공')
-    await app.change_presence(status= discord.Status.online, activity= current_status)
     await pt.get_UTC()
     print('---------------------------------------')
     await mt.print_CP()
     print('---------------------------------------') 
+    
+    synced = await app.tree.sync()
+    print(f"명령어 {len(synced)}개 사용 가능")             
+                  
+
+# ASL ASSISTANT 준비 완료 상태
+@app.event
+async def on_ready():
+    ch = app.get_channel(log_channel)
+   
+    current_status = discord.Game(name= 'ASL에 정보제공')
+    await app.change_presence(status= discord.Status.online, activity= current_status)
+    
     print(f"{app.user.name}이(가) 준비되었습니다!")
     
     try:        
@@ -71,11 +74,10 @@ async def on_ready():
             
             print(e)
 
-   
-        
+
+# 메세지 전송 이벤트 처리    
 @app.event
 async def on_message(ctx : discord.Message) -> None:
-    
     if ctx.author.bot == True:
         pass
     
@@ -85,7 +87,8 @@ async def on_message(ctx : discord.Message) -> None:
             await ctx.delete()
             await ctx.channel.send(embed= not_here_embed, delete_after= 5, mention_author= True)
 
-            
+
+# 서버 입장 이벤트 
 @app.event
 async def on_guild_join(guild):
     ch = app.get_channel(log_channel)
@@ -101,6 +104,7 @@ async def on_guild_join(guild):
     print('---------------------------------------')
 
 
+# 서버 퇴장 이벤트
 @app.event
 async def on_guild_remove(guild):       
     ch = app.get_channel(log_channel)
@@ -119,7 +123,7 @@ async def on_guild_remove(guild):
 # 커맨드 에러 관리
 @app.event
 async def on_command_error(interaction : discord.Interaction, error):
-    # 존재하지 않는 명령어 에러처리
+    # 존재하지 않는 명령어
     if isinstance(error, commands.CommandNotFound):
         embed = discord.Embed(title="오류",description="존재하지 않는 명령어입니다.",colour= failed)
         await interaction.response.send_message("", embed=embed, ephemeral=True, delete_after= 5) 
@@ -133,33 +137,22 @@ async def on_command_error(interaction : discord.Interaction, error):
 
 # 연결 에러 처리
 @app.event
-async def on_error(interaciton : discord.Interaction, error : Exception):
-    ch = app.get_channel(log_channel)
-    bot_developer = app.get_user(303915314062557185)
-    
+async def on_error(error : Exception):    
     if isinstance(error, discord.ConnectionClosed):
-        error_embed1 = discord.Embed(title= '에러 발생', description= f'{pt.get_UTC()}', colour= failed)
-        error_embed1.add_field(name= '사유', value= f'discord.ConnectionClosed / Koyeb 확인 요망')
-        
-        await ch.send(content= f'{bot_developer.mention}', embed= error_embed1); return await app.connect(reconnect= True)
+        print(error); return await app.connect(reconnect= True)
     
     if isinstance(error, discord.DiscordServerError):
-        error_embed2 = discord.Embed(title= '에러 발생', description= f'{pt.get_UTC()}', colour= failed)
-        error_embed2.add_field(name= '사유', value= f'discord.DiscordServerError / 재연결 시도')
-        
-        await ch.send(embed= error_embed2); return await app.connect(reconnect= True)
+        print(error); return await app.connect(reconnect= True)
     
     if isinstance(error, discord.GatewayNotFound):
-        error_embed3 = discord.Embed(title= '에러 발생', description= f'{pt.get_UTC()}', colour= failed)
-        error_embed3.add_field(name= '사유', value= f'discord.GatewayNotFound 에러')
-        await ch.send(embed= error_embed3); return await app.connect(reconnect= True)
+        print(error); return await app.connect(reconnect= True)
     
     else: raise error
     
-
          
 def main():
     app.run(discord_api_token)
+
 
 # 메인 실행
 if __name__ == '__main__':

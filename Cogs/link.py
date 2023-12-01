@@ -18,7 +18,6 @@ class SendLink(commands.Cog):
         self.app = app
     
 
-      
     @app_commands.command(name="link",description="봇 서버 링크를 알 수 있습니다!")
     async def link(self, interaction : discord.Interaction):
         
@@ -40,6 +39,7 @@ class SendLink(commands.Cog):
         
         await ch.send(embed = no_variable_embed)
         confirm = f"정상 실행 > {await print_time.get_UTC()} > link > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm)
+
             
     @link.error
     async def link_error(self, interaction : discord.Interaction, error : app_commands.AppCommandError):
@@ -57,6 +57,8 @@ class SendLink(commands.Cog):
                 confirm = f"정상 실행 > {await print_time.get_UTC()} > link > 서버: - > 채널 : DM ({interaction.channel.id}) > 실행자: {interaction.user.display_name}" ; print(confirm)
             else:
                 pass
+
+
               
 async def setup(app):
     await app.add_cog(SendLink(app))
