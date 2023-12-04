@@ -14,6 +14,7 @@ from .utils.not_here import not_here_return_embed
 log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
 
+
 class CarHunt(commands.Cog):
     def __init__(self, app : commands.Bot) -> None:
         self.app = app

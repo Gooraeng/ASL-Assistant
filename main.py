@@ -55,14 +55,13 @@ async def setup_hook():
 @app.event
 async def on_ready():
     ch = app.get_channel(log_channel)
-   
     current_status = discord.Game(name= 'ASL에 정보제공')
     await app.change_presence(status= discord.Status.online, activity= current_status)
     
     print(f"{app.user.name}이(가) 준비되었습니다!")
     
     try:        
-        if app.is_ready() :   
+        if app.is_ready() :
             ready_embed = discord.Embed(title= f'{app.user.name} 작동 시작' , description= f'{await pt.get_UTC()} (UTC)', colour= succeed)
             await ch.send(embed= ready_embed)
         
