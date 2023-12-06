@@ -77,15 +77,12 @@ async def on_ready():
 # 메세지 전송 이벤트 처리    
 @app.event
 async def on_message(ctx : discord.Message) -> None:
-  
-    if ctx.channel.id == log_channel or ctx.channel.id == feedback_log_channel:
-        if ctx.author.bot == True:
-            pass
+    
+    if (ctx.channel.id == log_channel or ctx.channel.id == feedback_log_channel) and ctx.author.bot == False:
         
-        else:
-            not_here_embed = discord.Embed(title= '여기는 로그가 남는 채널입니다', description= f'5초 후에 지워집니다.', colour= 0xfe7866)
-            await ctx.delete()
-            await ctx.channel.send(embed= not_here_embed, delete_after= 5, mention_author= True)
+        not_here_embed = discord.Embed(title= '여기는 로그가 남는 채널입니다', description= f'5초 후에 지워집니다.', colour= 0xfe7866)
+        await ctx.delete()
+        await ctx.channel.send(embed= not_here_embed, delete_after= 5, mention_author= True)
 
     else:
         pass
@@ -149,6 +146,10 @@ async def on_error(error : Exception):
     
     if isinstance(error, discord.GatewayNotFound):
         print(error); return await app.connect(reconnect= True)
+        
+    if isinstance(error, discord.RateLimited):
+        print(error); print('오류로 연결 차단')
+        return await app.connect(reconnect= False)
     
     else: raise error
     
