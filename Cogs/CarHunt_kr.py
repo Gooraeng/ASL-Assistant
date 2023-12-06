@@ -46,7 +46,7 @@ class CarHunt(commands.Cog):
                 await interaciton.response.send_message(f'```차량 : {car_data[CarName_found]}\n맵 : {map_data[CarName_found]}\n기록 : {lap_time_data[CarName_found]}```\n{link_data[CarName_found]}')
                 
                 # 정상 실행 로그
-                log_embed = discord.Embed(title= '정상 실행', description= f'car hunt', colour= etc)
+                log_embed = discord.Embed(title= '정상 실행', description= f'카헌트', colour= etc)
                 log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
                 log_embed.add_field(name='서버명', value= f'{interaciton.guild.name}', inline= True)
                 log_embed.add_field(name='채널명', value= f'{interaciton.channel.name}', inline= True)
@@ -57,7 +57,7 @@ class CarHunt(commands.Cog):
                 log_embed.add_field(name='입력 값' , value= f'{car}', inline= False)
                 await ch.send(embed= log_embed)    
                 
-                confirm = f"정상 실행 > {await print_time.get_UTC()} > car-hunt > 서버: {interaciton.guild.name} > 채널 : {interaciton.channel.name} > 실행자: {interaciton.user.display_name} > 검색 차량 : {car}"
+                confirm = f"정상 실행 > {await print_time.get_UTC()} > 카헌트 > 서버: {interaciton.guild.name} > 채널 : {interaciton.channel.name} > 실행자: {interaciton.user.display_name} > 검색 차량 : {car}"
                 print(confirm)
             
             except Exception:
@@ -67,7 +67,7 @@ class CarHunt(commands.Cog):
                 
                 await interaciton.response.send_message('', embed= embed1, ephemeral= True, delete_after=20)
             
-                log_embed_error = discord.Embed(title= '오류', description= f'car hunt', colour= failed)
+                log_embed_error = discord.Embed(title= '오류', description= f'카헌트', colour= failed)
                 log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
                 log_embed_error.add_field(name='서버명', value= f'{interaciton.guild.name}', inline= True)
                 log_embed_error.add_field(name='채널명', value= f'{interaciton.channel.name}', inline= True)
@@ -78,7 +78,7 @@ class CarHunt(commands.Cog):
                 log_embed_error.add_field(name='리스트에 없는 값 입력' , value= f'{car}', inline= False)
                 await ch.send(embed= log_embed_error)
                 
-                no_list = f"오류 > {await print_time.get_UTC()} > car-hunt > 서버: {interaciton.guild.name} > 채널 : {interaciton.channel.name} > 실행자: {interaciton.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {car}"
+                no_list = f"오류 > {await print_time.get_UTC()} > 카헌트 > 서버: {interaciton.guild.name} > 채널 : {interaciton.channel.name} > 실행자: {interaciton.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {car}"
                 print('---------------------------------------') 
                 print(no_list)
                 print('---------------------------------------')

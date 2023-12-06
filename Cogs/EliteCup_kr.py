@@ -48,7 +48,7 @@ class ElitecupKR(commands.Cog):
         
         ch = self.app.get_channel(log_channel)        
         
-        log_embed_error = discord.Embed(title= '오류', description= f'tle', colour= failed)
+        log_embed_error = discord.Embed(title= '오류', description= f'엘리트', colour= failed)
         log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
         log_embed_error.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
         log_embed_error.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
@@ -77,7 +77,7 @@ class ElitecupKR(commands.Cog):
                 log_embed.add_field(name='입력 값' , value= f'{class_type} / {area} / {car_name}', inline= False)
                 await ch.send(embed= log_embed)
                 
-                confirm = f"정상 실행 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {class_type} / {area} / {car_name}"
+                confirm = f"정상 실행 > {await print_time.get_UTC()} > 엘리트 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {class_type} / {area} / {car_name}"
                 print(confirm)
 
             # 오류(알맞지 않은 입력) - 임베드 1 출력
@@ -85,7 +85,7 @@ class ElitecupKR(commands.Cog):
                 await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
                 await ch.send(embed = log_embed_error)
                 
-                no_list = f"오류 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {class_type} / {area} / {car_name}"
+                no_list = f"오류 > {await print_time.get_UTC()} > 엘리트 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {class_type} / {area} / {car_name}"
                 print('---------------------------------------') 
                 print(no_list)
                 print('---------------------------------------') 
@@ -95,7 +95,7 @@ class ElitecupKR(commands.Cog):
             await interaction.response.send_message('', embed= embed1, ephemeral= True, delete_after=10)
             await ch.send(embed = log_embed_error)
             
-            no_list = f"오류 > {await print_time.get_UTC()} > tle > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {class_type} / {area} / {car_name}"
+            no_list = f"오류 > {await print_time.get_UTC()} > 엘리트 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {class_type} / {area} / {car_name}"
             print('---------------------------------------')
             print(no_list)
             print('---------------------------------------') 
