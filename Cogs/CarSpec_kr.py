@@ -21,11 +21,11 @@ class CarSpec(commands.Cog):
     
     
     # 명령어 설명
-    @app_commands.command(name='spec', description='차량의 성능을 확인합니다! 이 기능은 외부 데이터에 의해 작동되므로 언제든지 비활성화 될 수 있습니다.')
-    @app_commands.describe(car_name='차량 성능 확인')
-    @app_commands.rename(car_name='car')
+    @app_commands.command(name='스펙', description='차량의 성능을 확인합니다!')
+    @app_commands.describe(car= '차량 성능 확인')
+    @app_commands.rename(car='차량')
     @app_commands.guild_only()
-    async def car(self, interaction : discord.Interaction, car_name : str):
+    async def car(self, interaction : discord.Interaction, car : str):
         
         if interaction.channel.id == log_channel or interaction.channel.id == feedback_log_channel:
             return await not_here_return_embed(interaction= interaction)
@@ -43,11 +43,11 @@ class CarSpec(commands.Cog):
         
         # 정상 실행 임베드 생성
         embed1 = discord.Embed(title='⚠️주의', description=f'정보가 누락되거나 정확하지 않을 수 있습니다. 문제 발견 시 **/feedback**을 통해 신고해주십시오!', colour=0x7fe6e4)
-        embed1.add_field(name='',value='All list From "MEI Car list", All images from "A9-Database". Type "Ref" For details. ', inline=False)
+        embed1.add_field(name='',value='모든 이미지의 출처는 "A9-Database" 디스코드 서버입니다.', inline=False)
         embed1.add_field(name='- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
         
         # 정상 실행 (콘솔)
-        confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car_name}"
+        confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car}"
         
         # 오류 임베드
         log_embed_error = discord.Embed(title= '오류', description= f'spec', colour= failed)
@@ -61,7 +61,7 @@ class CarSpec(commands.Cog):
         
         # 정상 실행
         try:
-            await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car_name}.png'),ephemeral=True)
+            await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car}.png'),ephemeral=True)
             
             # 정상 실행 로그
             log_embed = discord.Embed(title= '정상 실행', description= f'spec', colour= etc)
@@ -72,7 +72,7 @@ class CarSpec(commands.Cog):
             log_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
             log_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
             log_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
-            log_embed.add_field(name='입력 값' , value= f'{car_name}', inline= False)
+            log_embed.add_field(name='입력 값' , value= f'{car}', inline= False)
                 
             print(confirm)
             await ch.send(embed= log_embed)
@@ -84,16 +84,16 @@ class CarSpec(commands.Cog):
             
             if FileNotFoundError:
                 # 리스트 상으로는 존재하나 세부 정보가 없는 차량명 출력
-                if car_name in get_check_list:
-                    embed2 = discord.Embed(title= '❗오류', description= f'< {car_name} >의 정보가 현재 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!', colour= failed)
+                if car in get_check_list:
+                    embed2 = discord.Embed(title= '❗오류', description= f'< {car} >의 정보가 현재 없습니다. 조회 불가능한 차량 리스트를 보고 다시 시도해주세요!', colour= failed)
                     embed2.add_field(name= '- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
                     embed2.add_field(name= '', value='**<경고>** 이 메세지는 20초 뒤에 지워집니다!', inline=False)
                     
                     await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=20)
                     
-                    no_data = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car_name} " 검색'
+                    no_data = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car} " 검색'
                     print(no_data)
-                    log_embed_error.add_field(name= '세부 정보가 없는 차량 입력', value= f'{car_name}', inline= False)
+                    log_embed_error.add_field(name= '세부 정보가 없는 차량 입력', value= f'{car}', inline= False)
         
                     await ch.send(embed= log_embed_error)
                 
@@ -104,10 +104,10 @@ class CarSpec(commands.Cog):
                     
                     await interaction.response.send_message('', embed= embed3, ephemeral= True, delete_after=10)
                     
-                    no_list = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car_name} " 입력'
+                    no_list = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car} " 입력'
                     print(no_list)
                     
-                    log_embed_error.add_field(name= '리스트에 없는 차량명 입력', value= f'{car_name}', inline= False)
+                    log_embed_error.add_field(name= '리스트에 없는 차량명 입력', value= f'{car}', inline= False)
                     await ch.send(embed= log_embed_error)
 
             # 기타 오류
@@ -129,7 +129,7 @@ class CarSpec(commands.Cog):
             print('---------------------------------------') 
                 
     # 리스트 자동 완성 
-    @car.autocomplete("car_name")
+    @car.autocomplete("car")
     async def car_autocompletion(self,
         interaction : discord.Interaction,
         current : str,

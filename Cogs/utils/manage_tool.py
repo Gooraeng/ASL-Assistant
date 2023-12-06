@@ -74,8 +74,108 @@ class ClubClash:
         f.close()
         return data
 
+
+
+# WeeklyCompetition 관리 함수
+class WeeklyCompetition:
+    async def Area_db():
+        data  = list()
+        f = open('data/WeeklyCompetition DB.csv', "r" ,encoding= 'utf-8',newline= '')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[0])
+        f.close()
+        return data
+ 
+    
+    async def CarName_db():
+        data  = list()
+        f = open('data/WeeklyCompetition DB.csv', "r" ,encoding= 'utf-8',newline= '')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[1])
+        f.close()
+        return data
+
+    
+    async def LapTime_db():
+        data  = list()
+        f = open('data/WeeklyCompetition DB.csv', "r" ,encoding= 'utf-8',newline= '')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[3])
+        f.close()
+        return data
+ 
+    
+    async def Link_db():
+        data  = list()
+        f = open('data/WeeklyCompetition DB.csv', "r" ,encoding= 'utf-8',newline= '')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[4])
+        f.close()
+        return data
+
+
+
+# EliteCup 관리 함수
+class EliteCup:
+    async def Class_db():
+        data  = list()
+        f = open('data/EliteCup DB.csv', "r" ,encoding= 'utf-8',newline= '')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[0])
+        f.close()
+        return data
+    
+    
+    async def Area_db():
+        data  = list()
+        f = open('data/EliteCup DB.csv', "r" ,encoding= 'utf-8',newline= '')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[1])
+        f.close()
+        return data
+    
+    
+    async def CarName_db():
+        data  = list()
+        f = open('data/EliteCup DB.csv', "r" ,encoding= 'utf-8',newline= '')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[2])
+        f.close()
+        return data
+    
+    
+    async def LapTime_db():
+        data  = list()
+        f = open('data/EliteCup DB.csv', "r" ,encoding= 'utf-8',newline= '')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[3])
+        f.close()
+        return data
+    
+    
+    async def Link_db():
+        data  = list()
+        f = open('data/EliteCup DB.csv', "r" ,encoding= 'utf-8',newline= '')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[4])
+        f.close()
+        return data
+    
+    
+        
 # TLE 관리 함수
-class TimeLimitedEventData:                
+class TimeLimitedEventData:
+    
+    # EN 
     async def type_of_tle():
         data  = list()
         f = open('data/TLE DB.csv', "r",encoding='utf-8',newline='')
@@ -84,6 +184,7 @@ class TimeLimitedEventData:
             data.append(row[0])
         f.close()
         return data
+
 
     async def Area_db():
         data = list()
@@ -94,6 +195,7 @@ class TimeLimitedEventData:
         f.close()
         return data
 
+
     async def CarName_db():
         data = list()
         f = open('data/TLE DB.csv', "r",encoding='utf-8',newline='')
@@ -102,6 +204,7 @@ class TimeLimitedEventData:
             data.append(row[2])
         f.close()
         return data
+
         
     async def LapTime_db():
         data = list()
@@ -111,6 +214,7 @@ class TimeLimitedEventData:
             data.append(row[4])
         f.close()
         return data
+
         
     async def Link_db():
         data = list()
@@ -120,6 +224,8 @@ class TimeLimitedEventData:
             data.append(row[5])
         f.close()
         return data
+
+
 
 # carhunt 관리 함수
 class CarhuntRiot:                
@@ -131,6 +237,7 @@ class CarhuntRiot:
             data.append(row[0])
         f.close()
         return data
+ 
     
     async def Area_db():
         data = list()
@@ -140,6 +247,7 @@ class CarhuntRiot:
             data.append(row[1])
         f.close()
         return data
+
         
     async def LapTime_db():
         data = list()
@@ -149,6 +257,7 @@ class CarhuntRiot:
             data.append(row[3])
         f.close()
         return data
+
         
     async def Link_db():
         data = list()
@@ -158,6 +267,8 @@ class CarhuntRiot:
             data.append(row[4])
         f.close()
         return data
+
+
     
 # 업데이트 확인 > car_spec에 활용
 async def check_update():
@@ -170,6 +281,7 @@ async def check_update():
         return check_new == None
     else:
         return check_new
+
 
 
 # 업데이트 확인 > 최초 실행 시 콘솔에 출력

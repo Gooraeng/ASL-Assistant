@@ -18,7 +18,7 @@ class Donation(commands.Cog):
         self.app = app
     
   
-    @app_commands.command(name="donate", description="봇 개발자에게 따뜻한 캔 커피 하나 값을 후원해주실 수 있으실까요?")
+    @app_commands.command(name="후원", description="봇 개발자에게 따뜻한 캔 커피 하나 값을 후원해주실 수 있으실까요?")
     async def donate(self, interaction : discord.Interaction):
         
         if interaction.channel.id == log_channel or interaction.channel.id == feedback_log_channel:

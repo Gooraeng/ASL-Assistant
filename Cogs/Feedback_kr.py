@@ -20,7 +20,7 @@ class Feedback(commands.Cog):
         self.app = app
 
          
-    @app_commands.command(name= 'feedback', description= '뭔가 피드백을 남기고 싶은 게 있나요?')
+    @app_commands.command(name= '피드백', description= '뭔가 피드백을 남기고 싶은 게 있나요?')
     @app_commands.checks.cooldown(1, 30, key= lambda i :(i.guild_id, i.user.id))
     @app_commands.guild_only()
     async def warn_spawnmodal(self, interaction : discord.Interaction):

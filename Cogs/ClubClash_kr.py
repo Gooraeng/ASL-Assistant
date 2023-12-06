@@ -20,7 +20,7 @@ class Clash(commands.Cog):
         self.app = app
 
     
-    @app_commands.command(name='clash', description='클럽 클래시 지역의 맵의 레퍼런스를 확인할 수 있습니다!')
+    @app_commands.command(name='클크', description='클럽 클래시 지역의 맵의 레퍼런스를 확인할 수 있습니다!')
     @app_commands.describe(area = '찾고자 하는 맵을 찾아보세요!', car_class = '클래스를 선택하세요', car_name ='어떤 차량을 찾아보시겠어요?')
     @app_commands.rename(area = '맵', car_class = '클래스', car_name = '차량')
     @app_commands.guilds(751643570758484038, 1151082666670706758)

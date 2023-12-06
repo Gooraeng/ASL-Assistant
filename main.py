@@ -77,14 +77,13 @@ async def on_ready():
 # 메세지 전송 이벤트 처리    
 @app.event
 async def on_message(ctx : discord.Message) -> None:
-    if ctx.author.bot == True:
-        pass
-    
+    if ctx.channel.id == log_channel or ctx.channel.id == feedback_log_channel:
+        not_here_embed = discord.Embed(title= '여기는 로그가 남는 채널입니다', description= f'5초 후에 지워집니다.', colour= 0xfe7866)
+        await ctx.delete()
+        await ctx.channel.send(embed= not_here_embed, delete_after= 5, mention_author= True)
+
     else:
-        if ctx.channel.id == log_channel or ctx.channel.id == feedback_log_channel:
-            not_here_embed = discord.Embed(title= '여기는 로그가 남는 채널입니다', description= f'5초 후에 지워집니다.', colour= 0xfe7866)
-            await ctx.delete()
-            await ctx.channel.send(embed= not_here_embed, delete_after= 5, mention_author= True)
+        pass
 
 
 # 서버 입장 이벤트 
@@ -148,15 +147,6 @@ async def on_error(error : Exception):
     
     else: raise error
     
-
-@app.command(aliases = ['todo', 'td', '투두'])
-async def to_do(ctx : commands.Context):
-    
-    if ctx.channel.id == 1168905892469682177 and (ctx.author.id == 303915314062557185 or ctx.author.id == 571212273973067786):
-        await ctx.send(f'<#1173249968199438406>')
-    
-    else:
-        await ctx.send('이상하네요, 다시 확인해보세요', delete_after= 5)
 
         
 def main():

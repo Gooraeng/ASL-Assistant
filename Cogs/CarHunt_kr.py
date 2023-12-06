@@ -20,8 +20,9 @@ class CarHunt(commands.Cog):
         self.app = app
     
     
-    @app_commands.command(name='car-hunt', description= '카헌트 영상을 보여줍니다!')
+    @app_commands.command(name='카헌트', description= '카헌트 영상을 보여줍니다!')
     @app_commands.describe(car = '어떤 차량을 고르시나요?')
+    @app_commands.rename(car = '차량')
     @app_commands.guild_only()
     async def car_hunt_search(self, interaciton : discord.Interaction, car : str):
 

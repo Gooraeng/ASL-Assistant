@@ -18,7 +18,7 @@ class ShowDateSheet(commands.Cog):
         self.app = app
     
     
-    @app_commands.command(name='date', description='향후 일정을 확인하실 수 있습니다!')
+    @app_commands.command(name= '일정', description= '향후 일정을 확인하실 수 있습니다!')
     @app_commands.guild_only()
     async def show_date(self, interaction : discord.Interaction):
         
