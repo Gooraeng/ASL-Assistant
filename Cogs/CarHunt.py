@@ -7,7 +7,7 @@ import typing
 from discord.ext import commands
 from discord import app_commands
 from .utils import settings, print_time
-from .utils.manage_tool import CarhuntRiot as CR
+from utils.manage_tool import CarhuntRiot as CR
 from .utils.embed_log import succeed, failed, etc
 from .utils.not_here import not_here_return_embed
 
@@ -91,6 +91,7 @@ class CarHunt(commands.Cog):
     ) -> typing.List[app_commands.Choice[str]]:
         
         car_name = await CR.CarName_db()
+        car_name.pop(0)
         
         result = [
             app_commands.Choice(name= choice, value= choice)
