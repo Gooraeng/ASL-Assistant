@@ -127,19 +127,21 @@ class CarSpec(commands.Cog):
                 await ch.send(f'{gooraeng.mention}',embed= log_embed_error)
                 
             print('---------------------------------------') 
+
                 
     # 리스트 자동 완성 
     @car.autocomplete("car")
-    async def car_autocompletion(self,
+    async def car_autocompletion(
+        self,
         interaction : discord.Interaction,
         current : str,
     ) -> typing.List[app_commands.Choice[str]]:
     
-        new_data = await AC.utilize_list()
+        car_list = await AC.utilize_list()
         
         result = [
             app_commands.Choice(name= choice, value= choice)
-            for choice in new_data if current.lower() in choice.lower()
+            for choice in car_list if current.lower() in choice.lower()
         ]
         
         # Choice 갯수가 10개 초과 시 최대로 보여주는 Choice 수를 10개 까지로 제한

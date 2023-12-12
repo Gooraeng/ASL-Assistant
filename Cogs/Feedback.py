@@ -155,6 +155,7 @@ class ReportModal(Modal, title = '봇 작동 신고'):
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
         feedback_ch = interaction.client.get_channel(feedback_log_channel)
+        gooraeng = interaction.client.get_user(303915314062557185)
         
         embed_sent = discord.Embed(title= '전송 완료', description= '정상적으로 전송이 완료되었습니다!', colour= succeed)
         await interaction.response.send_message(embed= embed_sent, ephemeral= True, delete_after= 10)
@@ -165,7 +166,8 @@ class ReportModal(Modal, title = '봇 작동 신고'):
         embed_problem.add_field(name= '유저명 (Global)', value= f'{interaction.user.global_name}')
         embed_problem.add_field(name= '세부 설명', value= self.problem.value, inline= False)
         
-        await feedback_ch.send(embed= embed_problem)
+        
+        await feedback_ch.send(f'{gooraeng.mention}', embed= embed_problem)
         
         
         

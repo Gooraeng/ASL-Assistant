@@ -17,6 +17,7 @@ car_list_renew.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 Cogs/__pycache__/
+temp_cog/
 Cogs/utils/__pycache__/
 *.py[cod]
 icons/

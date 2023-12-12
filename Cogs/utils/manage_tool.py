@@ -269,7 +269,49 @@ class CarhuntRiot:
         return data
 
 
+
+class Specialevent:
+    async def CarName_db():
+        data = list()
+        f = open('data/SpecialEvent DB.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[0])
+        f.close()
+        return data
+ 
     
+    async def Area_db():
+        data = list()
+        f = open('data/SpecialEvent DB.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[1])
+        f.close()
+        return data
+
+        
+    async def LapTime_db():
+        data = list()
+        f = open('data/SpecialEvent DB.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[3])
+        f.close()
+        return data
+
+        
+    async def Link_db():
+        data = list()
+        f = open('data/SpecialEvent DB.csv', "r",encoding='utf-8',newline='')
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[4])
+        f.close()
+        return data
+
+
+
 # 업데이트 확인 > car_spec에 활용
 async def check_update():
     data_csv = await AboutCar.utilize_list() 
