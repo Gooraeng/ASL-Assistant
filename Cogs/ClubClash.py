@@ -100,7 +100,7 @@ class Clash(commands.Cog):
                 
                 log_embed_error.add_field(name= f'리스트에 없는 값 입력 ({e})' , value= f'{area} / {car_class} / {car_name}', inline= False)
         
-                no_list = f"오류 > {await print_time.get_UTC()} > clash > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
+                no_list = f"오류 > {await print_time.get_UTC()} > 클크 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 입력 > 입력 내용 : {area} / {car_class} / {car_name}"
                 await ch.send(embed= log_embed_error)
                 
                 print('---------------------------------------')

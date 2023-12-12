@@ -64,7 +64,7 @@ class WeeklycompetionKR(commands.Cog):
         if same_num_list:
             await interaction.response.send_message(f'```차량 : {car_data[same_num_list]}\n맵 : {map_data[same_num_list]}\n기록 : {lap_time_data[same_num_list]}```\n{link_data[same_num_list]}')
             
-            log_embed = discord.Embed(title= '정상 실행', description= f'tle', colour= etc)
+            log_embed = discord.Embed(title= '정상 실행', description= f'주경', colour= etc)
             log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)        
             log_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             log_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)

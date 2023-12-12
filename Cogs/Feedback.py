@@ -37,7 +37,7 @@ class Feedback(commands.Cog):
             embed_warn_asl_assistant.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
             await interaction.response.send_message(embed= embed_warn_asl_assistant, view= warn_before_asl_assistant_only())
             
-            no_variable_embed_owner = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
+            no_variable_embed_owner = discord.Embed(title= '정상 실행', description= f'피드백', colour= etc)
             no_variable_embed_owner.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
             no_variable_embed_owner.add_field(name='예외 사항 발생', value= f'{interaction.guild.name} 서버 > {interaction.channel.name} 채널', inline= False)
             no_variable_embed_owner.add_field(name='실행자', value= f'{interaction.user.display_name}')
@@ -50,7 +50,7 @@ class Feedback(commands.Cog):
             embed_warn.add_field(name= '', value= '숙지하셨다면 어떤 문제를 신고하실 것인지 버튼을 눌러 진행해주십시오.', inline= False)
             await interaction.response.send_message('', embed= embed_warn, view= warn_before(), ephemeral= True)
             
-            no_variable_embed = discord.Embed(title= '정상 실행', description= f'feedback', colour= etc)
+            no_variable_embed = discord.Embed(title= '정상 실행', description= f'피드백', colour= etc)
             no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
             no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
@@ -58,7 +58,7 @@ class Feedback(commands.Cog):
             no_variable_embed.add_field(name='서버 ID', value= f'{interaction.guild.id}', inline= True)
             no_variable_embed.add_field(name='채널 ID', value= f'{interaction.channel.id}', inline= True)
             no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
-            confirm = f"정상 실행 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm) 
+            confirm = f"정상 실행 > {await print_time.get_UTC()} > 피드백 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm) 
             await log_ch.send(embed = no_variable_embed)  
     
           
@@ -74,7 +74,7 @@ class Feedback(commands.Cog):
                                            colour= failed)
             await interaction.response.send_message(embed= embed_cd_error, delete_after=5, ephemeral= True)
             
-            no_variable_embed = discord.Embed(title= '에러', description= f'feedback', colour= failed)
+            no_variable_embed = discord.Embed(title= '에러', description= f'피드백', colour= failed)
             no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
             no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
@@ -85,7 +85,7 @@ class Feedback(commands.Cog):
             no_variable_embed.add_field(name='사유', value= '타임 아웃', inline= False)
             await ch.send(embed = no_variable_embed)
             
-            err = f"오류 > {await print_time.get_UTC()} > feedback > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > timeout_err"
+            err = f"오류 > {await print_time.get_UTC()} > 피드백 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 타임아웃 에러"
             print('---------------------------------------') 
             print(err)
             print('---------------------------------------') 

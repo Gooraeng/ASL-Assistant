@@ -47,10 +47,10 @@ class CarSpec(commands.Cog):
         embed1.add_field(name='- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
         
         # 정상 실행 (콘솔)
-        confirm = f"정상 실행 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car}"
+        confirm = f"정상 실행 > {await print_time.get_UTC()} > 스펙 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 차량 : {car}"
         
         # 오류 임베드
-        log_embed_error = discord.Embed(title= '오류', description= f'spec', colour= failed)
+        log_embed_error = discord.Embed(title= '오류', description= f'스펙', colour= failed)
         log_embed_error.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
         log_embed_error.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
         log_embed_error.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
@@ -64,7 +64,7 @@ class CarSpec(commands.Cog):
             await interaction.response.send_message('', embed=embed1, file=discord.File(f'Car_spec_img/{car}.png'),ephemeral=True)
             
             # 정상 실행 로그
-            log_embed = discord.Embed(title= '정상 실행', description= f'spec', colour= etc)
+            log_embed = discord.Embed(title= '정상 실행', description= f'스펙', colour= etc)
             log_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
             log_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             log_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
@@ -91,7 +91,7 @@ class CarSpec(commands.Cog):
                     
                     await interaction.response.send_message('', embed= embed2, ephemeral= True, delete_after=20)
                     
-                    no_data = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car} " 검색'
+                    no_data = f'오류 > {await print_time.get_UTC()} > 스펙 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 정보가 없는 차량 " {car} " 검색'
                     print(no_data)
                     log_embed_error.add_field(name= '세부 정보가 없는 차량 입력', value= f'{car}', inline= False)
         
@@ -104,7 +104,7 @@ class CarSpec(commands.Cog):
                     
                     await interaction.response.send_message('', embed= embed3, ephemeral= True, delete_after=10)
                     
-                    no_list = f'오류 > {await print_time.get_UTC()} > spec > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car} " 입력'
+                    no_list = f'오류 > {await print_time.get_UTC()} > 스펙 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 리스트에 없는 값 " {car} " 입력'
                     print(no_list)
                     
                     log_embed_error.add_field(name= '리스트에 없는 차량명 입력', value= f'{car}', inline= False)

@@ -38,7 +38,7 @@ class Donation(commands.Cog):
         no_variable_embed.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
         
         await ch.send(embed = no_variable_embed)
-        confirm = f"정상 실행 > {await print_time.get_UTC()} > donate > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm)
+        confirm = f"정상 실행 > {await print_time.get_UTC()} > 후원 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name}" ; print(confirm)
 
             
     @donate.error
@@ -47,14 +47,14 @@ class Donation(commands.Cog):
         
         if isinstance(error, app_commands.CommandInvokeError):
             if interaction.channel.type == discord.ChannelType.private:
-                no_variable_embed_dm = discord.Embed(title= '정상 실행', description= f'donate', colour= etc)
+                no_variable_embed_dm = discord.Embed(title= '정상 실행', description= f'후원', colour= etc)
                 no_variable_embed_dm.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
                 no_variable_embed_dm.add_field(name='채널명 (ID)', value= f'DM ({interaction.channel.id})', inline= True)
                 no_variable_embed_dm.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
                 no_variable_embed_dm.add_field(name='유저 ID', value= f'{interaction.user.id}', inline= True)
                     
                 await ch.send(embed = no_variable_embed_dm)
-                confirm = f"정상 실행 > {await print_time.get_UTC()} > donate > 서버: - > 채널 : DM ({interaction.channel.id}) > 실행자: {interaction.user.display_name}" ; print(confirm)
+                confirm = f"정상 실행 > {await print_time.get_UTC()} > 후원 > 서버: - > 채널 : DM ({interaction.channel.id}) > 실행자: {interaction.user.display_name}" ; print(confirm)
             else:
                 pass
 
