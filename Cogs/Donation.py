@@ -28,7 +28,7 @@ class Donation(commands.Cog):
 
         await interaction.response.send_message("## 이용해주셔서 매번 감사드립니다!\n\nhttps://twip.kr/gooraeng_", ephemeral= True)   
             
-        no_variable_embed = discord.Embed(title= '정상 실행', description= f'donate', colour= etc)
+        no_variable_embed = discord.Embed(title= '정상 실행', description= f'후원', colour= etc)
         no_variable_embed.add_field(name='시간(UTC)', value= f'{await print_time.get_UTC()}', inline= False)
         no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
         no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
