@@ -1,3 +1,6 @@
+# 리딤 링크를 출력하는 명령어
+# Last Update : 231216
+
 from discord import Interaction, app_commands
 from discord.ext import commands
 from .utils import settings
