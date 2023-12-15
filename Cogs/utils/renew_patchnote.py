@@ -18,9 +18,10 @@ source = BS(source, 'lxml')
 async def get_patchnote_link():
     if res.status_code == 200:
         link = source.find_all('link')[12]['href']
-        
         return link[:-3]
-
+    
+    else:
+        return None
 
 
 @tasks.loop(minutes= 5)
@@ -28,5 +29,7 @@ async def get_patchnote_title():
     if res.status_code == 200:
         soup = BS(res.text, 'html.parser')
         title = soup.select('body > main > div > div._4SheDy > section > div.relative.mx-cx.min-h-\[50vh\].bg-white.px-5.py-9.md\:px-20.md\:py-20.xl\:mx-auto.xl\:max-w-\[1110px\] > h1')[0].text
-        
         return title
+    
+    else:
+        return None
