@@ -1,31 +1,38 @@
 # 최신 패치노트 출력하는 명령어
 # Last Update : 231216
+from typing import Optional
+import discord
 
-from discord import Interaction, app_commands, Embed
+from discord import Interaction, app_commands, Embed 
 from discord.ext import commands
 from .utils import settings
 from .utils.embed_log import failed, etc
 from .utils.not_here import not_here_return_embed
-from .utils.renew_patchnote import get_patchnote_link, get_patchnote_title
+from .utils.renew_patchnote import get_patchnote_link, get_patchnote_embed
 from .utils.print_time import get_UTC
 
 
 log_channel = int(settings.log_channel)
 feedback_log_channel = int(settings.feedback_log_channel)
 
-
+class buttonfuc(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout= None)
+        self.add_item(discord.ui.Button(label= '패치노트 보기!', url= 'https://asphaltlegends.com/news'))
+    
+    
 class GetPatchNote(commands.Cog):
     def __init__(self, app : commands.Bot) -> None:
         self.app = app
         
     
-    @app_commands.command(name= '패치노트', description= '가장 최신의 패치 노트를 알려줍니다')
+    @app_commands.command(name= '최신패치노트', description= '가장 최신의 패치 노트를 알려줍니다')
     async def send_patchnote(self, interaction : Interaction):
         
         if interaction.channel.id == log_channel or interaction.channel.id == feedback_log_channel:
             return await not_here_return_embed(interaction= interaction) 
         
-        title = await get_patchnote_title()
+        title = await get_patchnote_embed()
         link = await get_patchnote_link()
         time = await get_UTC()
         
@@ -52,11 +59,11 @@ class GetPatchNote(commands.Cog):
             
         
         else:    
-            await interaction.response.send_message(content= f'# [패치노트명] {await get_patchnote_title()}\n{await get_patchnote_link()}', ephemeral= True)
+            await interaction.response.send_message(embed= title, view= buttonfuc(), ephemeral= True)
     
     @send_patchnote.error
     async def srl_error(self, interaction : Interaction, error : app_commands.AppCommandError):
-        title = await get_patchnote_title()
+        title = await get_patchnote_embed()
         link = await get_patchnote_link()
         ch = self.app.get_channel(log_channel)
         time = await get_UTC()
