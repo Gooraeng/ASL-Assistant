@@ -8,7 +8,7 @@ from discord.ext import tasks
 from discord import Embed
 from .print_time import get_UTC
 
-target = 'https://asphaltlegends.com/news/drive-syndicate-8'
+target = 'https://asphaltlegends.com/news/'
 
 res = requests.get(target)
 html = res.text
