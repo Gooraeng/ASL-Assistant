@@ -40,9 +40,9 @@ class GetPatchNote(commands.Cog):
             await interaction.response.send_message(embed= error_embed, ephemeral= True, delete_after= 10)
             
             ch = self.app.get_channel(log_channel)
-            not_loaded = f"오류 > {time} > 클크 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 패치 노트 조회 실패"
+            not_loaded = f"오류 > {time} > 최신패치노트 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 패치 노트 조회 실패"
            
-            log_embed_error = Embed(title= '오류', description= f'패치노트', colour= failed)
+            log_embed_error = Embed(title= '오류', description= f'최신패치노트', colour= failed)
             log_embed_error.add_field(name='시간(UTC)', value= time, inline= False)
             log_embed_error.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             log_embed_error.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
@@ -58,7 +58,7 @@ class GetPatchNote(commands.Cog):
             
         
         else:    
-            await interaction.response.send_message(embed= title, view= buttonfuc(), ephemeral= True)
+            await interaction.response.send_message(embed= title, view= buttonfuc())
     
     @send_patchnote.error
     async def srl_error(self, interaction : Interaction, error : app_commands.AppCommandError):
@@ -68,7 +68,7 @@ class GetPatchNote(commands.Cog):
         
         if isinstance(error, app_commands.CommandInvokeError):
             if title == None:
-                error_embed_dm = Embed(title= '에러', description= f'패치노트', colour= etc)
+                error_embed_dm = Embed(title= '에러', description= f'최신패치노트', colour= etc)
                 error_embed_dm.add_field(name='시간(UTC)', value= time, inline= False)
                 error_embed_dm.add_field(name='채널명 (ID)', value= f'DM ({interaction.channel.id})', inline= True)
                 error_embed_dm.add_field(name='유저', value= f'{interaction.user.display_name}', inline= True)
@@ -76,7 +76,7 @@ class GetPatchNote(commands.Cog):
                 error_embed_dm.add_field(name='예기치 않은 오류' , value= '패치노트 출력 실패', inline= False)                    
                 
                 await ch.send(embed = error_embed_dm)
-                not_sent = f"에러 > {time} > 패치노트 > 서버: - > 채널 : DM ({interaction.channel.id}) > 실행자: {interaction.user.display_name}" ; print(not_sent)
+                not_sent = f"에러 > {time} > 최신패치노트 > 서버: - > 채널 : DM ({interaction.channel.id}) > 실행자: {interaction.user.display_name}" ; print(not_sent)
             
             else:
                 pass
