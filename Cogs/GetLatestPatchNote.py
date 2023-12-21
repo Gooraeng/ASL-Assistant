@@ -8,7 +8,7 @@ from discord.ext import commands
 from .utils import settings
 from .utils.embed_log import failed, etc
 from .utils.not_here import not_here_return_embed
-from .utils.renew_patchnote import get_patchnote_link, get_patchnote_embed
+from .utils.renew_patchnote import get_patchnote_embed
 from .utils.print_time import get_UTC
 
 
@@ -33,10 +33,9 @@ class GetPatchNote(commands.Cog):
             return await not_here_return_embed(interaction= interaction) 
         
         title = await get_patchnote_embed()
-        link = await get_patchnote_link()
         time = await get_UTC()
         
-        if title == None or link == None:
+        if title == None:
             error_embed = Embed(title= '오류', description= '조회할 수 없습니다. 다시 시도해주세요!', colour= failed)
             await interaction.response.send_message(embed= error_embed, ephemeral= True, delete_after= 10)
             
@@ -64,12 +63,11 @@ class GetPatchNote(commands.Cog):
     @send_patchnote.error
     async def srl_error(self, interaction : Interaction, error : app_commands.AppCommandError):
         title = await get_patchnote_embed()
-        link = await get_patchnote_link()
         ch = self.app.get_channel(log_channel)
         time = await get_UTC()
         
         if isinstance(error, app_commands.CommandInvokeError):
-            if title == None or link == None:
+            if title == None:
                 error_embed_dm = Embed(title= '에러', description= f'패치노트', colour= etc)
                 error_embed_dm.add_field(name='시간(UTC)', value= time, inline= False)
                 error_embed_dm.add_field(name='채널명 (ID)', value= f'DM ({interaction.channel.id})', inline= True)
