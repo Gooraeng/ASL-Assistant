@@ -1,7 +1,7 @@
 # 최신 패치노트 출력하는 명령어
 # Last Update : 231216
-from typing import Optional
 import discord
+import asyncio
 
 from discord import Interaction, app_commands, Embed 
 from discord.ext import commands
@@ -57,8 +57,15 @@ class GetPatchNote(commands.Cog):
             
             
         
-        else:    
-            await interaction.response.send_message(embed= title, view= buttonfuc())
+        else:
+            try:
+                await interaction.response.send_message(embed= title, view= buttonfuc())
+            
+            except Exception:
+                await interaction.response.defer(thinking= True)
+                asyncio.sleep(5000)
+                await interaction.response.send_message(embed= title, view= buttonfuc())
+            
     
     @send_patchnote.error
     async def srl_error(self, interaction : Interaction, error : app_commands.AppCommandError):
