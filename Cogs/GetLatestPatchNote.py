@@ -97,7 +97,7 @@ class GetPatchNote(commands.Cog):
                                            colour= failed)
             await interaction.response.send_message(embed= embed_cd_error, delete_after=5, ephemeral= True)
             
-            no_variable_embed = discord.Embed(title= '에러', description= f'피드백', colour= failed)
+            no_variable_embed = discord.Embed(title= '에러', description= f'최신패치노트', colour= failed)
             no_variable_embed.add_field(name='시간(UTC)', value= time, inline= False)
             no_variable_embed.add_field(name='서버명', value= f'{interaction.guild.name}', inline= True)
             no_variable_embed.add_field(name='채널명', value= f'{interaction.channel.name}', inline= True)
@@ -108,7 +108,7 @@ class GetPatchNote(commands.Cog):
             no_variable_embed.add_field(name='사유', value= '타임 아웃', inline= False)
             await ch.send(embed = no_variable_embed)
             
-            err = f"오류 > {time} > 피드백 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 타임아웃 에러"
+            err = f"오류 > {time} > 최신패치노트 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 타임아웃 에러"
             print('---------------------------------------') 
             print(err)
             print('---------------------------------------') 
