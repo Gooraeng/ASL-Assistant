@@ -93,7 +93,7 @@ class GetPatchNote(commands.Cog):
         
         if isinstance(error, app_commands.CommandOnCooldown):
             embed_cd_error = discord.Embed(title= '어이쿠! 아직 이용하실 수 없습니다!',
-                                           description= f'{int(error.retry_after // 60)}분 {error.retry_after % 60}초 후에 다시 시도해주세요!',
+                                           description= f'{int(error.retry_after // 60)}분 {int(error.retry_after % 60)}초 후에 다시 시도해주세요!',
                                            colour= failed)
             await interaction.response.send_message(embed= embed_cd_error, delete_after=5, ephemeral= True)
             
