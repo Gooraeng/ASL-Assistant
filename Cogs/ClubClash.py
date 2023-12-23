@@ -64,7 +64,7 @@ class Clash(commands.Cog):
                 
                 # 정상 실행
                 if same2 and (car_class in set(class_data)):
-                    await interaction.response.send_message(f'```차량 : {car_data[same2]}\n맵 : {map_data[same2]}\n기록 : {lap_time_data[same2]}```\n{link_data[same2]}')
+                    await interaction.response.send_message(f'```차량 : {car_data[same2]}\n맵   : {map_data[same2]}\n기록 : {lap_time_data[same2]}```\n{link_data[same2]}')
                     
                     confirm = f"정상 실행 > {await print_time.get_UTC()} > 클크 > 서버: {interaction.guild.name} > 채널 : {interaction.channel.name} > 실행자: {interaction.user.display_name} > 검색 내용 : {area} / {car_class} / {car_name}"
                     

@@ -43,7 +43,7 @@ class CarHunt(commands.Cog):
                 # 입력한 차량명과 일치하는 차량의 인덱스 넘버 변수 선언 
                 CarName_found = car_data.index(car)
             
-                await interaciton.response.send_message(f'```차량 : {car_data[CarName_found]}\n맵 : {map_data[CarName_found]}\n기록 : {lap_time_data[CarName_found]}```\n{link_data[CarName_found]}')
+                await interaciton.response.send_message(f'```차량 : {car_data[CarName_found]}\n맵   : {map_data[CarName_found]}\n기록 : {lap_time_data[CarName_found]}```\n{link_data[CarName_found]}')
                 
                 # 정상 실행 로그
                 log_embed = discord.Embed(title= '정상 실행', description= f'카헌트', colour= etc)
