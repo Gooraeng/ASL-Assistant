@@ -1,5 +1,5 @@
 # 향후 일정 사진을 출력하는 명령어
-# Last Update : 231115
+# Last Update : 231231
 
 import discord
 
@@ -27,7 +27,7 @@ class ShowDateSheet(commands.Cog):
         
         else:
             embed = discord.Embed(title='**<주의>**', description='* 일정이 정확하지 않을 수 있으니, 그저 참고만 해주세요!',colour=0xff0000)
-            embed.add_field(name= '- 기간', value= '* 230927 ~ 231219', inline= False)
+            embed.add_field(name= '- 기간', value= '* 231213 ~ 240220', inline= False)
             
             await interaction.response.send_message('', embed = embed, ephemeral = True, file = discord.File('./images/datesheet.png'))
                     
