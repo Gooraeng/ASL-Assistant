@@ -1,5 +1,5 @@
 # 차량의 디테일한 성능을 알려주는 명령어
-# Last Update : 231115
+# Last Update : 240104
 
 import discord
 import typing
@@ -43,6 +43,7 @@ class CarSpec(commands.Cog):
         
         # 정상 실행 임베드 생성
         embed1 = discord.Embed(title='⚠️주의', description=f'정보가 누락되거나 정확하지 않을 수 있습니다. 문제 발견 시 **/feedback**을 통해 신고해주십시오!', colour=0x7fe6e4)
+        embed1.add_field(name='',value='스펙시트가 완성되지 않은 차량은 조회하실 수 없습니다!', inline=False)
         embed1.add_field(name='',value='모든 이미지의 출처는 "A9-Database" 디스코드 서버입니다.', inline=False)
         embed1.add_field(name='- 조회 불가능 차량', value= f"* {get_check_list_}", inline= False)
         
